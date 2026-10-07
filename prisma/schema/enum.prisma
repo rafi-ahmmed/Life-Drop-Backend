@@ -1,0 +1,13 @@
+
+enum UserRole{
+  PATIENT
+  DONOR
+  HOSPITAL
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum AuthProvider {
+  CREDENTIALS
+  GOOGLE
+}
