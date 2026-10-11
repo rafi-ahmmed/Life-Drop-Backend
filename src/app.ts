@@ -11,6 +11,8 @@ import config from "./config/index.js";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler.js";
 import { notFound } from "./middlewares/notFound.js";
 import { authRoutes } from "./module/auth/auth.route.js";
+import "./config/passport.js";
+import passport from "passport";
 
 const app: Application = express();
 
@@ -27,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(cookieParser());
+app.use(passport.initialize());
 
 // Routes
 app.use("/api/v1/auth", authRoutes);

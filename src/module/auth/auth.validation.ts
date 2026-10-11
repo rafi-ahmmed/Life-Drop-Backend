@@ -47,7 +47,15 @@ const verifyEmailZodSchema = z.object({
 
 export type verifyEmailPayload = z.infer<typeof verifyEmailZodSchema>;
 
+const loginZodSchema = z.object({
+	email: z.string().email("Not a valid email"),
+	password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+export type loginPayload = z.infer<typeof loginZodSchema>;
+
 export const authValidation = {
 	patientRegistrationZodSchema,
 	verifyEmailZodSchema,
+	loginZodSchema,
 };
