@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>LifeDrop OTP</title>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         background-color: #f4f7f6;
+         margin: 0;
+         padding: 20px;
+      }
+      .email-card {
+         max-width: 450px;
+         background: #ffffff;
+         padding: 25px;
+         margin: auto;
+         border-radius: 10px;
+         box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+         text-align: center;
+      }
+      .brand {
+         font-size: 24px;
+         font-weight: bold;
+         color: #e63946;
+         margin-bottom: 15px;
+      }
+      .brand span {
+         color: #1d3557;
+      }
+      .message {
+         color: #444444;
+         font-size: 15px;
+         line-height: 1.5;
+         margin-bottom: 20px;
+      }
+      /* OTP Box background color changed */
+      .otp-box {
+         font-size: 30px;
+         font-weight: bold;
+         letter-spacing: 5px;
+         color: #e63946;
+         background: #73e0ea; 
+         padding: 12px 20px;
+         border-radius: 6px;
+         border: 1px dashed #e63946;
+         display: inline-block;
+         margin-bottom: 15px;
+      }
+      .expiry-text {
+         font-size: 13px;
+         color: #666666;
+         margin-bottom: 20px;
+      }
+      .footer {
+         font-size: 12px;
+         color: #aaaaaa;
+         border-top: 1px solid #eeeeee;
+         padding-top: 15px;
+      }
+   </style>
+</head>
+<body>
+   <div class="email-card">
+      <div class="brand">🩸 Life<span>Drop</span></div>
+
+      <div class="message">
+         Hello <strong><%= username %></strong>,<br>
+         <%= reason %>
+      </div>
+
+      <div class="otp-box">
+         <%= otp %>
+      </div>
+
+      <!-- OTP Validity Text Added -->
+      <div class="expiry-text">
+         This OTP is valid for <strong>5 minutes</strong>.
+      </div>
+
+      <div class="footer">
+         &copy; 2026 LifeDrop. All rights reserved.
+      </div>
+   </div>
+</body>
+</html>

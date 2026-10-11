@@ -26,3 +26,11 @@ export const AuthProvider = {
 } as const
 
 export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider]
+
+
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  BLOCKED: 'BLOCKED'
+} as const
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]

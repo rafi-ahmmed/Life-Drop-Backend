@@ -6,7 +6,7 @@ const catchAsync = (fun: RequestHandler) => {
 		try {
 			await fun(req, res, next);
 		} catch (error) {
-			// console.log(chalk.redBright(error));
+			console.log(chalk.redBright(error));
 			next(error);
 		}
 	};

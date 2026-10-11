@@ -11,7 +11,6 @@
 		"start": "node dist/index.js",
 		"build": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1",
-
 		"format:check": "biome format ./src",
 		"format:fix": "biome format --write ./src",
 		"lint:check": "biome lint ./src",
@@ -21,6 +20,7 @@
 		"@biomejs/biome": "2.5.15",
 		"@types/cookie-parser": "^1.4.10",
 		"@types/cors": "^2.8.19",
+		"@types/ejs": "^3.1.5",
 		"@types/multer": "^2.3.0",
 		"@types/node": "^26.6.4",
 		"@types/pg": "^8.23.1",
@@ -36,12 +36,16 @@
 		"cookie-parser": "^1.4.7",
 		"cors": "^2.8.6",
 		"dotenv": "^17.4.2",
+		"ejs": "^7.0.1",
 		"express": "^5.2.1",
 		"http-status": "^2.1.0",
 		"jsonwebtoken": "^9.0.3",
 		"multer": "^2.4.0",
 		"node": "^22.23.3",
+		"nodemailer": "^10.1.0",
+		"passport-local": "^1.0.0",
 		"pg": "^8.23.1",
+		"redis": "^6.3.0",
 		"zod": "^4.6.5"
 	}
 }
