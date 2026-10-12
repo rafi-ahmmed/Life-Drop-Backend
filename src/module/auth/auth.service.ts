@@ -2,6 +2,7 @@ import httpStatus from "http-status";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
 import { redisClient } from "../../lib/redis.js";
+import type { IRequestUser } from "../../middlewares/checkAuth.js";
 import generateOTP from "../../utils/generateOtp.js";
 import { getHashPassword } from "../../utils/password.js";
 import { sentEmail } from "../../utils/sentEmail.js";
@@ -118,9 +119,31 @@ const verifyEmail = async (payload: verifyEmailPayload) => {
 	return data;
 };
 
+const getMe = async (user: IRequestUser) => {
+	console.log("user==", user);
+	const isUserExists = await prisma.user.findUnique({
+		where: {
+			id: user.userId,
+		},
+		include: {
+			patients: true,
+		},
+		omit: {
+			password: true,
+		},
+	});
+
+	if (!isUserExists) {
+		throw new AppError(httpStatus.NOT_FOUND, "User not found");
+	}
+
+	return isUserExists;
+};
+
 // const registerUser = async (payload: any) => {};
 
 export const authServices = {
 	registerUser,
 	verifyEmail,
+	getMe,
 };
