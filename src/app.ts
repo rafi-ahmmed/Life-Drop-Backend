@@ -13,6 +13,7 @@ import { notFound } from "./middlewares/notFound.js";
 import { authRoutes } from "./module/auth/auth.route.js";
 import "./config/passport.js";
 import passport from "passport";
+import { userRoutes } from "./module/user/user.route.js";
 
 const app: Application = express();
 
@@ -33,6 +34,7 @@ app.use(passport.initialize());
 
 // Routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", userRoutes);
 
 // For testing
 app.get("/test", async (req: Request, res: Response, next: NextFunction) => {

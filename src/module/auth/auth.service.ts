@@ -1,9 +1,13 @@
 import httpStatus from "http-status";
+import type { JwtPayload, SignOptions } from "jsonwebtoken";
+import { UserStatus } from "../../../prisma/generated/prisma/enums.js";
+import config from "../../config/index.js";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
 import { redisClient } from "../../lib/redis.js";
 import type { IRequestUser } from "../../middlewares/checkAuth.js";
 import generateOTP from "../../utils/generateOtp.js";
+import { generateToken, verifyToken } from "../../utils/jwt.js";
 import { getHashPassword } from "../../utils/password.js";
 import { sentEmail } from "../../utils/sentEmail.js";
 import type {
@@ -140,10 +144,57 @@ const getMe = async (user: IRequestUser) => {
 	return isUserExists;
 };
 
+const refreshToken = async (token: string) => {
+	const verifiedRefreshToken = verifyToken(token, config.jwt_refresh_secret);
+
+	if (!verifiedRefreshToken.success || !verifiedRefreshToken.data) {
+		throw new Error(
+			config.node_env === "development"
+				? verifiedRefreshToken.error
+				: "Invalid refresh token",
+		);
+	}
+
+	const data = verifiedRefreshToken.data as JwtPayload;
+
+	const user = await prisma.user.findUnique({
+		where: { id: data.userId },
+	});
+
+	if (!user || user.status !== UserStatus.ACTIVE) {
+		throw new Error("User is inactive or not found");
+	}
+
+	const jwtPayload = {
+		userId: user.id,
+		name: user.name,
+		email: user.email,
+		role: user.role,
+	};
+
+	const accessToken = await generateToken(
+		jwtPayload,
+		config.jwt_access_secret,
+		config.jwt_access_expires_in as SignOptions["expiresIn"],
+	);
+
+	const refreshToken = await generateToken(
+		jwtPayload,
+		config.jwt_refresh_secret,
+		config.jwt_refresh_expires_in as SignOptions["expiresIn"],
+	);
+
+	return {
+		accessToken,
+		refreshToken,
+	};
+};
+
 // const registerUser = async (payload: any) => {};
 
 export const authServices = {
 	registerUser,
 	verifyEmail,
 	getMe,
+	refreshToken,
 };

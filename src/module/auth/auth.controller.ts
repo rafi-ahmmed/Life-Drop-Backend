@@ -163,6 +163,30 @@ const logout = catchAsync(async (req: Request, res: Response) => {
 		data: null,
 	});
 });
+
+const refreshToken = catchAsync(async (req: Request, res: Response) => {
+	if (!req.cookies.refreshToken) {
+		throw new AppError(
+			httpStatus.NOT_FOUND,
+			"Refresh token not found. Please log in again.",
+		);
+	}
+	const result = await authServices.refreshToken(req.cookies.refreshToken);
+	const { accessToken, refreshToken: newRefreshToken } = result;
+
+	setAuthCookie(res, { accessToken, refreshToken: newRefreshToken });
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "New tokens generated successfully",
+		data: {
+			accessToken,
+			refreshToken: newRefreshToken,
+		},
+	});
+});
+
 // const registerPatient = catchAsync(async (req: Request, res: Response) => {
 // 	const payload = req.body;
 
@@ -181,4 +205,5 @@ export const authControllers = {
 	googleLogin,
 	getMe,
 	logout,
+	refreshToken,
 };

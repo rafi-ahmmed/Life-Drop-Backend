@@ -42,7 +42,10 @@ router.get(
 	),
 	authControllers.getMe,
 );
+
+
 router.get("/logOut", authControllers.logout);
+router.post("/refresh-token", authControllers.refreshToken);
 
 router.get;
 

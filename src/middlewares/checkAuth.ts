@@ -63,7 +63,6 @@ export const auth = (...requiredRoles: UserRole[]) => {
 			},
 		});
 
-		console.log("user from middlea", user);
 
 		if (!user) {
 			throw new AppError(httpStatus.NOT_FOUND, "User not found");
