@@ -13,6 +13,9 @@ import { notFound } from "./middlewares/notFound.js";
 import { authRoutes } from "./module/auth/auth.route.js";
 import "./config/passport.js";
 import passport from "passport";
+import { UserRole } from "../prisma/generated/prisma/enums.js";
+import { auth } from "./middlewares/checkAuth.js";
+import { patientRoutes } from "./module/patient/patient.route.js";
 import { userRoutes } from "./module/user/user.route.js";
 
 const app: Application = express();
@@ -35,6 +38,7 @@ app.use(passport.initialize());
 // Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/patient", auth(UserRole.PATIENT), patientRoutes);
 
 // For testing
 app.get("/test", async (req: Request, res: Response, next: NextFunction) => {
