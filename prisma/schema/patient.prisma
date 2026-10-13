@@ -1,14 +1,14 @@
-model Patient{
-   id String @id @default(uuid())
+model Patient {
+  id String @id @default(uuid())
 
-   userId String @unique
-   user User @relation(fields: [userId], references: [id],onDelete: Cascade)
-   
-   phone String? 
-   address String?
-   district String?
-   createdAt DateTime @default(now())
-   updatedAt DateTime @updatedAt
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-   @@map("patients")
+  phone     String?
+  address   String?
+  district  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("patients")
 }

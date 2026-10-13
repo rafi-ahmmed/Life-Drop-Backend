@@ -9,7 +9,7 @@ const updatePatient = async (payload: UpdatePatientPayload, userId: string) => {
 			id: userId,
 		},
 		include: {
-			patients: true,
+			patient: true,
 		},
 	});
 
@@ -17,7 +17,7 @@ const updatePatient = async (payload: UpdatePatientPayload, userId: string) => {
 		throw new AppError(httpStatus.NOT_FOUND, "Patient not found");
 	}
 
-	if (!isPatientExists.patients) {
+	if (!isPatientExists.patient) {
 		const createPatient = await prisma.patient.create({
 			data: {
 				userId: userId,
@@ -35,7 +35,7 @@ const updatePatient = async (payload: UpdatePatientPayload, userId: string) => {
 
 	const updatePatient = await prisma.patient.update({
 		where: {
-			id: isPatientExists?.patients.id,
+			id: isPatientExists?.patient?.id,
 		},
 		data: {
 			phone: payload.phone,

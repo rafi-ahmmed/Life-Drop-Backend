@@ -259,7 +259,7 @@ export type PatientCreateInput = {
   district?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutPatientsInput
+  user: Prisma.UserCreateNestedOneWithoutPatientInput
 }
 
 export type PatientUncheckedCreateInput = {
@@ -279,7 +279,7 @@ export type PatientUpdateInput = {
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPatientsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPatientNestedInput
 }
 
 export type PatientUncheckedUpdateInput = {
@@ -356,16 +356,8 @@ export type PatientNullableScalarRelationFilter = {
   isNot?: Prisma.PatientWhereInput | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
 }
 
 export type PatientCreateNestedOneWithoutUserInput = {

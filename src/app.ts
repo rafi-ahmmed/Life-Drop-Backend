@@ -12,6 +12,7 @@ import { globalErrorHandler } from "./middlewares/globalErrorHandler.js";
 import { notFound } from "./middlewares/notFound.js";
 import { authRoutes } from "./module/auth/auth.route.js";
 import "./config/passport.js";
+import helmet from "helmet";
 import passport from "passport";
 import { UserRole } from "../prisma/generated/prisma/enums.js";
 import { auth } from "./middlewares/checkAuth.js";
@@ -20,6 +21,10 @@ import { userRoutes } from "./module/user/user.route.js";
 
 const app: Application = express();
 
+// Security headers
+app.use(helmet());
+
+// CORS configuration
 app.use(
 	cors({
 		origin: config.frontend_url,
@@ -27,12 +32,14 @@ app.use(
 	}),
 );
 
-// Enable URL-encoded form data parsing
+// Parse request bodies
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+// Parse cookies
 app.use(cookieParser());
+
+// Initialize Passport
 app.use(passport.initialize());
 
 // Routes

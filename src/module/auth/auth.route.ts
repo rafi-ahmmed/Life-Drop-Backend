@@ -9,9 +9,15 @@ import { authValidation } from "./auth.validation.js";
 const router = Router();
 
 router.post(
-	"/register",
+	"/register/patient",
 	validateRequest(authValidation.patientRegistrationZodSchema),
 	authControllers.registerPatient,
+);
+
+router.post(
+	"/register/donor",
+	validateRequest(authValidation.donorRegistrationZodSchema),
+	authControllers.registerDonor,
 );
 
 router.post(
@@ -42,7 +48,6 @@ router.get(
 	),
 	authControllers.getMe,
 );
-
 
 router.get("/logOut", authControllers.logout);
 router.post("/refresh-token", authControllers.refreshToken);

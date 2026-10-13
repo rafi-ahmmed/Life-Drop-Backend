@@ -74,7 +74,7 @@ passport.use(
 						email,
 					},
 					include: {
-						patients: true,
+						patient: true,
 					},
 				});
 
@@ -91,7 +91,7 @@ passport.use(
 								googleId: profile.id,
 							},
 							include: {
-								patients: true,
+								patient: true,
 							},
 						});
 						return done(null, user);
@@ -110,7 +110,7 @@ passport.use(
 						image: profile.photos?.[0]?.value,
 					},
 					include: {
-						patients: true,
+						patient: true,
 					},
 				});
 
@@ -121,5 +121,3 @@ passport.use(
 		},
 	),
 );
-
-

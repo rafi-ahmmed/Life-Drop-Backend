@@ -14,7 +14,7 @@ import { authServices } from "./auth.service.js";
 const registerPatient = catchAsync(async (req: Request, res: Response) => {
 	const payload = req.body;
 
-	const result = await authServices.registerUser(payload);
+	const result = await authServices.registerPatient(payload);
 
 	sendResponse(res, {
 		statusCode: httpStatus.OK,
@@ -187,6 +187,18 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
+const registerDonor = catchAsync(async (req: Request, res: Response) => {
+	const payload = req.body;
+
+	await authServices.registerDonor(payload);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Verification otp send on ur email.",
+		data: null,
+	});
+});
 // const registerPatient = catchAsync(async (req: Request, res: Response) => {
 // 	const payload = req.body;
 
@@ -200,6 +212,7 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 
 export const authControllers = {
 	registerPatient,
+	registerDonor,
 	verifyEmail,
 	login,
 	googleLogin,
