@@ -48,3 +48,26 @@ export const BloodGroup = {
 } as const
 
 export type BloodGroup = (typeof BloodGroup)[keyof typeof BloodGroup]
+
+
+export const BloodRequestStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  MATCHING: 'MATCHING',
+  FULFILLED: 'FULFILLED',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type BloodRequestStatus = (typeof BloodRequestStatus)[keyof typeof BloodRequestStatus]
+
+
+export const DonorResponseStatus = {
+  INTERESTED: 'INTERESTED',
+  ACCEPTED: 'ACCEPTED',
+  DECLINED: 'DECLINED',
+  WITHDRAWN: 'WITHDRAWN'
+} as const
+
+export type DonorResponseStatus = (typeof DonorResponseStatus)[keyof typeof DonorResponseStatus]

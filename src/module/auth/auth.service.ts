@@ -230,7 +230,8 @@ const getMe = async (user: IRequestUser) => {
 			id: user.userId,
 		},
 		include: {
-			patient: true,
+			patient: user.role === UserRole.PATIENT,
+			donor: user.role === UserRole.DONOR,
 		},
 		omit: {
 			password: true,

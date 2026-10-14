@@ -63,7 +63,6 @@ export const auth = (...requiredRoles: UserRole[]) => {
 			},
 		});
 
-
 		if (!user) {
 			throw new AppError(httpStatus.NOT_FOUND, "User not found");
 		}

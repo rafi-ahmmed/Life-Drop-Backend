@@ -26,3 +26,20 @@ enum BloodGroup {
   O_POSITIVE  @map("O+")
   O_NEGATIVE  @map("O-")
 }
+
+enum BloodRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  MATCHING
+  FULFILLED
+  CANCELLED
+  EXPIRED
+}
+
+enum DonorResponseStatus {
+  INTERESTED
+  ACCEPTED
+  DECLINED
+  WITHDRAWN
+}

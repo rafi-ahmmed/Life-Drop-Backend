@@ -1,4 +1,5 @@
 import httpStatus from "http-status";
+import { UserRole } from "../../../prisma/generated/prisma/enums.js";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
 import type { UpdatePatientPayload } from "./patient.validation.js";
@@ -7,6 +8,7 @@ const updatePatient = async (payload: UpdatePatientPayload, userId: string) => {
 	const isPatientExists = await prisma.user.findUnique({
 		where: {
 			id: userId,
+			role: UserRole.PATIENT,
 		},
 		include: {
 			patient: true,
@@ -33,7 +35,7 @@ const updatePatient = async (payload: UpdatePatientPayload, userId: string) => {
 		return createPatient;
 	}
 
-	const updatePatient = await prisma.patient.update({
+	const updatedPatient = await prisma.patient.update({
 		where: {
 			id: isPatientExists?.patient?.id,
 		},
@@ -47,7 +49,7 @@ const updatePatient = async (payload: UpdatePatientPayload, userId: string) => {
 		},
 	});
 
-	return updatePatient;
+	return updatedPatient;
 };
 
 // const registerPatient = async (payload: any) => {};

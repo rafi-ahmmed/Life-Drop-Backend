@@ -444,22 +444,6 @@ export type DonorNullableScalarRelationFilter = {
   isNot?: Prisma.DonorWhereInput | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type EnumBloodGroupFieldUpdateOperationsInput = {
-  set?: $Enums.BloodGroup
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }

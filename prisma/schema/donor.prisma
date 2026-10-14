@@ -8,7 +8,7 @@ model Donor {
   phone         String
   address       String
   district      String
-  availability  Boolean   @default(true)
+  availability  Boolean    @default(true)
   dateOfBirth   DateTime
   lastDonatedAt DateTime?
 

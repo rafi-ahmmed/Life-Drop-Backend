@@ -14,8 +14,8 @@ import { authRoutes } from "./module/auth/auth.route.js";
 import "./config/passport.js";
 import helmet from "helmet";
 import passport from "passport";
-import { UserRole } from "../prisma/generated/prisma/enums.js";
-import { auth } from "./middlewares/checkAuth.js";
+import { bloodRequestRoutes } from "./module/blood-request/blood-request.route.js";
+import { donorRoutes } from "./module/donor/donor.route.js";
 import { patientRoutes } from "./module/patient/patient.route.js";
 import { userRoutes } from "./module/user/user.route.js";
 
@@ -44,8 +44,10 @@ app.use(passport.initialize());
 
 // Routes
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/patient", auth(UserRole.PATIENT), patientRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/patients", patientRoutes);
+app.use("/api/v1/donors", donorRoutes);
+app.use("/api/v1/blood-requests", bloodRequestRoutes);
 
 // For testing
 app.get("/test", async (req: Request, res: Response, next: NextFunction) => {

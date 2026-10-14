@@ -356,10 +356,6 @@ export type PatientNullableScalarRelationFilter = {
   isNot?: Prisma.PatientWhereInput | null
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type PatientCreateNestedOneWithoutUserInput = {
   create?: Prisma.XOR<Prisma.PatientCreateWithoutUserInput, Prisma.PatientUncheckedCreateWithoutUserInput>
   connectOrCreate?: Prisma.PatientCreateOrConnectWithoutUserInput

@@ -397,6 +397,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  BloodRequest: 'BloodRequest',
   Donor: 'Donor',
   Patient: 'Patient',
   User: 'User'
@@ -415,10 +416,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "donor" | "patient" | "user"
+    modelProps: "bloodRequest" | "donor" | "patient" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    BloodRequest: {
+      payload: Prisma.$BloodRequestPayload<ExtArgs>
+      fields: Prisma.BloodRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BloodRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BloodRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.BloodRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BloodRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>
+        }
+        findMany: {
+          args: Prisma.BloodRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>[]
+        }
+        create: {
+          args: Prisma.BloodRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>
+        }
+        createMany: {
+          args: Prisma.BloodRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BloodRequestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>[]
+        }
+        delete: {
+          args: Prisma.BloodRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>
+        }
+        update: {
+          args: Prisma.BloodRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.BloodRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BloodRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BloodRequestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>[]
+        }
+        upsert: {
+          args: Prisma.BloodRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.BloodRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBloodRequest>
+        }
+        groupBy: {
+          args: Prisma.BloodRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BloodRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BloodRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BloodRequestCountAggregateOutputType> | number
+        }
+      }
+    }
     Donor: {
       payload: Prisma.$DonorPayload<ExtArgs>
       fields: Prisma.DonorFieldRefs
@@ -680,6 +755,27 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const BloodRequestScalarFieldEnum = {
+  id: 'id',
+  requestorId: 'requestorId',
+  patientName: 'patientName',
+  bloodGroup: 'bloodGroup',
+  phone: 'phone',
+  units: 'units',
+  address: 'address',
+  district: 'district',
+  neededAt: 'neededAt',
+  urgency: 'urgency',
+  status: 'status',
+  description: 'description',
+  reviewerId: 'reviewerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BloodRequestScalarFieldEnum = (typeof BloodRequestScalarFieldEnum)[keyof typeof BloodRequestScalarFieldEnum]
+
+
 export const DonorScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -788,9 +884,16 @@ export type ListEnumBloodGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
- * Reference to a field of type 'Boolean'
+ * Reference to a field of type 'Int'
  */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -805,6 +908,27 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'BloodRequestStatus'
+ */
+export type EnumBloodRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BloodRequestStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'BloodRequestStatus[]'
+ */
+export type ListEnumBloodRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BloodRequestStatus[]'>
     
 
 
@@ -851,16 +975,16 @@ export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
- * Reference to a field of type 'Int'
+ * Reference to a field of type 'Float'
  */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
 /**
- * Reference to a field of type 'Int[]'
+ * Reference to a field of type 'Float[]'
  */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -1014,6 +1138,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
  */
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
+  bloodRequest?: Prisma.BloodRequestOmit
   donor?: Prisma.DonorOmit
   patient?: Prisma.PatientOmit
   user?: Prisma.UserOmit

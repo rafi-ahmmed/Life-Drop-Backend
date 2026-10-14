@@ -46,7 +46,9 @@ const login = catchAsync(
 			if (!user) {
 				return next(
 					new AppError(
-						httpStatus.UNAUTHORIZED,
+						info?.message === "Incorrect password."
+							? httpStatus.BAD_REQUEST
+							: httpStatus.UNAUTHORIZED,
 						info?.message || "Invalid email or password.",
 					),
 				);
