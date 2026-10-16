@@ -1,1 +1,17 @@
+model DonorResponse {
+  id String @id @default(uuid())
 
+  donorId String
+  donor   Donor  @relation(fields: [donorId], references: [id])
+
+  requestId String
+  request   BloodRequest @relation(fields: [requestId], references: [id])
+
+  status    DonorResponseStatus
+  message   String?
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  @@unique([donorId, requestId])
+  @@map("donor_responses")
+}

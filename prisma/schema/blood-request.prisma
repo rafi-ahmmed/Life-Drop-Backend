@@ -1,11 +1,15 @@
 model BloodRequest {
   id String @id @default(uuid())
 
-  requestorId String 
-  requestor   User @relation(fields: [requestorId], references: [id], onDelete: Cascade)
+  requestorId String
+  requestor   User   @relation(fields: [requestorId], references: [id], onDelete: Cascade)
+
+  donorResponse DonorResponse[]
 
   patientName String
   bloodGroup  BloodGroup
+  gender      Gender
+  reason      String
   phone       String
   units       Int
   address     String

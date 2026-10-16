@@ -191,6 +191,7 @@ const verifyEmail = async (payload: verifyEmailPayload) => {
 						phone: registrationData.phone,
 						district: registrationData.district,
 						bloodGroup: registrationData.bloodGroup,
+						gender: registrationData.gender,
 						dateOfBirth: registrationData.dateOfBirth,
 						lastDonatedAt: registrationData.lastDonatedAt,
 					},

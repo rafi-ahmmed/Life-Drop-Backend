@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { BloodGroup } from "../../../prisma/generated/prisma/enums.js";
+import { BloodGroup, Gender } from "../../../prisma/generated/prisma/enums.js";
 
 export const createBloodRequestZodSchema = z.object({
 	patientName: z.string("Patient name is required").trim().min(1),
@@ -7,6 +7,12 @@ export const createBloodRequestZodSchema = z.object({
 	bloodGroup: z.enum(BloodGroup, {
 		message: "Please select a valid blood group",
 	}),
+
+	gender: z.enum(Gender, {
+		message: "Please select a valid gender",
+	}),
+
+	reason: z.string("Reason is required").trim().min(1),
 
 	phone: z
 		.string("Phone number is required")

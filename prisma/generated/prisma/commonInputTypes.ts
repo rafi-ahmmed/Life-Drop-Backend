@@ -36,6 +36,13 @@ export type EnumBloodGroupFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumBloodGroupFilter<$PrismaModel> | $Enums.BloodGroup
 }
 
+export type EnumGenderFilter<$PrismaModel = never> = {
+  equals?: $Enums.Gender | Prisma.EnumGenderFieldRefInput<$PrismaModel>
+  in?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+}
+
 export type IntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -118,6 +125,16 @@ export type EnumBloodGroupWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumBloodGroupFilter<$PrismaModel>
 }
 
+export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Gender | Prisma.EnumGenderFieldRefInput<$PrismaModel>
+  in?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGenderFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGenderFilter<$PrismaModel>
+}
+
 export type IntWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -182,6 +199,23 @@ export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedStringNullableFilter<$PrismaModel>
   _max?: Prisma.NestedStringNullableFilter<$PrismaModel>
+}
+
+export type EnumDonorResponseStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DonorResponseStatus | Prisma.EnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DonorResponseStatus[] | Prisma.ListEnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DonorResponseStatus[] | Prisma.ListEnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDonorResponseStatusFilter<$PrismaModel> | $Enums.DonorResponseStatus
+}
+
+export type EnumDonorResponseStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DonorResponseStatus | Prisma.EnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DonorResponseStatus[] | Prisma.ListEnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DonorResponseStatus[] | Prisma.ListEnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDonorResponseStatusWithAggregatesFilter<$PrismaModel> | $Enums.DonorResponseStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDonorResponseStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDonorResponseStatusFilter<$PrismaModel>
 }
 
 export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -281,6 +315,13 @@ export type NestedEnumBloodGroupFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumBloodGroupFilter<$PrismaModel> | $Enums.BloodGroup
 }
 
+export type NestedEnumGenderFilter<$PrismaModel = never> = {
+  equals?: $Enums.Gender | Prisma.EnumGenderFieldRefInput<$PrismaModel>
+  in?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+}
+
 export type NestedIntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -354,6 +395,16 @@ export type NestedEnumBloodGroupWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumBloodGroupFilter<$PrismaModel>
   _max?: Prisma.NestedEnumBloodGroupFilter<$PrismaModel>
+}
+
+export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Gender | Prisma.EnumGenderFieldRefInput<$PrismaModel>
+  in?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Gender[] | Prisma.ListEnumGenderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGenderFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGenderFilter<$PrismaModel>
 }
 
 export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -441,6 +492,23 @@ export type NestedIntNullableFilter<$PrismaModel = never> = {
   gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
   gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
   not?: Prisma.NestedIntNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedEnumDonorResponseStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DonorResponseStatus | Prisma.EnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DonorResponseStatus[] | Prisma.ListEnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DonorResponseStatus[] | Prisma.ListEnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDonorResponseStatusFilter<$PrismaModel> | $Enums.DonorResponseStatus
+}
+
+export type NestedEnumDonorResponseStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DonorResponseStatus | Prisma.EnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DonorResponseStatus[] | Prisma.ListEnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DonorResponseStatus[] | Prisma.ListEnumDonorResponseStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDonorResponseStatusWithAggregatesFilter<$PrismaModel> | $Enums.DonorResponseStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDonorResponseStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDonorResponseStatusFilter<$PrismaModel>
 }
 
 export type NestedDateTimeNullableFilter<$PrismaModel = never> = {

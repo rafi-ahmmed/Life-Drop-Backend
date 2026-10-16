@@ -1,5 +1,5 @@
 import z from "zod";
-import { BloodGroup } from "../../../prisma/generated/prisma/enums.js";
+import { BloodGroup, Gender } from "../../../prisma/generated/prisma/enums.js";
 
 const patientRegistrationZodSchema = z.object({
 	name: z
@@ -66,6 +66,10 @@ const donorRegistrationZodSchema = z.object({
 
 	bloodGroup: z.nativeEnum(BloodGroup, {
 		message: "Please select a valid blood group.",
+	}),
+	
+	gender: z.nativeEnum(Gender, {
+		message: "Please select a valid Gender.",
 	}),
 
 	phone: z

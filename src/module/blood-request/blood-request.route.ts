@@ -14,6 +14,12 @@ router.get(
 	bloodRequestControllers.getAllBloodReqByAdmin,
 );
 
+router.patch(
+	"/status/:id",
+	auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+	bloodRequestControllers.updateBloodRequestStatus,
+);
+
 // *For Patient
 router.post(
 	"/create",
@@ -29,9 +35,21 @@ router.get(
 );
 
 router.get(
+	"/my-requests",
+	auth(UserRole.PATIENT),
+	bloodRequestControllers.myRequests,
+);
+
+router.get(
 	"/:id",
 	auth(UserRole.PATIENT, UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.DONOR),
 	bloodRequestControllers.getBloodRequestById,
+);
+
+router.get(
+	"/match-donors/:id",
+	auth(UserRole.PATIENT, UserRole.ADMIN, UserRole.SUPER_ADMIN),
+	bloodRequestControllers.matchDonors,
 );
 
 export const bloodRequestRoutes = router;

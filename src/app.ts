@@ -12,12 +12,16 @@ import { globalErrorHandler } from "./middlewares/globalErrorHandler.js";
 import { notFound } from "./middlewares/notFound.js";
 import { authRoutes } from "./module/auth/auth.route.js";
 import "./config/passport.js";
+import bcrypt from "bcryptjs";
 import helmet from "helmet";
 import passport from "passport";
+import { UserRole } from "../prisma/generated/prisma/enums.js";
+import { prisma } from "./lib/prisma.js";
 import { bloodRequestRoutes } from "./module/blood-request/blood-request.route.js";
 import { donorRoutes } from "./module/donor/donor.route.js";
 import { patientRoutes } from "./module/patient/patient.route.js";
 import { userRoutes } from "./module/user/user.route.js";
+import { getHashPassword } from "./utils/password.js";
 
 const app: Application = express();
 
@@ -50,8 +54,40 @@ app.use("/api/v1/donors", donorRoutes);
 app.use("/api/v1/blood-requests", bloodRequestRoutes);
 
 // For testing
-app.get("/test", async (req: Request, res: Response, next: NextFunction) => {
+app.post("/test", async (req: Request, res: Response, next: NextFunction) => {
 	try {
+		const payload = req.body;
+		console.log(payload);
+
+		const newPayload = await Promise.all(
+			payload.map(async ({ user, donor }) => ({
+				user: {
+					...user,
+					password: await getHashPassword(user.password),
+				},
+				donor: {
+					...donor,
+					dateOfBirth: new Date(`${donor.dateOfBirth}T00:00:00.000Z`),
+				},
+			})),
+		);
+
+		const result = await Promise.all(
+			newPayload.map(({ user, donor }) =>
+				prisma.user.create({
+					data: {
+						...user,
+						role: UserRole.DONOR,
+						donor: {
+							create: donor,
+						},
+					},
+				}),
+			),
+		);
+
+		console.log(`${result.length} donors created successfully`);
+
 		res.status(200).json({
 			success: true,
 			message: "Welcome to LifeDrop System Backend",

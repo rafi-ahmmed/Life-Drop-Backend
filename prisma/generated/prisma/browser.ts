@@ -23,6 +23,11 @@ export * from './enums.js';
  */
 export type BloodRequest = Prisma.BloodRequestModel
 /**
+ * Model DonorResponse
+ * 
+ */
+export type DonorResponse = Prisma.DonorResponseModel
+/**
  * Model Donor
  * 
  */

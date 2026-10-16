@@ -38,8 +38,15 @@ enum BloodRequestStatus {
 }
 
 enum DonorResponseStatus {
+  PENDING
   INTERESTED
   ACCEPTED
   DECLINED
-  WITHDRAWN
+  CANCELLED
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }

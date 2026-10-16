@@ -11,8 +11,8 @@ model User {
   imagePublicId String?
   isVerified    Boolean      @default(false)
 
-  patient Patient?
-  donor   Donor?
+  patient      Patient?
+  donor        Donor?
   bloodRequest BloodRequest[]
 
   createdAt DateTime @default(now())

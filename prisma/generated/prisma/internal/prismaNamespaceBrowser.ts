@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   BloodRequest: 'BloodRequest',
+  DonorResponse: 'DonorResponse',
   Donor: 'Donor',
   Patient: 'Patient',
   User: 'User'
@@ -78,6 +79,8 @@ export const BloodRequestScalarFieldEnum = {
   requestorId: 'requestorId',
   patientName: 'patientName',
   bloodGroup: 'bloodGroup',
+  gender: 'gender',
+  reason: 'reason',
   phone: 'phone',
   units: 'units',
   address: 'address',
@@ -94,10 +97,24 @@ export const BloodRequestScalarFieldEnum = {
 export type BloodRequestScalarFieldEnum = (typeof BloodRequestScalarFieldEnum)[keyof typeof BloodRequestScalarFieldEnum]
 
 
+export const DonorResponseScalarFieldEnum = {
+  id: 'id',
+  donorId: 'donorId',
+  requestId: 'requestId',
+  status: 'status',
+  message: 'message',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DonorResponseScalarFieldEnum = (typeof DonorResponseScalarFieldEnum)[keyof typeof DonorResponseScalarFieldEnum]
+
+
 export const DonorScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   bloodGroup: 'bloodGroup',
+  gender: 'gender',
   phone: 'phone',
   address: 'address',
   district: 'district',

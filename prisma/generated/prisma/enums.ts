@@ -71,3 +71,12 @@ export const DonorResponseStatus = {
 } as const
 
 export type DonorResponseStatus = (typeof DonorResponseStatus)[keyof typeof DonorResponseStatus]
+
+
+export const Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE',
+  OTHER: 'OTHER'
+} as const
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
