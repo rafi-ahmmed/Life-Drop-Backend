@@ -9,7 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/BloodRequest.js'
-export type * from './models/DonorResponse.js'
+export type * from './models/DonorRequest.js'
 export type * from './models/Donor.js'
 export type * from './models/Patient.js'
 export type * from './models/User.js'

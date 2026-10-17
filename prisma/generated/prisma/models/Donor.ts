@@ -239,7 +239,7 @@ export type DonorWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Donor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Donor"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  donorResponses?: Prisma.DonorResponseListRelationFilter
+  donorRequests?: Prisma.DonorRequestListRelationFilter
 }
 
 export type DonorOrderByWithRelationInput = {
@@ -256,7 +256,7 @@ export type DonorOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
-  donorResponses?: Prisma.DonorResponseOrderByRelationAggregateInput
+  donorRequests?: Prisma.DonorRequestOrderByRelationAggregateInput
 }
 
 export type DonorWhereUniqueInput = Prisma.AtLeast<{
@@ -276,7 +276,7 @@ export type DonorWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Donor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Donor"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  donorResponses?: Prisma.DonorResponseListRelationFilter
+  donorRequests?: Prisma.DonorRequestListRelationFilter
 }, "id" | "userId">
 
 export type DonorOrderByWithAggregationInput = {
@@ -328,7 +328,7 @@ export type DonorCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutDonorInput
-  donorResponses?: Prisma.DonorResponseCreateNestedManyWithoutDonorInput
+  donorRequests?: Prisma.DonorRequestCreateNestedManyWithoutDonorInput
 }
 
 export type DonorUncheckedCreateInput = {
@@ -344,7 +344,7 @@ export type DonorUncheckedCreateInput = {
   lastDonatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  donorResponses?: Prisma.DonorResponseUncheckedCreateNestedManyWithoutDonorInput
+  donorRequests?: Prisma.DonorRequestUncheckedCreateNestedManyWithoutDonorInput
 }
 
 export type DonorUpdateInput = {
@@ -360,7 +360,7 @@ export type DonorUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutDonorNestedInput
-  donorResponses?: Prisma.DonorResponseUpdateManyWithoutDonorNestedInput
+  donorRequests?: Prisma.DonorRequestUpdateManyWithoutDonorNestedInput
 }
 
 export type DonorUncheckedUpdateInput = {
@@ -376,7 +376,7 @@ export type DonorUncheckedUpdateInput = {
   lastDonatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  donorResponses?: Prisma.DonorResponseUncheckedUpdateManyWithoutDonorNestedInput
+  donorRequests?: Prisma.DonorRequestUncheckedUpdateManyWithoutDonorNestedInput
 }
 
 export type DonorCreateManyInput = {
@@ -478,18 +478,18 @@ export type DonorNullableScalarRelationFilter = {
   isNot?: Prisma.DonorWhereInput | null
 }
 
-export type DonorCreateNestedOneWithoutDonorResponsesInput = {
-  create?: Prisma.XOR<Prisma.DonorCreateWithoutDonorResponsesInput, Prisma.DonorUncheckedCreateWithoutDonorResponsesInput>
-  connectOrCreate?: Prisma.DonorCreateOrConnectWithoutDonorResponsesInput
+export type DonorCreateNestedOneWithoutDonorRequestsInput = {
+  create?: Prisma.XOR<Prisma.DonorCreateWithoutDonorRequestsInput, Prisma.DonorUncheckedCreateWithoutDonorRequestsInput>
+  connectOrCreate?: Prisma.DonorCreateOrConnectWithoutDonorRequestsInput
   connect?: Prisma.DonorWhereUniqueInput
 }
 
-export type DonorUpdateOneRequiredWithoutDonorResponsesNestedInput = {
-  create?: Prisma.XOR<Prisma.DonorCreateWithoutDonorResponsesInput, Prisma.DonorUncheckedCreateWithoutDonorResponsesInput>
-  connectOrCreate?: Prisma.DonorCreateOrConnectWithoutDonorResponsesInput
-  upsert?: Prisma.DonorUpsertWithoutDonorResponsesInput
+export type DonorUpdateOneRequiredWithoutDonorRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.DonorCreateWithoutDonorRequestsInput, Prisma.DonorUncheckedCreateWithoutDonorRequestsInput>
+  connectOrCreate?: Prisma.DonorCreateOrConnectWithoutDonorRequestsInput
+  upsert?: Prisma.DonorUpsertWithoutDonorRequestsInput
   connect?: Prisma.DonorWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DonorUpdateToOneWithWhereWithoutDonorResponsesInput, Prisma.DonorUpdateWithoutDonorResponsesInput>, Prisma.DonorUncheckedUpdateWithoutDonorResponsesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DonorUpdateToOneWithWhereWithoutDonorRequestsInput, Prisma.DonorUpdateWithoutDonorRequestsInput>, Prisma.DonorUncheckedUpdateWithoutDonorRequestsInput>
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -528,7 +528,7 @@ export type DonorUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DonorUpdateToOneWithWhereWithoutUserInput, Prisma.DonorUpdateWithoutUserInput>, Prisma.DonorUncheckedUpdateWithoutUserInput>
 }
 
-export type DonorCreateWithoutDonorResponsesInput = {
+export type DonorCreateWithoutDonorRequestsInput = {
   id?: string
   bloodGroup: $Enums.BloodGroup
   gender: $Enums.Gender
@@ -543,7 +543,7 @@ export type DonorCreateWithoutDonorResponsesInput = {
   user: Prisma.UserCreateNestedOneWithoutDonorInput
 }
 
-export type DonorUncheckedCreateWithoutDonorResponsesInput = {
+export type DonorUncheckedCreateWithoutDonorRequestsInput = {
   id?: string
   userId: string
   bloodGroup: $Enums.BloodGroup
@@ -558,23 +558,23 @@ export type DonorUncheckedCreateWithoutDonorResponsesInput = {
   updatedAt?: Date | string
 }
 
-export type DonorCreateOrConnectWithoutDonorResponsesInput = {
+export type DonorCreateOrConnectWithoutDonorRequestsInput = {
   where: Prisma.DonorWhereUniqueInput
-  create: Prisma.XOR<Prisma.DonorCreateWithoutDonorResponsesInput, Prisma.DonorUncheckedCreateWithoutDonorResponsesInput>
+  create: Prisma.XOR<Prisma.DonorCreateWithoutDonorRequestsInput, Prisma.DonorUncheckedCreateWithoutDonorRequestsInput>
 }
 
-export type DonorUpsertWithoutDonorResponsesInput = {
-  update: Prisma.XOR<Prisma.DonorUpdateWithoutDonorResponsesInput, Prisma.DonorUncheckedUpdateWithoutDonorResponsesInput>
-  create: Prisma.XOR<Prisma.DonorCreateWithoutDonorResponsesInput, Prisma.DonorUncheckedCreateWithoutDonorResponsesInput>
+export type DonorUpsertWithoutDonorRequestsInput = {
+  update: Prisma.XOR<Prisma.DonorUpdateWithoutDonorRequestsInput, Prisma.DonorUncheckedUpdateWithoutDonorRequestsInput>
+  create: Prisma.XOR<Prisma.DonorCreateWithoutDonorRequestsInput, Prisma.DonorUncheckedCreateWithoutDonorRequestsInput>
   where?: Prisma.DonorWhereInput
 }
 
-export type DonorUpdateToOneWithWhereWithoutDonorResponsesInput = {
+export type DonorUpdateToOneWithWhereWithoutDonorRequestsInput = {
   where?: Prisma.DonorWhereInput
-  data: Prisma.XOR<Prisma.DonorUpdateWithoutDonorResponsesInput, Prisma.DonorUncheckedUpdateWithoutDonorResponsesInput>
+  data: Prisma.XOR<Prisma.DonorUpdateWithoutDonorRequestsInput, Prisma.DonorUncheckedUpdateWithoutDonorRequestsInput>
 }
 
-export type DonorUpdateWithoutDonorResponsesInput = {
+export type DonorUpdateWithoutDonorRequestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
@@ -589,7 +589,7 @@ export type DonorUpdateWithoutDonorResponsesInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutDonorNestedInput
 }
 
-export type DonorUncheckedUpdateWithoutDonorResponsesInput = {
+export type DonorUncheckedUpdateWithoutDonorRequestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
@@ -616,7 +616,7 @@ export type DonorCreateWithoutUserInput = {
   lastDonatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  donorResponses?: Prisma.DonorResponseCreateNestedManyWithoutDonorInput
+  donorRequests?: Prisma.DonorRequestCreateNestedManyWithoutDonorInput
 }
 
 export type DonorUncheckedCreateWithoutUserInput = {
@@ -631,7 +631,7 @@ export type DonorUncheckedCreateWithoutUserInput = {
   lastDonatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  donorResponses?: Prisma.DonorResponseUncheckedCreateNestedManyWithoutDonorInput
+  donorRequests?: Prisma.DonorRequestUncheckedCreateNestedManyWithoutDonorInput
 }
 
 export type DonorCreateOrConnectWithoutUserInput = {
@@ -662,7 +662,7 @@ export type DonorUpdateWithoutUserInput = {
   lastDonatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  donorResponses?: Prisma.DonorResponseUpdateManyWithoutDonorNestedInput
+  donorRequests?: Prisma.DonorRequestUpdateManyWithoutDonorNestedInput
 }
 
 export type DonorUncheckedUpdateWithoutUserInput = {
@@ -677,7 +677,7 @@ export type DonorUncheckedUpdateWithoutUserInput = {
   lastDonatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  donorResponses?: Prisma.DonorResponseUncheckedUpdateManyWithoutDonorNestedInput
+  donorRequests?: Prisma.DonorRequestUncheckedUpdateManyWithoutDonorNestedInput
 }
 
 
@@ -686,11 +686,11 @@ export type DonorUncheckedUpdateWithoutUserInput = {
  */
 
 export type DonorCountOutputType = {
-  donorResponses: number
+  donorRequests: number
 }
 
 export type DonorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  donorResponses?: boolean | DonorCountOutputTypeCountDonorResponsesArgs
+  donorRequests?: boolean | DonorCountOutputTypeCountDonorRequestsArgs
 }
 
 /**
@@ -706,8 +706,8 @@ export type DonorCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
 /**
  * DonorCountOutputType without action
  */
-export type DonorCountOutputTypeCountDonorResponsesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DonorResponseWhereInput
+export type DonorCountOutputTypeCountDonorRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DonorRequestWhereInput
 }
 
 
@@ -725,7 +725,7 @@ export type DonorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  donorResponses?: boolean | Prisma.Donor$donorResponsesArgs<ExtArgs>
+  donorRequests?: boolean | Prisma.Donor$donorRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.DonorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["donor"]>
 
@@ -779,7 +779,7 @@ export type DonorSelectScalar = {
 export type DonorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "bloodGroup" | "gender" | "phone" | "address" | "district" | "availability" | "dateOfBirth" | "lastDonatedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["donor"]>
 export type DonorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  donorResponses?: boolean | Prisma.Donor$donorResponsesArgs<ExtArgs>
+  donorRequests?: boolean | Prisma.Donor$donorRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.DonorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DonorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -793,7 +793,7 @@ export type $DonorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Donor"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
-    donorResponses: Prisma.$DonorResponsePayload<ExtArgs>[]
+    donorRequests: Prisma.$DonorRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1203,7 +1203,7 @@ readonly fields: DonorFieldRefs;
 export interface Prisma__DonorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  donorResponses<T extends Prisma.Donor$donorResponsesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Donor$donorResponsesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DonorResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  donorRequests<T extends Prisma.Donor$donorRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Donor$donorRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DonorRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1646,27 +1646,27 @@ export type DonorDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Donor.donorResponses
+ * Donor.donorRequests
  */
-export type Donor$donorResponsesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Donor$donorRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the DonorResponse
+   * Select specific fields to fetch from the DonorRequest
    */
-  select?: Prisma.DonorResponseSelect<ExtArgs> | null
+  select?: Prisma.DonorRequestSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the DonorResponse
+   * Omit specific fields from the DonorRequest
    */
-  omit?: Prisma.DonorResponseOmit<ExtArgs> | null
+  omit?: Prisma.DonorRequestOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DonorResponseInclude<ExtArgs> | null
-  where?: Prisma.DonorResponseWhereInput
-  orderBy?: Prisma.DonorResponseOrderByWithRelationInput | Prisma.DonorResponseOrderByWithRelationInput[]
-  cursor?: Prisma.DonorResponseWhereUniqueInput
+  include?: Prisma.DonorRequestInclude<ExtArgs> | null
+  where?: Prisma.DonorRequestWhereInput
+  orderBy?: Prisma.DonorRequestOrderByWithRelationInput | Prisma.DonorRequestOrderByWithRelationInput[]
+  cursor?: Prisma.DonorRequestWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.DonorResponseScalarFieldEnum | Prisma.DonorResponseScalarFieldEnum[]
+  distinct?: Prisma.DonorRequestScalarFieldEnum | Prisma.DonorRequestScalarFieldEnum[]
 }
 
 /**

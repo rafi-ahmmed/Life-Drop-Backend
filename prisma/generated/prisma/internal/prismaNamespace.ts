@@ -398,7 +398,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   BloodRequest: 'BloodRequest',
-  DonorResponse: 'DonorResponse',
+  DonorRequest: 'DonorRequest',
   Donor: 'Donor',
   Patient: 'Patient',
   User: 'User'
@@ -417,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "bloodRequest" | "donorResponse" | "donor" | "patient" | "user"
+    modelProps: "bloodRequest" | "donorRequest" | "donor" | "patient" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -495,77 +495,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    DonorResponse: {
-      payload: Prisma.$DonorResponsePayload<ExtArgs>
-      fields: Prisma.DonorResponseFieldRefs
+    DonorRequest: {
+      payload: Prisma.$DonorRequestPayload<ExtArgs>
+      fields: Prisma.DonorRequestFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.DonorResponseFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload> | null
+          args: Prisma.DonorRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.DonorResponseFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>
+          args: Prisma.DonorRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>
         }
         findFirst: {
-          args: Prisma.DonorResponseFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload> | null
+          args: Prisma.DonorRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.DonorResponseFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>
+          args: Prisma.DonorRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>
         }
         findMany: {
-          args: Prisma.DonorResponseFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>[]
+          args: Prisma.DonorRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>[]
         }
         create: {
-          args: Prisma.DonorResponseCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>
+          args: Prisma.DonorRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>
         }
         createMany: {
-          args: Prisma.DonorResponseCreateManyArgs<ExtArgs>
+          args: Prisma.DonorRequestCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.DonorResponseCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>[]
+          args: Prisma.DonorRequestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>[]
         }
         delete: {
-          args: Prisma.DonorResponseDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>
+          args: Prisma.DonorRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>
         }
         update: {
-          args: Prisma.DonorResponseUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>
+          args: Prisma.DonorRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>
         }
         deleteMany: {
-          args: Prisma.DonorResponseDeleteManyArgs<ExtArgs>
+          args: Prisma.DonorRequestDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.DonorResponseUpdateManyArgs<ExtArgs>
+          args: Prisma.DonorRequestUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.DonorResponseUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>[]
+          args: Prisma.DonorRequestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>[]
         }
         upsert: {
-          args: Prisma.DonorResponseUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorResponsePayload>
+          args: Prisma.DonorRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DonorRequestPayload>
         }
         aggregate: {
-          args: Prisma.DonorResponseAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateDonorResponse>
+          args: Prisma.DonorRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDonorRequest>
         }
         groupBy: {
-          args: Prisma.DonorResponseGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.DonorResponseGroupByOutputType>[]
+          args: Prisma.DonorRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DonorRequestGroupByOutputType>[]
         }
         count: {
-          args: Prisma.DonorResponseCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.DonorResponseCountAggregateOutputType> | number
+          args: Prisma.DonorRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DonorRequestCountAggregateOutputType> | number
         }
       }
     }
@@ -853,7 +853,7 @@ export const BloodRequestScalarFieldEnum = {
 export type BloodRequestScalarFieldEnum = (typeof BloodRequestScalarFieldEnum)[keyof typeof BloodRequestScalarFieldEnum]
 
 
-export const DonorResponseScalarFieldEnum = {
+export const DonorRequestScalarFieldEnum = {
   id: 'id',
   donorId: 'donorId',
   requestId: 'requestId',
@@ -863,7 +863,7 @@ export const DonorResponseScalarFieldEnum = {
   updatedAt: 'updatedAt'
 } as const
 
-export type DonorResponseScalarFieldEnum = (typeof DonorResponseScalarFieldEnum)[keyof typeof DonorResponseScalarFieldEnum]
+export type DonorRequestScalarFieldEnum = (typeof DonorRequestScalarFieldEnum)[keyof typeof DonorRequestScalarFieldEnum]
 
 
 export const DonorScalarFieldEnum = {
@@ -1038,16 +1038,16 @@ export type ListEnumBloodRequestStatusFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
- * Reference to a field of type 'DonorResponseStatus'
+ * Reference to a field of type 'DonorRequestStatus'
  */
-export type EnumDonorResponseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DonorResponseStatus'>
+export type EnumDonorRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DonorRequestStatus'>
     
 
 
 /**
- * Reference to a field of type 'DonorResponseStatus[]'
+ * Reference to a field of type 'DonorRequestStatus[]'
  */
-export type ListEnumDonorResponseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DonorResponseStatus[]'>
+export type ListEnumDonorRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DonorRequestStatus[]'>
     
 
 
@@ -1258,7 +1258,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   bloodRequest?: Prisma.BloodRequestOmit
-  donorResponse?: Prisma.DonorResponseOmit
+  donorRequest?: Prisma.DonorRequestOmit
   donor?: Prisma.DonorOmit
   patient?: Prisma.PatientOmit
   user?: Prisma.UserOmit

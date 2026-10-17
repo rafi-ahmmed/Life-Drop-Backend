@@ -1,4 +1,4 @@
-model DonorResponse {
+model DonorRequest {
   id String @id @default(uuid())
 
   donorId String
@@ -7,11 +7,11 @@ model DonorResponse {
   requestId String
   request   BloodRequest @relation(fields: [requestId], references: [id])
 
-  status    DonorResponseStatus
+  status    DonorRequestStatus @default(PENDING)
   message   String?
   createdAt DateTime            @default(now())
   updatedAt DateTime            @updatedAt
 
   @@unique([donorId, requestId])
-  @@map("donor_responses")
+  @@map("donor_requests")
 }

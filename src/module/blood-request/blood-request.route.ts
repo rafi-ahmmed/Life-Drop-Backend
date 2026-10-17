@@ -7,7 +7,7 @@ import { bloodRequestValidation } from "./blood-request.validation.js";
 
 const router = Router();
 
-// ?For Admin
+// ? Only for Admin
 router.get(
 	"/all",
 	auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),

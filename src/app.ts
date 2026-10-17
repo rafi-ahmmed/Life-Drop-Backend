@@ -19,6 +19,7 @@ import { UserRole } from "../prisma/generated/prisma/enums.js";
 import { prisma } from "./lib/prisma.js";
 import { bloodRequestRoutes } from "./module/blood-request/blood-request.route.js";
 import { donorRoutes } from "./module/donor/donor.route.js";
+import { donorRequestRoutes } from "./module/donor-request/donor-request.route.js";
 import { patientRoutes } from "./module/patient/patient.route.js";
 import { userRoutes } from "./module/user/user.route.js";
 import { getHashPassword } from "./utils/password.js";
@@ -52,6 +53,7 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/patients", patientRoutes);
 app.use("/api/v1/donors", donorRoutes);
 app.use("/api/v1/blood-requests", bloodRequestRoutes);
+app.use("/api/v1/donor-requests", donorRequestRoutes);
 
 // For testing
 app.post("/test", async (req: Request, res: Response, next: NextFunction) => {

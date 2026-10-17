@@ -205,7 +205,7 @@ const matchDonors = async (
 
 	const total = matchingDonors.length;
 
-	const existingResponses = await prisma.donorResponse.findMany({
+	const existingResponses = await prisma.donorRequest.findMany({
 		where: {
 			requestId: requestId,
 		},
@@ -227,6 +227,9 @@ const matchDonors = async (
 
 	return { total, matchingDonors, stringDonorIds };
 };
+
+
+
 // const getAllBloodRequests = async (userId: string) => {}
 
 export const bloodRequestServices = {
@@ -237,4 +240,5 @@ export const bloodRequestServices = {
 	updateBloodRequestStatus,
 	myRequests,
 	matchDonors,
+	
 };

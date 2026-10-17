@@ -37,7 +37,7 @@ enum BloodRequestStatus {
   EXPIRED
 }
 
-enum DonorResponseStatus {
+enum DonorRequestStatus {
   PENDING
   INTERESTED
   ACCEPTED

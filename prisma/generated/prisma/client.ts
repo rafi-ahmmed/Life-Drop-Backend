@@ -47,10 +47,10 @@ export { Prisma }
  */
 export type BloodRequest = Prisma.BloodRequestModel
 /**
- * Model DonorResponse
+ * Model DonorRequest
  * 
  */
-export type DonorResponse = Prisma.DonorResponseModel
+export type DonorRequest = Prisma.DonorRequestModel
 /**
  * Model Donor
  * 

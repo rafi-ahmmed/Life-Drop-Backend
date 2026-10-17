@@ -125,6 +125,8 @@ const matchDonors = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
+
+
 // const registerPatient = catchAsync(async (req: Request, res: Response) => {
 // 	const payload = req.body;
 
@@ -144,4 +146,5 @@ export const bloodRequestControllers = {
 	getAllBloodReqByAdmin,
 	myRequests,
 	matchDonors,
+	
 };

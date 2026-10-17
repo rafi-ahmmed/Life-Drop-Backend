@@ -63,14 +63,15 @@ export const BloodRequestStatus = {
 export type BloodRequestStatus = (typeof BloodRequestStatus)[keyof typeof BloodRequestStatus]
 
 
-export const DonorResponseStatus = {
+export const DonorRequestStatus = {
+  PENDING: 'PENDING',
   INTERESTED: 'INTERESTED',
   ACCEPTED: 'ACCEPTED',
   DECLINED: 'DECLINED',
-  WITHDRAWN: 'WITHDRAWN'
+  CANCELLED: 'CANCELLED'
 } as const
 
-export type DonorResponseStatus = (typeof DonorResponseStatus)[keyof typeof DonorResponseStatus]
+export type DonorRequestStatus = (typeof DonorRequestStatus)[keyof typeof DonorRequestStatus]
 
 
 export const Gender = {

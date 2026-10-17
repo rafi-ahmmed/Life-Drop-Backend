@@ -4,7 +4,7 @@ model BloodRequest {
   requestorId String
   requestor   User   @relation(fields: [requestorId], references: [id], onDelete: Cascade)
 
-  donorResponse DonorResponse[]
+  donorRequests DonorRequest[]
 
   patientName String
   bloodGroup  BloodGroup
