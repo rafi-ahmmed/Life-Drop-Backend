@@ -33,16 +33,6 @@ const createBloodRequest = async (
 	return result;
 };
 
-const getAllBloodRequests = async (userId: string) => {
-	const result = await prisma.bloodRequest.findMany({
-		where: {
-			requestorId: userId,
-		},
-	});
-
-	return result;
-};
-
 // TODO: Implement filter and pagination
 const getAllBloodRequestsByAdmin = async () => {
 	const result = await prisma.bloodRequest.findMany();
@@ -234,11 +224,9 @@ const matchDonors = async (
 
 export const bloodRequestServices = {
 	createBloodRequest,
-	getAllBloodRequests,
 	getAllBloodRequestsByAdmin,
 	getBloodRequestById,
 	updateBloodRequestStatus,
 	myRequests,
 	matchDonors,
-	
 };

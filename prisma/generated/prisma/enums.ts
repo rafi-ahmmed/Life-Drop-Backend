@@ -56,7 +56,6 @@ export const BloodRequestStatus = {
   REJECTED: 'REJECTED',
   MATCHING: 'MATCHING',
   FULFILLED: 'FULFILLED',
-  CANCELLED: 'CANCELLED',
   EXPIRED: 'EXPIRED'
 } as const
 

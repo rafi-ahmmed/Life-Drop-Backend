@@ -429,7 +429,7 @@ export type BloodRequestCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   requestor: Prisma.UserCreateNestedOneWithoutBloodRequestInput
-  donorRequests?: Prisma.DonorRequestCreateNestedManyWithoutRequestInput
+  donorRequests?: Prisma.DonorRequestCreateNestedManyWithoutBloodRequestInput
 }
 
 export type BloodRequestUncheckedCreateInput = {
@@ -450,7 +450,7 @@ export type BloodRequestUncheckedCreateInput = {
   reviewerId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  donorRequests?: Prisma.DonorRequestUncheckedCreateNestedManyWithoutRequestInput
+  donorRequests?: Prisma.DonorRequestUncheckedCreateNestedManyWithoutBloodRequestInput
 }
 
 export type BloodRequestUpdateInput = {
@@ -471,7 +471,7 @@ export type BloodRequestUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requestor?: Prisma.UserUpdateOneRequiredWithoutBloodRequestNestedInput
-  donorRequests?: Prisma.DonorRequestUpdateManyWithoutRequestNestedInput
+  donorRequests?: Prisma.DonorRequestUpdateManyWithoutBloodRequestNestedInput
 }
 
 export type BloodRequestUncheckedUpdateInput = {
@@ -492,7 +492,7 @@ export type BloodRequestUncheckedUpdateInput = {
   reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  donorRequests?: Prisma.DonorRequestUncheckedUpdateManyWithoutRequestNestedInput
+  donorRequests?: Prisma.DonorRequestUncheckedUpdateManyWithoutBloodRequestNestedInput
 }
 
 export type BloodRequestCreateManyInput = {
@@ -842,7 +842,7 @@ export type BloodRequestCreateWithoutRequestorInput = {
   reviewerId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  donorRequests?: Prisma.DonorRequestCreateNestedManyWithoutRequestInput
+  donorRequests?: Prisma.DonorRequestCreateNestedManyWithoutBloodRequestInput
 }
 
 export type BloodRequestUncheckedCreateWithoutRequestorInput = {
@@ -862,7 +862,7 @@ export type BloodRequestUncheckedCreateWithoutRequestorInput = {
   reviewerId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  donorRequests?: Prisma.DonorRequestUncheckedCreateNestedManyWithoutRequestInput
+  donorRequests?: Prisma.DonorRequestUncheckedCreateNestedManyWithoutBloodRequestInput
 }
 
 export type BloodRequestCreateOrConnectWithoutRequestorInput = {
@@ -950,7 +950,7 @@ export type BloodRequestUpdateWithoutRequestorInput = {
   reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  donorRequests?: Prisma.DonorRequestUpdateManyWithoutRequestNestedInput
+  donorRequests?: Prisma.DonorRequestUpdateManyWithoutBloodRequestNestedInput
 }
 
 export type BloodRequestUncheckedUpdateWithoutRequestorInput = {
@@ -970,7 +970,7 @@ export type BloodRequestUncheckedUpdateWithoutRequestorInput = {
   reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  donorRequests?: Prisma.DonorRequestUncheckedUpdateManyWithoutRequestNestedInput
+  donorRequests?: Prisma.DonorRequestUncheckedUpdateManyWithoutBloodRequestNestedInput
 }
 
 export type BloodRequestUncheckedUpdateManyWithoutRequestorInput = {

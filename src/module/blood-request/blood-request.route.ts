@@ -20,18 +20,12 @@ router.patch(
 	bloodRequestControllers.updateBloodRequestStatus,
 );
 
-// *For Patient
+// * For Patient
 router.post(
 	"/create",
 	auth(UserRole.PATIENT),
 	validateRequest(bloodRequestValidation.createBloodRequestZodSchema),
 	bloodRequestControllers.createBloodRequest,
-);
-
-router.get(
-	"/me",
-	auth(UserRole.PATIENT),
-	bloodRequestControllers.getAllBloodRequests,
 );
 
 router.get(

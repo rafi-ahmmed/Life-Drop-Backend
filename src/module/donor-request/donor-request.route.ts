@@ -13,5 +13,37 @@ router.post(
 	validateRequest(donorRequestValidation.sendDonorRequestZodSchema),
 	donorRequestControllers.sendRequest,
 );
+router.patch(
+	"/:id",
+	auth(UserRole.PATIENT),
+	validateRequest(donorRequestValidation.updateDonorRequestZodSchema),
+	donorRequestControllers.sendRequest,
+);
+
+router.get(
+	"/my-requests",
+	auth(UserRole.DONOR),
+	donorRequestControllers.getMyRequests,
+);
+
+router.get(
+	"/my-requests/:id",
+	auth(UserRole.DONOR),
+	donorRequestControllers.getRequestById,
+);
+
+// For Patient
+router.get(
+	"/:requestId",
+	auth(UserRole.PATIENT),
+	donorRequestControllers.getAllDonorRequests,
+);
+
+router.patch(
+	"/respond/:id",
+	validateRequest(donorRequestValidation.respondToRequestSchema),
+	auth(UserRole.DONOR),
+	donorRequestControllers.respondToRequest,
+);
 
 export const donorRequestRoutes = router;

@@ -33,15 +33,14 @@ enum BloodRequestStatus {
   REJECTED
   MATCHING
   FULFILLED
-  CANCELLED
   EXPIRED
 }
 
 enum DonorRequestStatus {
   PENDING
   INTERESTED
-  ACCEPTED
   DECLINED
+  ACCEPTED
   CANCELLED
 }
 

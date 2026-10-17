@@ -10,6 +10,22 @@ export type SendDonorRequestsPayload = z.infer<
 	typeof sendDonorRequestZodSchema
 >;
 
+export const respondToRequestSchema = z.object({
+	status: z.enum(["INTERESTED", "DECLINED"]),
+});
+
+export type RespondToRequestPayload = z.infer<typeof respondToRequestSchema>;
+
+export const updateDonorRequestZodSchema = z.object({
+	status: z.enum(["ACCEPTED", "CANCELLED"]),
+});
+
+export type UpdateDonorRequestPayload = z.infer<
+	typeof updateDonorRequestZodSchema
+>;
+
 export const donorRequestValidation = {
 	sendDonorRequestZodSchema,
+	respondToRequestSchema,
+	updateDonorRequestZodSchema,
 };

@@ -5,7 +5,7 @@ model DonorRequest {
   donor   Donor  @relation(fields: [donorId], references: [id])
 
   requestId String
-  request   BloodRequest @relation(fields: [requestId], references: [id])
+  bloodRequest   BloodRequest @relation(fields: [requestId], references: [id])
 
   status    DonorRequestStatus @default(PENDING)
   message   String?

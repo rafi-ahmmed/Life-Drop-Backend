@@ -6,33 +6,41 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"ignoreUnknown": false,
-		"includes": ["**", "!src/app/templates"]
-	},
+  "ignoreUnknown": false,
+  "includes": [
+    "**",
+    "!src/app/templates",
+    "!prisma/generated/**"
+  ]
+},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab"
 	},
 	"linter": {
-		"enabled": true,
-		"rules": {
-			"preset": "recommended",
-			"suspicious": {
-				"noExplicitAny": "warn"
-			},
-			"complexity": {
-				"noCommaOperator": "info"
-			},
-			"correctness": {
-				"noUnusedFunctionParameters": "off"
-			},
-			"style": {
-				"noNonNullAssertion": "info",
-				"useNodejsImportProtocol": "info"
-			}
-		},
-		"includes": ["**", "!src/app/templates"]
-	},
+  "enabled": true,
+  "rules": {
+    "preset": "recommended",
+    "suspicious": {
+      "noExplicitAny": "warn"
+    },
+    "complexity": {
+      "noCommaOperator": "info"
+    },
+    "correctness": {
+      "noUnusedFunctionParameters": "off"
+    },
+    "style": {
+      "noNonNullAssertion": "info",
+      "useNodejsImportProtocol": "info"
+    }
+  },
+  "includes": [
+    "**",
+    "!src/app/templates",
+    "!prisma/generated/**"
+  ]
+},
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"

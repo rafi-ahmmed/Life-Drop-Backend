@@ -1,8 +1,15 @@
 import httpStatus from "http-status";
-import { BloodRequestStatus } from "../../../prisma/generated/prisma/enums.js";
+import {
+	BloodRequestStatus,
+	DonorRequestStatus,
+} from "../../../prisma/generated/prisma/enums.js";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
-import type { SendDonorRequestsPayload } from "./donor-request.validation.js";
+import type {
+	RespondToRequestPayload,
+	SendDonorRequestsPayload,
+	UpdateDonorRequestPayload,
+} from "./donor-request.validation.js";
 
 const sendRequest = async (
 	requestId: string,
@@ -42,8 +49,153 @@ const sendRequest = async (
 	return sendResult;
 };
 
+const updateRequest = async (
+	userId: string,
+	requestId: string,
+	payload: UpdateDonorRequestPayload,
+) => {};
+
+const getAllDonorRequests = async (userId: string, requestId: string) => {
+	const result = await prisma.donorRequest.findMany({
+		where: {
+			requestId: requestId,
+		},
+		include: {
+			donor: {
+				select: {
+					id: true,
+					bloodGroup: true,
+					gender: true,
+					address: true,
+					district: true,
+				},
+			},
+		},
+	});
+
+	return result;
+};
+
+const getMyRequests = async (userId: string) => {
+	const user = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+		include: {
+			donor: {
+				select: {
+					id: true,
+				},
+			},
+		},
+	});
+
+	const result = await prisma.donorRequest.findMany({
+		where: {
+			donorId: user?.donor?.id,
+		},
+	});
+
+	if (!result || result.length === 0) {
+		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
+	}
+
+	return result;
+};
+
+const getRequestById = async (donorRequestId: string, userId: string) => {
+	const user = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+		include: {
+			donor: {
+				select: {
+					id: true,
+				},
+			},
+		},
+	});
+	const result = await prisma.donorRequest.findUnique({
+		where: {
+			id: donorRequestId,
+			donorId: user?.donor?.id,
+		},
+		include: {
+			bloodRequest: true,
+		},
+	});
+
+	if (!result) {
+		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
+	}
+
+	return result;
+};
+
+const respondToRequest = async (
+	requestId: string,
+	userId: string,
+	payload: RespondToRequestPayload,
+) => {
+	const user = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+		include: {
+			donor: {
+				select: {
+					id: true,
+				},
+			},
+		},
+	});
+
+	const donorRequest = await prisma.donorRequest.findUnique({
+		where: {
+			id: requestId,
+			donorId: user?.donor?.id,
+		},
+		include: {
+			bloodRequest: true,
+		},
+	});
+
+	if (!donorRequest) {
+		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
+	}
+
+	if (payload.status === donorRequest.status) {
+		throw new AppError(
+			httpStatus.BAD_REQUEST,
+			`Request already ${payload.status}`,
+		);
+	}
+
+	if (donorRequest.bloodRequest.status !== "MATCHING") {
+		throw new AppError(
+			httpStatus.BAD_REQUEST,
+			"You cannot respond to this blood request",
+		);
+	}
+
+	const donorRequestUpdate = await prisma.donorRequest.update({
+		where: {
+			id: requestId,
+		},
+		data: {
+			status: payload.status,
+		},
+	});
+
+	return donorRequestUpdate;
+};
 // const getAllBloodRequests = async (userId: string) => {}
 
 export const donorRequestServices = {
 	sendRequest,
+	getMyRequests,
+	getRequestById,
+	respondToRequest,
+	getAllDonorRequests,
 };
