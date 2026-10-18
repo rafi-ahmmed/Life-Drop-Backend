@@ -1,5 +1,8 @@
 import httpStatus from "http-status";
-import { UserRole } from "../../../prisma/generated/prisma/enums.js";
+import {
+	DonorRequestStatus,
+	UserRole,
+} from "../../../prisma/generated/prisma/enums.js";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
 import type {
@@ -41,7 +44,6 @@ const updateAvailability = async (
 	payload: updateAvailabilityPayload,
 	userId: string,
 ) => {
-	console.log(payload);
 	const isDonorExists = await prisma.user.findUnique({
 		where: {
 			id: userId,
@@ -68,13 +70,30 @@ const updateAvailability = async (
 		);
 	}
 
-	const updatedDonor = await prisma.donor.update({
-		where: {
-			id: isDonorExists?.donor?.id,
-		},
-		data: {
-			availability: payload.availability,
-		},
+	const updatedDonor = await prisma.$transaction(async (tx) => {
+		// Donor availability update
+		const donor = await tx.donor.update({
+			where: {
+				id: isDonorExists.donor?.id,
+			},
+			data: {
+				availability: payload.availability,
+			},
+		});
+
+		if (payload.availability === false) {
+			await tx.donorRequest.updateMany({
+				where: {
+					donorId: isDonorExists.donor?.id,
+					status: DonorRequestStatus.ACCEPTED,
+				},
+				data: {
+					status: DonorRequestStatus.WITHDRAWN,
+				},
+			});
+		}
+
+		return donor;
 	});
 
 	return updatedDonor;

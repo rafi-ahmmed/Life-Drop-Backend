@@ -49,31 +49,70 @@ const sendRequest = async (
 	return sendResult;
 };
 
-const updateRequest = async (
+const updateRequestStatusByPatient = async (
 	userId: string,
 	requestId: string,
 	payload: UpdateDonorRequestPayload,
-) => {};
+) => {
+	console.log(userId, requestId, payload);
 
-const getAllDonorRequests = async (userId: string, requestId: string) => {
-	const result = await prisma.donorRequest.findMany({
+	const request = await prisma.donorRequest.findUnique({
 		where: {
-			requestId: requestId,
+			id: requestId,
+			bloodRequest: {
+				requestorId: userId,
+			},
 		},
 		include: {
-			donor: {
-				select: {
-					id: true,
-					bloodGroup: true,
-					gender: true,
-					address: true,
-					district: true,
-				},
-			},
+			bloodRequest: true,
 		},
 	});
 
-	return result;
+	if (!request) {
+		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
+	}
+
+	if (payload.status === request.status) {
+		throw new AppError(
+			httpStatus.BAD_REQUEST,
+			`Request already ${payload.status}`,
+		);
+	}
+
+	if (
+		request.status !== DonorRequestStatus.INTERESTED &&
+		request.status !== DonorRequestStatus.ACCEPTED
+	) {
+		throw new AppError(
+			httpStatus.BAD_REQUEST,
+			`You cannot update this request as request is not in interested or declined state`,
+		);
+	}
+
+	const acceptedCount = await prisma.donorRequest.count({
+		where: {
+			requestId: request.bloodRequest.id,
+			status: DonorRequestStatus.ACCEPTED,
+		},
+	});
+
+	if (acceptedCount >= request.bloodRequest.units) {
+		throw new AppError(
+			httpStatus.BAD_REQUEST,
+			"You cannot accept more donors than the required units",
+		);
+	}
+
+	const updateRequest = await prisma.donorRequest.update({
+		where: {
+			id: requestId,
+		},
+		data: {
+			status: payload.status,
+		},
+	});
+
+	return updateRequest;
 };
 
 const getMyRequests = async (userId: string) => {
@@ -190,6 +229,7 @@ const respondToRequest = async (
 
 	return donorRequestUpdate;
 };
+
 // const getAllBloodRequests = async (userId: string) => {}
 
 export const donorRequestServices = {
@@ -197,5 +237,5 @@ export const donorRequestServices = {
 	getMyRequests,
 	getRequestById,
 	respondToRequest,
-	getAllDonorRequests,
+	updateRequestStatusByPatient,
 };

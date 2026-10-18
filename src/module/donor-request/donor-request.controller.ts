@@ -21,18 +21,26 @@ const sendRequest = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
-const updateRequest = catchAsync(async (req: Request, res: Response) => {
-	const payload = req.body;
-	const userId = req.currentUser?.userId;
-	const donorRequestId = req.params.id;
+const updateRequestStatusByPatient = catchAsync(
+	async (req: Request, res: Response) => {
+		const payload = req.body;
+		const userId = req.currentUser?.userId;
+		const requestId = req.params.id;
 
-	sendResponse(res, {
-		statusCode: httpStatus.OK,
-		success: true,
-		message: "Verification otp send on ur email.",
-		data: null,
-	});
-});
+		const result = await donorRequestServices.updateRequestStatusByPatient(
+			userId as string,
+			requestId as string,
+			payload,
+		);
+
+		sendResponse(res, {
+			statusCode: httpStatus.OK,
+			success: true,
+			message: `Request ${payload.status} successfully`,
+			data: result,
+		});
+	},
+);
 
 const getMyRequests = catchAsync(async (req: Request, res: Response) => {
 	const userId = req.currentUser?.userId;
@@ -83,23 +91,6 @@ const respondToRequest = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
-const getAllDonorRequests = catchAsync(async (req: Request, res: Response) => {
-	const userId = req.currentUser?.userId;
-	const requestId = req.params.requestId;
-
-	const result = await donorRequestServices.getAllDonorRequests(
-		userId as string,
-		requestId as string,
-	);
-
-	sendResponse(res, {
-		statusCode: httpStatus.OK,
-		success: true,
-		message: "Get all donor requests for a blood request",
-		data: result,
-	});
-});
-
 // const registerPatient = catchAsync(async (req: Request, res: Response) => {
 // 	const payload = req.body;
 
@@ -116,5 +107,5 @@ export const donorRequestControllers = {
 	getMyRequests,
 	getRequestById,
 	respondToRequest,
-	getAllDonorRequests,
+	updateRequestStatusByPatient,
 };

@@ -65,9 +65,10 @@ export type BloodRequestStatus = (typeof BloodRequestStatus)[keyof typeof BloodR
 export const DonorRequestStatus = {
   PENDING: 'PENDING',
   INTERESTED: 'INTERESTED',
-  ACCEPTED: 'ACCEPTED',
   DECLINED: 'DECLINED',
-  CANCELLED: 'CANCELLED'
+  ACCEPTED: 'ACCEPTED',
+  CANCELLED: 'CANCELLED',
+  WITHDRAWN: 'WITHDRAWN'
 } as const
 
 export type DonorRequestStatus = (typeof DonorRequestStatus)[keyof typeof DonorRequestStatus]

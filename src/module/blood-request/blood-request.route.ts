@@ -46,4 +46,11 @@ router.get(
 	bloodRequestControllers.matchDonors,
 );
 
+// Get donor requests for a blood request
+router.get(
+	"/donor-requests/:id",
+	auth(UserRole.PATIENT),
+	bloodRequestControllers.getAllDonorRequests,
+);
+
 export const bloodRequestRoutes = router;

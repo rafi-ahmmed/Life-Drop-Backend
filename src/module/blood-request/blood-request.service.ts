@@ -1,6 +1,9 @@
 import httpStatus from "http-status";
 import type { Prisma } from "../../../prisma/generated/prisma/browser.js";
-import { BloodRequestStatus } from "../../../prisma/generated/prisma/enums.js";
+import {
+	BloodRequestStatus,
+	DonorRequestStatus,
+} from "../../../prisma/generated/prisma/enums.js";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
 import type { MatchingOptions } from "./blood-request.interface.js";
@@ -218,7 +221,63 @@ const matchDonors = async (
 	return { total, matchingDonors, stringDonorIds };
 };
 
+const getAllDonorRequests = async (userId: string, requestId: string) => {
+	console.log(userId, requestId);
 
+	if (!requestId) {
+		throw new Error("Request ID is required");
+	}
+	const requests = await prisma.bloodRequest.findUnique({
+		where: {
+			id: requestId,
+			requestorId: userId,
+		},
+		select: {
+			id: true,
+			bloodGroup: true,
+			district: true,
+			address: true,
+			units: true,
+			status: true,
+			donorRequests: {
+				select: {
+					id: true,
+					status: true,
+					donor: {
+						select: {
+							id: true,
+							address: true,
+							district: true,
+							availability: true,
+							bloodGroup: true,
+							phone: true,
+							gender: true,
+						},
+					},
+				},
+			},
+		},
+	});
+
+	if (!requests) {
+		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
+	}
+
+	return {
+		...requests,
+		donorRequests: requests.donorRequests.map((donorRequest) => {
+			const { phone, gender, ...donor } = donorRequest.donor;
+
+			return {
+				...donorRequest,
+				donor:
+					donorRequest.status === DonorRequestStatus.ACCEPTED
+						? { ...donor, phone, gender }
+						: donor,
+			};
+		}),
+	};
+};
 
 // const getAllBloodRequests = async (userId: string) => {}
 
@@ -229,4 +288,5 @@ export const bloodRequestServices = {
 	updateBloodRequestStatus,
 	myRequests,
 	matchDonors,
+	getAllDonorRequests,
 };

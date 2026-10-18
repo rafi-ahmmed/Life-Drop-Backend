@@ -13,11 +13,12 @@ router.post(
 	validateRequest(donorRequestValidation.sendDonorRequestZodSchema),
 	donorRequestControllers.sendRequest,
 );
+
 router.patch(
-	"/:id",
+	"/status/:id",
 	auth(UserRole.PATIENT),
 	validateRequest(donorRequestValidation.updateDonorRequestZodSchema),
-	donorRequestControllers.sendRequest,
+	donorRequestControllers.updateRequestStatusByPatient,
 );
 
 router.get(
@@ -30,13 +31,6 @@ router.get(
 	"/my-requests/:id",
 	auth(UserRole.DONOR),
 	donorRequestControllers.getRequestById,
-);
-
-// For Patient
-router.get(
-	"/:requestId",
-	auth(UserRole.PATIENT),
-	donorRequestControllers.getAllDonorRequests,
 );
 
 router.patch(

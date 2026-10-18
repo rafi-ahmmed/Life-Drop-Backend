@@ -110,17 +110,23 @@ const matchDonors = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
+const getAllDonorRequests = catchAsync(async (req: Request, res: Response) => {
+	const userId = req.currentUser?.userId;
+	const requestId = req.params.id;
+	const payload = req.body;
 
-// const registerPatient = catchAsync(async (req: Request, res: Response) => {
-// 	const payload = req.body;
+	const result = await bloodRequestServices.getAllDonorRequests(
+		userId as string,
+		requestId as string,
+	);
 
-// 	sendResponse(res, {
-// 		statusCode: httpStatus.OK,
-// 		success: true,
-// 		message: "Verification otp send on ur email.",
-// 		data: null,
-// 	});
-// });
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Get all donor requests for a blood request",
+		data: result,
+	});
+});
 
 export const bloodRequestControllers = {
 	createBloodRequest,
@@ -129,4 +135,5 @@ export const bloodRequestControllers = {
 	getAllBloodReqByAdmin,
 	myRequests,
 	matchDonors,
+	getAllDonorRequests,
 };
