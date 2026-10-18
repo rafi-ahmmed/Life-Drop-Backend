@@ -17,7 +17,7 @@ export const respondToRequestSchema = z.object({
 export type RespondToRequestPayload = z.infer<typeof respondToRequestSchema>;
 
 export const updateDonorRequestZodSchema = z.object({
-	status: z.enum(["ACCEPTED", "CANCELLED"]),
+	status: z.enum(["ACCEPTED", "CANCELLED", "COMPLETED"]),
 });
 
 export type UpdateDonorRequestPayload = z.infer<

@@ -5,6 +5,7 @@ import {
 } from "../../../prisma/generated/prisma/enums.js";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
+import isEligibleToDonate from "../../utils/isEligibleToDonate.js";
 import type {
 	RespondToRequestPayload,
 	SendDonorRequestsPayload,
@@ -54,65 +55,105 @@ const updateRequestStatusByPatient = async (
 	requestId: string,
 	payload: UpdateDonorRequestPayload,
 ) => {
-	console.log(userId, requestId, payload);
-
-	const request = await prisma.donorRequest.findUnique({
-		where: {
-			id: requestId,
-			bloodRequest: {
-				requestorId: userId,
+	return prisma.$transaction(async (tx) => {
+		const request = await tx.donorRequest.findFirst({
+			where: {
+				id: requestId,
+				bloodRequest: {
+					requestorId: userId,
+				},
 			},
-		},
-		include: {
-			bloodRequest: true,
-		},
+			include: {
+				bloodRequest: true,
+				donor: {
+					select: {
+						id: true,
+					},
+				},
+			},
+		});
+
+		if (!request) {
+			throw new AppError(httpStatus.NOT_FOUND, "Request not found");
+		}
+
+		if (payload.status === request.status) {
+			throw new AppError(
+				httpStatus.BAD_REQUEST,
+				`Request already ${payload.status}`,
+			);
+		}
+
+		if (
+			payload.status === DonorRequestStatus.COMPLETED &&
+			request.status !== DonorRequestStatus.ACCEPTED
+		) {
+			throw new AppError(
+				httpStatus.BAD_REQUEST,
+				"Only accepted donor requests can be completed",
+			);
+		}
+
+		if (
+			payload.status !== DonorRequestStatus.COMPLETED &&
+			request.status !== DonorRequestStatus.INTERESTED &&
+			request.status !== DonorRequestStatus.ACCEPTED
+		) {
+			throw new AppError(
+				httpStatus.BAD_REQUEST,
+				"You cannot update this request from its current state",
+			);
+		}
+
+		if (request.bloodRequest.status === BloodRequestStatus.FULFILLED) {
+			throw new AppError(
+				httpStatus.BAD_REQUEST,
+				"Blood request is already fulfilled",
+			);
+		}
+
+		// Update blood request status
+		const updatedRequest = await tx.donorRequest.update({
+			where: {
+				id: requestId,
+			},
+			data: {
+				status: payload.status,
+			},
+		});
+
+		// Update donor lastDonatedAt
+		await tx.donor.update({
+			where: {
+				id: request.donor.id,
+			},
+			data: {
+				lastDonatedAt: new Date(),
+			},
+		});
+
+		if (payload.status === DonorRequestStatus.COMPLETED) {
+			const completedCount = await tx.donorRequest.count({
+				where: {
+					requestId: request.bloodRequest.id,
+					status: DonorRequestStatus.COMPLETED,
+				},
+			});
+
+			if (completedCount >= request.bloodRequest.units) {
+				await tx.bloodRequest.update({
+					where: {
+						id: request.bloodRequest.id,
+					},
+					data: {
+						status: BloodRequestStatus.FULFILLED,
+					},
+				});
+			}
+		}
+
+		return updatedRequest;
 	});
-
-	if (!request) {
-		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
-	}
-
-	if (payload.status === request.status) {
-		throw new AppError(
-			httpStatus.BAD_REQUEST,
-			`Request already ${payload.status}`,
-		);
-	}
-
-	if (
-		request.status !== DonorRequestStatus.INTERESTED &&
-		request.status !== DonorRequestStatus.ACCEPTED
-	) {
-		throw new AppError(
-			httpStatus.BAD_REQUEST,
-			`You cannot update this request as request is not in interested or declined state`,
-		);
-	}
-
-	const acceptedCount = await prisma.donorRequest.count({
-		where: {
-			requestId: request.bloodRequest.id,
-			status: DonorRequestStatus.ACCEPTED,
-		},
-	});
-
-	if (acceptedCount >= request.bloodRequest.units) {
-		throw new AppError(
-			httpStatus.BAD_REQUEST,
-			"You cannot accept more donors than the required units",
-		);
-	}
-
-	const updateRequest = await prisma.donorRequest.update({
-		where: {
-			id: requestId,
-		},
-		data: {
-			status: payload.status,
-		},
-	});
-
-	return updateRequest;
 };
 
 const getMyRequests = async (userId: string) => {
@@ -185,10 +226,20 @@ const respondToRequest = async (
 			donor: {
 				select: {
 					id: true,
+					lastDonatedAt: true,
 				},
 			},
 		},
 	});
+
+	const isEligible = isEligibleToDonate(user?.donor?.lastDonatedAt ?? null);
+
+	if (!isEligible) {
+		throw new AppError(
+			httpStatus.BAD_REQUEST,
+			"You are not eligible to donate",
+		);
+	}
 
 	const donorRequest = await prisma.donorRequest.findUnique({
 		where: {

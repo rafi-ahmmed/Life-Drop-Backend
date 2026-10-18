@@ -68,7 +68,8 @@ export const DonorRequestStatus = {
   DECLINED: 'DECLINED',
   ACCEPTED: 'ACCEPTED',
   CANCELLED: 'CANCELLED',
-  WITHDRAWN: 'WITHDRAWN'
+  WITHDRAWN: 'WITHDRAWN',
+  COMPLETED: 'COMPLETED'
 } as const
 
 export type DonorRequestStatus = (typeof DonorRequestStatus)[keyof typeof DonorRequestStatus]

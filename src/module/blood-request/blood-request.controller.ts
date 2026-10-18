@@ -40,7 +40,9 @@ const getBloodRequestById = catchAsync(async (req: Request, res: Response) => {
 // * Admin Only
 const getAllBloodReqByAdmin = catchAsync(
 	async (req: Request, res: Response) => {
-		const result = await bloodRequestServices.getAllBloodRequestsByAdmin();
+		const payload = req.query;
+		const result =
+			await bloodRequestServices.getAllBloodRequestsByAdmin(payload);
 
 		sendResponse(res, {
 			statusCode: httpStatus.OK,

@@ -43,6 +43,7 @@ enum DonorRequestStatus {
   ACCEPTED
   CANCELLED
   WITHDRAWN
+  COMPLETED
 }
 
 enum Gender {

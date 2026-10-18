@@ -6,7 +6,10 @@ import {
 } from "../../../prisma/generated/prisma/enums.js";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
-import type { MatchingOptions } from "./blood-request.interface.js";
+import type {
+	IBloodRequestFilterOptions,
+	MatchingOptions,
+} from "./blood-request.interface.js";
 import type {
 	CreateBloodRequestPayload,
 	UpdateBloodRequestStatusPayload,
@@ -36,11 +39,88 @@ const createBloodRequest = async (
 	return result;
 };
 
-// TODO: Implement filter and pagination
-const getAllBloodRequestsByAdmin = async () => {
-	const result = await prisma.bloodRequest.findMany();
+const getAllBloodRequestsByAdmin = async (
+	filterOptions: IBloodRequestFilterOptions,
+) => {
+	const {
+		bloodGroup,
+		location,
+		urgency,
+		status,
+		page = 1,
+	} = filterOptions || {};
 
-	return result;
+	console.log(filterOptions);
+
+	const andCondition: Prisma.BloodRequestWhereInput[] = [];
+
+	if (bloodGroup) {
+		andCondition.push({
+			bloodGroup,
+		});
+	}
+
+	if (location) {
+		andCondition.push({
+			OR: [
+				{
+					address: {
+						contains: location,
+						mode: "insensitive",
+					},
+				},
+				{
+					district: {
+						contains: location,
+						mode: "insensitive",
+					},
+				},
+			],
+		});
+	}
+
+	if (urgency) {
+		andCondition.push({
+			urgency: Boolean(urgency),
+		});
+	}
+
+	if (status) {
+		andCondition.push({
+			status,
+		});
+	}
+
+	const limit = 8;
+	const skip = (Number(page) - 1) * limit;
+
+	const whereCondition: Prisma.BloodRequestWhereInput = {
+		AND: andCondition,
+	};
+
+	const [result, totalCount] = await prisma.$transaction([
+		prisma.bloodRequest.findMany({
+			where: whereCondition,
+			skip,
+			take: limit,
+			orderBy: {
+				updatedAt: "desc",
+			},
+		}),
+		prisma.bloodRequest.count({
+			where: whereCondition,
+		}),
+	]);
+
+	return {
+		meta: {
+			page: Number(page),
+			limit,
+			total: totalCount,
+			totalPage: Math.ceil(totalCount / limit),
+		},
+		data: result,
+	};
 };
 
 const getBloodRequestById = async (requestId: string) => {
