@@ -313,6 +313,7 @@ export type FundCampaignWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"FundCampaign"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FundCampaign"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  Payments?: Prisma.PaymentListRelationFilter
 }
 
 export type FundCampaignOrderByWithRelationInput = {
@@ -334,6 +335,7 @@ export type FundCampaignOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  Payments?: Prisma.PaymentOrderByRelationAggregateInput
 }
 
 export type FundCampaignWhereUniqueInput = Prisma.AtLeast<{
@@ -358,6 +360,7 @@ export type FundCampaignWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"FundCampaign"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FundCampaign"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  Payments?: Prisma.PaymentListRelationFilter
 }, "id">
 
 export type FundCampaignOrderByWithAggregationInput = {
@@ -426,6 +429,7 @@ export type FundCampaignCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutFundCampaignInput
+  Payments?: Prisma.PaymentCreateNestedManyWithoutCampaignInput
 }
 
 export type FundCampaignUncheckedCreateInput = {
@@ -446,6 +450,7 @@ export type FundCampaignUncheckedCreateInput = {
   rejectedReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  Payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type FundCampaignUpdateInput = {
@@ -466,6 +471,7 @@ export type FundCampaignUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutFundCampaignNestedInput
+  Payments?: Prisma.PaymentUpdateManyWithoutCampaignNestedInput
 }
 
 export type FundCampaignUncheckedUpdateInput = {
@@ -486,6 +492,7 @@ export type FundCampaignUncheckedUpdateInput = {
   rejectedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  Payments?: Prisma.PaymentUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type FundCampaignCreateManyInput = {
@@ -615,6 +622,11 @@ export type FundCampaignSumOrderByAggregateInput = {
   collectedAmount?: Prisma.SortOrder
 }
 
+export type FundCampaignScalarRelationFilter = {
+  is?: Prisma.FundCampaignWhereInput
+  isNot?: Prisma.FundCampaignWhereInput
+}
+
 export type FundCampaignListRelationFilter = {
   every?: Prisma.FundCampaignWhereInput
   some?: Prisma.FundCampaignWhereInput
@@ -643,6 +655,20 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type FundCampaignCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.FundCampaignCreateWithoutPaymentsInput, Prisma.FundCampaignUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.FundCampaignCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.FundCampaignWhereUniqueInput
+}
+
+export type FundCampaignUpdateOneRequiredWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.FundCampaignCreateWithoutPaymentsInput, Prisma.FundCampaignUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.FundCampaignCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.FundCampaignUpsertWithoutPaymentsInput
+  connect?: Prisma.FundCampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FundCampaignUpdateToOneWithWhereWithoutPaymentsInput, Prisma.FundCampaignUpdateWithoutPaymentsInput>, Prisma.FundCampaignUncheckedUpdateWithoutPaymentsInput>
 }
 
 export type FundCampaignCreateNestedManyWithoutUserInput = {
@@ -687,6 +713,102 @@ export type FundCampaignUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.FundCampaignScalarWhereInput | Prisma.FundCampaignScalarWhereInput[]
 }
 
+export type FundCampaignCreateWithoutPaymentsInput = {
+  id?: string
+  patientName: string
+  hospitalName?: string | null
+  contactNumber: string
+  title: string
+  description: string
+  status?: $Enums.FundCampaignStatus
+  targetAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  collectedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  deadline: Date | string
+  medicalDocuments: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewedBy?: string | null
+  reviewedAt?: Date | string | null
+  rejectedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutFundCampaignInput
+}
+
+export type FundCampaignUncheckedCreateWithoutPaymentsInput = {
+  id?: string
+  userId: string
+  patientName: string
+  hospitalName?: string | null
+  contactNumber: string
+  title: string
+  description: string
+  status?: $Enums.FundCampaignStatus
+  targetAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  collectedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  deadline: Date | string
+  medicalDocuments: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewedBy?: string | null
+  reviewedAt?: Date | string | null
+  rejectedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type FundCampaignCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.FundCampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.FundCampaignCreateWithoutPaymentsInput, Prisma.FundCampaignUncheckedCreateWithoutPaymentsInput>
+}
+
+export type FundCampaignUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.FundCampaignUpdateWithoutPaymentsInput, Prisma.FundCampaignUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.FundCampaignCreateWithoutPaymentsInput, Prisma.FundCampaignUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.FundCampaignWhereInput
+}
+
+export type FundCampaignUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.FundCampaignWhereInput
+  data: Prisma.XOR<Prisma.FundCampaignUpdateWithoutPaymentsInput, Prisma.FundCampaignUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type FundCampaignUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  patientName?: Prisma.StringFieldUpdateOperationsInput | string
+  hospitalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFundCampaignStatusFieldUpdateOperationsInput | $Enums.FundCampaignStatus
+  targetAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  collectedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  medicalDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutFundCampaignNestedInput
+}
+
+export type FundCampaignUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  patientName?: Prisma.StringFieldUpdateOperationsInput | string
+  hospitalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFundCampaignStatusFieldUpdateOperationsInput | $Enums.FundCampaignStatus
+  targetAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  collectedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  medicalDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type FundCampaignCreateWithoutUserInput = {
   id?: string
   patientName: string
@@ -704,6 +826,7 @@ export type FundCampaignCreateWithoutUserInput = {
   rejectedReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  Payments?: Prisma.PaymentCreateNestedManyWithoutCampaignInput
 }
 
 export type FundCampaignUncheckedCreateWithoutUserInput = {
@@ -723,6 +846,7 @@ export type FundCampaignUncheckedCreateWithoutUserInput = {
   rejectedReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  Payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type FundCampaignCreateOrConnectWithoutUserInput = {
@@ -810,6 +934,7 @@ export type FundCampaignUpdateWithoutUserInput = {
   rejectedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  Payments?: Prisma.PaymentUpdateManyWithoutCampaignNestedInput
 }
 
 export type FundCampaignUncheckedUpdateWithoutUserInput = {
@@ -829,6 +954,7 @@ export type FundCampaignUncheckedUpdateWithoutUserInput = {
   rejectedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  Payments?: Prisma.PaymentUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type FundCampaignUncheckedUpdateManyWithoutUserInput = {
@@ -851,6 +977,35 @@ export type FundCampaignUncheckedUpdateManyWithoutUserInput = {
 }
 
 
+/**
+ * Count Type FundCampaignCountOutputType
+ */
+
+export type FundCampaignCountOutputType = {
+  Payments: number
+}
+
+export type FundCampaignCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Payments?: boolean | FundCampaignCountOutputTypeCountPaymentsArgs
+}
+
+/**
+ * FundCampaignCountOutputType without action
+ */
+export type FundCampaignCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FundCampaignCountOutputType
+   */
+  select?: Prisma.FundCampaignCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * FundCampaignCountOutputType without action
+ */
+export type FundCampaignCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
 
 export type FundCampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -871,6 +1026,8 @@ export type FundCampaignSelect<ExtArgs extends runtime.Types.Extensions.Internal
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  Payments?: boolean | Prisma.FundCampaign$PaymentsArgs<ExtArgs>
+  _count?: boolean | Prisma.FundCampaignCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fundCampaign"]>
 
 export type FundCampaignSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -938,6 +1095,8 @@ export type FundCampaignSelectScalar = {
 export type FundCampaignOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "patientName" | "hospitalName" | "contactNumber" | "title" | "description" | "status" | "targetAmount" | "collectedAmount" | "deadline" | "medicalDocuments" | "reviewedBy" | "reviewedAt" | "rejectedReason" | "createdAt" | "updatedAt", ExtArgs["result"]["fundCampaign"]>
 export type FundCampaignInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  Payments?: boolean | Prisma.FundCampaign$PaymentsArgs<ExtArgs>
+  _count?: boolean | Prisma.FundCampaignCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FundCampaignIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -950,6 +1109,7 @@ export type $FundCampaignPayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "FundCampaign"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    Payments: Prisma.$PaymentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1364,6 +1524,7 @@ readonly fields: FundCampaignFieldRefs;
 export interface Prisma__FundCampaignClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Payments<T extends Prisma.FundCampaign$PaymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FundCampaign$PaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1808,6 +1969,30 @@ export type FundCampaignDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many FundCampaigns to delete.
    */
   limit?: number
+}
+
+/**
+ * FundCampaign.Payments
+ */
+export type FundCampaign$PaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
 }
 
 /**

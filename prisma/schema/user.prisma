@@ -15,6 +15,7 @@ model User {
   donor        Donor?
   bloodRequest BloodRequest[]
   FundCampaign FundCampaign[]
+  payments     Payment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

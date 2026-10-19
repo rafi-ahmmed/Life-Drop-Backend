@@ -59,6 +59,87 @@ const createCampaign = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
+const getAllCampaignsByAdmin = catchAsync(
+	async (req: Request, res: Response) => {
+		const result = await fundCampaignServices.getAllCampaignsByAdmin();
+
+		sendResponse(res, {
+			statusCode: httpStatus.OK,
+			success: true,
+			message: "All campaigns retrieved successfully.",
+			data: result,
+		});
+	},
+);
+
+const getCampaignByIdForAdmin = catchAsync(
+	async (req: Request, res: Response) => {
+		const campaignId = req.params.id;
+
+		const result = await fundCampaignServices.getCampaignByIdForAdmin(
+			campaignId as string,
+		);
+
+		sendResponse(res, {
+			statusCode: httpStatus.OK,
+			success: true,
+			message: "Campaign retrieved successfully.",
+			data: result,
+		});
+	},
+);
+
+const reviewCampaignByAdmin = catchAsync(
+	async (req: Request, res: Response) => {
+		const payload = req.body;
+		const userId = req.currentUser?.userId;
+		const campaignId = req.params.id;
+
+		const result = await fundCampaignServices.reviewCampaignByAdmin(
+			userId as string,
+			campaignId as string,
+			payload,
+		);
+
+		sendResponse(res, {
+			statusCode: httpStatus.OK,
+			success: true,
+			message: `Campaign ${payload.status} successfully`,
+			data: result,
+		});
+	},
+);
+
+const getCampaignById = catchAsync(async (req: Request, res: Response) => {
+	const userId = req.currentUser?.userId;
+	const campaignId = req.params.id;
+
+	const result = await fundCampaignServices.getCampaignById(
+		userId as string,
+		campaignId as string,
+	);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Campaign retrieved successfully.",
+		data: result,
+	});
+});
+
+const getMyCampaigns = catchAsync(async (req: Request, res: Response) => {
+	const userId = req.currentUser?.userId;
+
+	const result = await fundCampaignServices.getMyCampaigns(userId as string);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Your campaigns retrieved successfully.",
+		data: result,
+	});
+});
+
 // const registerPatient = catchAsync(async (req: Request, res: Response) => {
 // 	const payload = req.body;
 
@@ -72,4 +153,9 @@ const createCampaign = catchAsync(async (req: Request, res: Response) => {
 
 export const fundCampaignControllers = {
 	createCampaign,
+	getAllCampaignsByAdmin,
+	getCampaignByIdForAdmin,
+	reviewCampaignByAdmin,
+	getCampaignById,
+	getMyCampaigns,
 };

@@ -18,6 +18,8 @@ model FundCampaign {
   reviewedAt       DateTime?
   rejectedReason   String?
 
+  Payments Payment[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

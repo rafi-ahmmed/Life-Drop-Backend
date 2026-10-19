@@ -67,6 +67,11 @@ export type FundCampaign = Prisma.FundCampaignModel
  */
 export type Patient = Prisma.PatientModel
 /**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
  * Model User
  * 
  */

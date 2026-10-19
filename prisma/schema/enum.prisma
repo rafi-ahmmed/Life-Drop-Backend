@@ -6,6 +6,12 @@ enum UserRole {
   SUPER_ADMIN
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
 enum AuthProvider {
   CREDENTIALS
   GOOGLE
@@ -46,12 +52,6 @@ enum DonorRequestStatus {
   COMPLETED
 }
 
-enum Gender {
-  MALE
-  FEMALE
-  OTHER
-}
-
 enum FundCampaignStatus {
   PENDING
   APPROVED
@@ -60,4 +60,9 @@ enum FundCampaignStatus {
   COMPLETED
   CANCELLED
   EXPIRED
+}
+
+enum PaymentMethod {
+  BKASH
+  STRIPE
 }

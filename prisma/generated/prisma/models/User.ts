@@ -250,6 +250,7 @@ export type UserWhereInput = {
   donor?: Prisma.XOR<Prisma.DonorNullableScalarRelationFilter, Prisma.DonorWhereInput> | null
   bloodRequest?: Prisma.BloodRequestListRelationFilter
   FundCampaign?: Prisma.FundCampaignListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -270,6 +271,7 @@ export type UserOrderByWithRelationInput = {
   donor?: Prisma.DonorOrderByWithRelationInput
   bloodRequest?: Prisma.BloodRequestOrderByRelationAggregateInput
   FundCampaign?: Prisma.FundCampaignOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -293,6 +295,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   donor?: Prisma.XOR<Prisma.DonorNullableScalarRelationFilter, Prisma.DonorWhereInput> | null
   bloodRequest?: Prisma.BloodRequestListRelationFilter
   FundCampaign?: Prisma.FundCampaignListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
 }, "id" | "email" | "googleId">
 
 export type UserOrderByWithAggregationInput = {
@@ -351,6 +354,7 @@ export type UserCreateInput = {
   donor?: Prisma.DonorCreateNestedOneWithoutUserInput
   bloodRequest?: Prisma.BloodRequestCreateNestedManyWithoutRequestorInput
   FundCampaign?: Prisma.FundCampaignCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutDonorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -371,6 +375,7 @@ export type UserUncheckedCreateInput = {
   donor?: Prisma.DonorUncheckedCreateNestedOneWithoutUserInput
   bloodRequest?: Prisma.BloodRequestUncheckedCreateNestedManyWithoutRequestorInput
   FundCampaign?: Prisma.FundCampaignUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutDonorInput
 }
 
 export type UserUpdateInput = {
@@ -391,6 +396,7 @@ export type UserUpdateInput = {
   donor?: Prisma.DonorUpdateOneWithoutUserNestedInput
   bloodRequest?: Prisma.BloodRequestUpdateManyWithoutRequestorNestedInput
   FundCampaign?: Prisma.FundCampaignUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutDonorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -411,6 +417,7 @@ export type UserUncheckedUpdateInput = {
   donor?: Prisma.DonorUncheckedUpdateOneWithoutUserNestedInput
   bloodRequest?: Prisma.BloodRequestUncheckedUpdateManyWithoutRequestorNestedInput
   FundCampaign?: Prisma.FundCampaignUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutDonorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -570,6 +577,20 @@ export type UserUpdateOneRequiredWithoutPatientNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPatientInput, Prisma.UserUpdateWithoutPatientInput>, Prisma.UserUncheckedUpdateWithoutPatientInput>
 }
 
+export type UserCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.UserUpsertWithoutPaymentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentsInput, Prisma.UserUpdateWithoutPaymentsInput>, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+}
+
 export type EnumUserRoleFieldUpdateOperationsInput = {
   set?: $Enums.UserRole
 }
@@ -599,6 +620,7 @@ export type UserCreateWithoutBloodRequestInput = {
   patient?: Prisma.PatientCreateNestedOneWithoutUserInput
   donor?: Prisma.DonorCreateNestedOneWithoutUserInput
   FundCampaign?: Prisma.FundCampaignCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutDonorInput
 }
 
 export type UserUncheckedCreateWithoutBloodRequestInput = {
@@ -618,6 +640,7 @@ export type UserUncheckedCreateWithoutBloodRequestInput = {
   patient?: Prisma.PatientUncheckedCreateNestedOneWithoutUserInput
   donor?: Prisma.DonorUncheckedCreateNestedOneWithoutUserInput
   FundCampaign?: Prisma.FundCampaignUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutDonorInput
 }
 
 export type UserCreateOrConnectWithoutBloodRequestInput = {
@@ -653,6 +676,7 @@ export type UserUpdateWithoutBloodRequestInput = {
   patient?: Prisma.PatientUpdateOneWithoutUserNestedInput
   donor?: Prisma.DonorUpdateOneWithoutUserNestedInput
   FundCampaign?: Prisma.FundCampaignUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutDonorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBloodRequestInput = {
@@ -672,6 +696,7 @@ export type UserUncheckedUpdateWithoutBloodRequestInput = {
   patient?: Prisma.PatientUncheckedUpdateOneWithoutUserNestedInput
   donor?: Prisma.DonorUncheckedUpdateOneWithoutUserNestedInput
   FundCampaign?: Prisma.FundCampaignUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutDonorNestedInput
 }
 
 export type UserCreateWithoutDonorInput = {
@@ -691,6 +716,7 @@ export type UserCreateWithoutDonorInput = {
   patient?: Prisma.PatientCreateNestedOneWithoutUserInput
   bloodRequest?: Prisma.BloodRequestCreateNestedManyWithoutRequestorInput
   FundCampaign?: Prisma.FundCampaignCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutDonorInput
 }
 
 export type UserUncheckedCreateWithoutDonorInput = {
@@ -710,6 +736,7 @@ export type UserUncheckedCreateWithoutDonorInput = {
   patient?: Prisma.PatientUncheckedCreateNestedOneWithoutUserInput
   bloodRequest?: Prisma.BloodRequestUncheckedCreateNestedManyWithoutRequestorInput
   FundCampaign?: Prisma.FundCampaignUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutDonorInput
 }
 
 export type UserCreateOrConnectWithoutDonorInput = {
@@ -745,6 +772,7 @@ export type UserUpdateWithoutDonorInput = {
   patient?: Prisma.PatientUpdateOneWithoutUserNestedInput
   bloodRequest?: Prisma.BloodRequestUpdateManyWithoutRequestorNestedInput
   FundCampaign?: Prisma.FundCampaignUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutDonorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDonorInput = {
@@ -764,6 +792,7 @@ export type UserUncheckedUpdateWithoutDonorInput = {
   patient?: Prisma.PatientUncheckedUpdateOneWithoutUserNestedInput
   bloodRequest?: Prisma.BloodRequestUncheckedUpdateManyWithoutRequestorNestedInput
   FundCampaign?: Prisma.FundCampaignUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutDonorNestedInput
 }
 
 export type UserCreateWithoutFundCampaignInput = {
@@ -783,6 +812,7 @@ export type UserCreateWithoutFundCampaignInput = {
   patient?: Prisma.PatientCreateNestedOneWithoutUserInput
   donor?: Prisma.DonorCreateNestedOneWithoutUserInput
   bloodRequest?: Prisma.BloodRequestCreateNestedManyWithoutRequestorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutDonorInput
 }
 
 export type UserUncheckedCreateWithoutFundCampaignInput = {
@@ -802,6 +832,7 @@ export type UserUncheckedCreateWithoutFundCampaignInput = {
   patient?: Prisma.PatientUncheckedCreateNestedOneWithoutUserInput
   donor?: Prisma.DonorUncheckedCreateNestedOneWithoutUserInput
   bloodRequest?: Prisma.BloodRequestUncheckedCreateNestedManyWithoutRequestorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutDonorInput
 }
 
 export type UserCreateOrConnectWithoutFundCampaignInput = {
@@ -837,6 +868,7 @@ export type UserUpdateWithoutFundCampaignInput = {
   patient?: Prisma.PatientUpdateOneWithoutUserNestedInput
   donor?: Prisma.DonorUpdateOneWithoutUserNestedInput
   bloodRequest?: Prisma.BloodRequestUpdateManyWithoutRequestorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutDonorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFundCampaignInput = {
@@ -856,6 +888,7 @@ export type UserUncheckedUpdateWithoutFundCampaignInput = {
   patient?: Prisma.PatientUncheckedUpdateOneWithoutUserNestedInput
   donor?: Prisma.DonorUncheckedUpdateOneWithoutUserNestedInput
   bloodRequest?: Prisma.BloodRequestUncheckedUpdateManyWithoutRequestorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutDonorNestedInput
 }
 
 export type UserCreateWithoutPatientInput = {
@@ -875,6 +908,7 @@ export type UserCreateWithoutPatientInput = {
   donor?: Prisma.DonorCreateNestedOneWithoutUserInput
   bloodRequest?: Prisma.BloodRequestCreateNestedManyWithoutRequestorInput
   FundCampaign?: Prisma.FundCampaignCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutDonorInput
 }
 
 export type UserUncheckedCreateWithoutPatientInput = {
@@ -894,6 +928,7 @@ export type UserUncheckedCreateWithoutPatientInput = {
   donor?: Prisma.DonorUncheckedCreateNestedOneWithoutUserInput
   bloodRequest?: Prisma.BloodRequestUncheckedCreateNestedManyWithoutRequestorInput
   FundCampaign?: Prisma.FundCampaignUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutDonorInput
 }
 
 export type UserCreateOrConnectWithoutPatientInput = {
@@ -929,6 +964,7 @@ export type UserUpdateWithoutPatientInput = {
   donor?: Prisma.DonorUpdateOneWithoutUserNestedInput
   bloodRequest?: Prisma.BloodRequestUpdateManyWithoutRequestorNestedInput
   FundCampaign?: Prisma.FundCampaignUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutDonorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPatientInput = {
@@ -948,6 +984,103 @@ export type UserUncheckedUpdateWithoutPatientInput = {
   donor?: Prisma.DonorUncheckedUpdateOneWithoutUserNestedInput
   bloodRequest?: Prisma.BloodRequestUncheckedUpdateManyWithoutRequestorNestedInput
   FundCampaign?: Prisma.FundCampaignUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutDonorNestedInput
+}
+
+export type UserCreateWithoutPaymentsInput = {
+  id?: string
+  name: string
+  email: string
+  password?: string | null
+  role?: $Enums.UserRole
+  authProvider?: $Enums.AuthProvider
+  status?: $Enums.UserStatus
+  googleId?: string | null
+  image?: string | null
+  imagePublicId?: string | null
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  patient?: Prisma.PatientCreateNestedOneWithoutUserInput
+  donor?: Prisma.DonorCreateNestedOneWithoutUserInput
+  bloodRequest?: Prisma.BloodRequestCreateNestedManyWithoutRequestorInput
+  FundCampaign?: Prisma.FundCampaignCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPaymentsInput = {
+  id?: string
+  name: string
+  email: string
+  password?: string | null
+  role?: $Enums.UserRole
+  authProvider?: $Enums.AuthProvider
+  status?: $Enums.UserStatus
+  googleId?: string | null
+  image?: string | null
+  imagePublicId?: string | null
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  patient?: Prisma.PatientUncheckedCreateNestedOneWithoutUserInput
+  donor?: Prisma.DonorUncheckedCreateNestedOneWithoutUserInput
+  bloodRequest?: Prisma.BloodRequestUncheckedCreateNestedManyWithoutRequestorInput
+  FundCampaign?: Prisma.FundCampaignUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+}
+
+export type UserUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsInput, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsInput, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type UserUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  patient?: Prisma.PatientUpdateOneWithoutUserNestedInput
+  donor?: Prisma.DonorUpdateOneWithoutUserNestedInput
+  bloodRequest?: Prisma.BloodRequestUpdateManyWithoutRequestorNestedInput
+  FundCampaign?: Prisma.FundCampaignUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  patient?: Prisma.PatientUncheckedUpdateOneWithoutUserNestedInput
+  donor?: Prisma.DonorUncheckedUpdateOneWithoutUserNestedInput
+  bloodRequest?: Prisma.BloodRequestUncheckedUpdateManyWithoutRequestorNestedInput
+  FundCampaign?: Prisma.FundCampaignUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -958,11 +1091,13 @@ export type UserUncheckedUpdateWithoutPatientInput = {
 export type UserCountOutputType = {
   bloodRequest: number
   FundCampaign: number
+  payments: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bloodRequest?: boolean | UserCountOutputTypeCountBloodRequestArgs
   FundCampaign?: boolean | UserCountOutputTypeCountFundCampaignArgs
+  payments?: boolean | UserCountOutputTypeCountPaymentsArgs
 }
 
 /**
@@ -989,6 +1124,13 @@ export type UserCountOutputTypeCountFundCampaignArgs<ExtArgs extends runtime.Typ
   where?: Prisma.FundCampaignWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1008,6 +1150,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   donor?: boolean | Prisma.User$donorArgs<ExtArgs>
   bloodRequest?: boolean | Prisma.User$bloodRequestArgs<ExtArgs>
   FundCampaign?: boolean | Prisma.User$FundCampaignArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1065,6 +1208,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   donor?: boolean | Prisma.User$donorArgs<ExtArgs>
   bloodRequest?: boolean | Prisma.User$bloodRequestArgs<ExtArgs>
   FundCampaign?: boolean | Prisma.User$FundCampaignArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1077,6 +1221,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     donor: Prisma.$DonorPayload<ExtArgs> | null
     bloodRequest: Prisma.$BloodRequestPayload<ExtArgs>[]
     FundCampaign: Prisma.$FundCampaignPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1490,6 +1635,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   donor<T extends Prisma.User$donorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$donorArgs<ExtArgs>>): Prisma.Prisma__DonorClient<runtime.Types.Result.GetResult<Prisma.$DonorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   bloodRequest<T extends Prisma.User$bloodRequestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bloodRequestArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BloodRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   FundCampaign<T extends Prisma.User$FundCampaignArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$FundCampaignArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FundCampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.User$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2008,6 +2154,30 @@ export type User$FundCampaignArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.FundCampaignScalarFieldEnum | Prisma.FundCampaignScalarFieldEnum[]
+}
+
+/**
+ * User.payments
+ */
+export type User$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
 }
 
 /**

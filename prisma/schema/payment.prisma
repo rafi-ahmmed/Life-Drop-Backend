@@ -1,0 +1,15 @@
+model Payment {
+  id         String        @id @default(uuid())
+  campaignId String
+  donorId    String
+  amount     Decimal       @db.Decimal(10, 2)
+  paymentID  String        @unique
+  trxID      String        @unique
+  paidAt     DateTime      @default(now())
+  method     PaymentMethod @default(BKASH)
+
+  campaign FundCampaign @relation(fields: [campaignId], references: [id])
+  donor    User         @relation(fields: [donorId], references: [id])
+
+  @@map("payments")
+}

@@ -43,7 +43,29 @@ export type UpdateFundCampaignPayload = z.infer<
 	typeof updateFundCampaignZodSchema
 >;
 
+const reviewFundCampaignZodSchema = z
+	.object({
+		status: z.enum(["APPROVED", "REJECTED"], {
+			message: "Status must be APPROVED or REJECTED",
+		}),
+		rejectedReason: z.string().trim().optional(),
+	})
+	.superRefine((data, ctx) => {
+		if (data.status === "REJECTED" && !data.rejectedReason) {
+			ctx.addIssue({
+				code: "custom",
+				path: ["rejectedReason"],
+				message: "Rejection reason is required",
+			});
+		}
+	});
+
+export type ReviewFundCampaignPayload = z.infer<
+	typeof reviewFundCampaignZodSchema
+>;
+
 export const fundCampaignValidation = {
 	createFundCampaignZodSchema,
 	updateFundCampaignZodSchema,
+	reviewFundCampaignZodSchema,
 };

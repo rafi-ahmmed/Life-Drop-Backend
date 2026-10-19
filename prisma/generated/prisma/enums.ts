@@ -20,6 +20,15 @@ export const UserRole = {
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 
+export const Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE',
+  OTHER: 'OTHER'
+} as const
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+
 export const AuthProvider = {
   CREDENTIALS: 'CREDENTIALS',
   GOOGLE: 'GOOGLE'
@@ -75,15 +84,6 @@ export const DonorRequestStatus = {
 export type DonorRequestStatus = (typeof DonorRequestStatus)[keyof typeof DonorRequestStatus]
 
 
-export const Gender = {
-  MALE: 'MALE',
-  FEMALE: 'FEMALE',
-  OTHER: 'OTHER'
-} as const
-
-export type Gender = (typeof Gender)[keyof typeof Gender]
-
-
 export const FundCampaignStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
@@ -95,3 +95,11 @@ export const FundCampaignStatus = {
 } as const
 
 export type FundCampaignStatus = (typeof FundCampaignStatus)[keyof typeof FundCampaignStatus]
+
+
+export const PaymentMethod = {
+  BKASH: 'BKASH',
+  STRIPE: 'STRIPE'
+} as const
+
+export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]

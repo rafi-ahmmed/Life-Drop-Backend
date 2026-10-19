@@ -18,4 +18,37 @@ router.post(
 	fundCampaignControllers.createCampaign,
 );
 
+router.get(
+	"/my-campaigns",
+	auth(UserRole.PATIENT, UserRole.HOSPITAL),
+	fundCampaignControllers.getMyCampaigns,
+);
+
+router.get(
+	"/:id",
+	auth(UserRole.PATIENT, UserRole.HOSPITAL),
+	fundCampaignControllers.getCampaignById,
+);
+
+// * Admin routes
+
+router.get(
+	"/admin/all",
+	auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+	fundCampaignControllers.getAllCampaignsByAdmin,
+);
+
+router.get(
+	"/admin/:id",
+	auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+	fundCampaignControllers.getCampaignByIdForAdmin,
+);
+
+router.patch(
+	"/admin/review/:id",
+	auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+	validateRequest(fundCampaignValidation.reviewFundCampaignZodSchema),
+	fundCampaignControllers.reviewCampaignByAdmin,
+);
+
 export const fundCampaignRoutes = router;

@@ -56,6 +56,7 @@ export const ModelName = {
   Donor: 'Donor',
   FundCampaign: 'FundCampaign',
   Patient: 'Patient',
+  Payment: 'Payment',
   User: 'User'
 } as const
 
@@ -163,6 +164,20 @@ export const PatientScalarFieldEnum = {
 } as const
 
 export type PatientScalarFieldEnum = (typeof PatientScalarFieldEnum)[keyof typeof PatientScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  campaignId: 'campaignId',
+  donorId: 'donorId',
+  amount: 'amount',
+  paymentID: 'paymentID',
+  trxID: 'trxID',
+  paidAt: 'paidAt',
+  method: 'method'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
