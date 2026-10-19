@@ -400,6 +400,7 @@ export const ModelName = {
   BloodRequest: 'BloodRequest',
   DonorRequest: 'DonorRequest',
   Donor: 'Donor',
+  FundCampaign: 'FundCampaign',
   Patient: 'Patient',
   User: 'User'
 } as const
@@ -417,7 +418,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "bloodRequest" | "donorRequest" | "donor" | "patient" | "user"
+    modelProps: "bloodRequest" | "donorRequest" | "donor" | "fundCampaign" | "patient" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -640,6 +641,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.DonorCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.DonorCountAggregateOutputType> | number
+        }
+      }
+    }
+    FundCampaign: {
+      payload: Prisma.$FundCampaignPayload<ExtArgs>
+      fields: Prisma.FundCampaignFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FundCampaignFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FundCampaignFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>
+        }
+        findFirst: {
+          args: Prisma.FundCampaignFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FundCampaignFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>
+        }
+        findMany: {
+          args: Prisma.FundCampaignFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>[]
+        }
+        create: {
+          args: Prisma.FundCampaignCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>
+        }
+        createMany: {
+          args: Prisma.FundCampaignCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FundCampaignCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>[]
+        }
+        delete: {
+          args: Prisma.FundCampaignDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>
+        }
+        update: {
+          args: Prisma.FundCampaignUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>
+        }
+        deleteMany: {
+          args: Prisma.FundCampaignDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FundCampaignUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FundCampaignUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>[]
+        }
+        upsert: {
+          args: Prisma.FundCampaignUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FundCampaignPayload>
+        }
+        aggregate: {
+          args: Prisma.FundCampaignAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFundCampaign>
+        }
+        groupBy: {
+          args: Prisma.FundCampaignGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FundCampaignGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FundCampaignCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FundCampaignCountAggregateOutputType> | number
         }
       }
     }
@@ -884,6 +959,29 @@ export const DonorScalarFieldEnum = {
 export type DonorScalarFieldEnum = (typeof DonorScalarFieldEnum)[keyof typeof DonorScalarFieldEnum]
 
 
+export const FundCampaignScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  patientName: 'patientName',
+  hospitalName: 'hospitalName',
+  contactNumber: 'contactNumber',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  targetAmount: 'targetAmount',
+  collectedAmount: 'collectedAmount',
+  deadline: 'deadline',
+  medicalDocuments: 'medicalDocuments',
+  reviewedBy: 'reviewedBy',
+  reviewedAt: 'reviewedAt',
+  rejectedReason: 'rejectedReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FundCampaignScalarFieldEnum = (typeof FundCampaignScalarFieldEnum)[keyof typeof FundCampaignScalarFieldEnum]
+
+
 export const PatientScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -924,6 +1022,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -938,6 +1043,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1048,6 +1162,48 @@ export type EnumDonorRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputTyp
  * Reference to a field of type 'DonorRequestStatus[]'
  */
 export type ListEnumDonorRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DonorRequestStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FundCampaignStatus'
+ */
+export type EnumFundCampaignStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FundCampaignStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'FundCampaignStatus[]'
+ */
+export type ListEnumFundCampaignStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FundCampaignStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -1260,6 +1416,7 @@ export type GlobalOmitConfig = {
   bloodRequest?: Prisma.BloodRequestOmit
   donorRequest?: Prisma.DonorRequestOmit
   donor?: Prisma.DonorOmit
+  fundCampaign?: Prisma.FundCampaignOmit
   patient?: Prisma.PatientOmit
   user?: Prisma.UserOmit
 }

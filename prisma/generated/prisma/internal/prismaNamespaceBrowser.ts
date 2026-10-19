@@ -54,6 +54,7 @@ export const ModelName = {
   BloodRequest: 'BloodRequest',
   DonorRequest: 'DonorRequest',
   Donor: 'Donor',
+  FundCampaign: 'FundCampaign',
   Patient: 'Patient',
   User: 'User'
 } as const
@@ -128,6 +129,29 @@ export const DonorScalarFieldEnum = {
 export type DonorScalarFieldEnum = (typeof DonorScalarFieldEnum)[keyof typeof DonorScalarFieldEnum]
 
 
+export const FundCampaignScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  patientName: 'patientName',
+  hospitalName: 'hospitalName',
+  contactNumber: 'contactNumber',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  targetAmount: 'targetAmount',
+  collectedAmount: 'collectedAmount',
+  deadline: 'deadline',
+  medicalDocuments: 'medicalDocuments',
+  reviewedBy: 'reviewedBy',
+  reviewedAt: 'reviewedAt',
+  rejectedReason: 'rejectedReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FundCampaignScalarFieldEnum = (typeof FundCampaignScalarFieldEnum)[keyof typeof FundCampaignScalarFieldEnum]
+
+
 export const PatientScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -168,6 +192,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -182,4 +213,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

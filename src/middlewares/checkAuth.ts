@@ -1,7 +1,10 @@
 import type { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import type { JwtPayload } from "jsonwebtoken";
-import type { UserRole } from "../../prisma/generated/prisma/enums.js";
+import {
+	type UserRole,
+	UserStatus,
+} from "../../prisma/generated/prisma/enums.js";
 import config from "../config/index.js";
 import AppError from "../errors/appError.js";
 import { prisma } from "../lib/prisma.js";
@@ -67,7 +70,7 @@ export const auth = (...requiredRoles: UserRole[]) => {
 			throw new AppError(httpStatus.NOT_FOUND, "User not found");
 		}
 
-		if (user.status === "BLOCKED") {
+		if (user.status === UserStatus.BLOCKED) {
 			throw new Error("Your account has been blocked. Please contact support.");
 		}
 

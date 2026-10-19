@@ -57,6 +57,11 @@ export type DonorRequest = Prisma.DonorRequestModel
  */
 export type Donor = Prisma.DonorModel
 /**
+ * Model FundCampaign
+ * 
+ */
+export type FundCampaign = Prisma.FundCampaignModel
+/**
  * Model Patient
  * 
  */

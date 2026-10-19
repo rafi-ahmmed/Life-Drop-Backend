@@ -4,13 +4,13 @@ model DonorRequest {
   donorId String
   donor   Donor  @relation(fields: [donorId], references: [id])
 
-  requestId String
-  bloodRequest   BloodRequest @relation(fields: [requestId], references: [id])
+  requestId    String
+  bloodRequest BloodRequest @relation(fields: [requestId], references: [id])
 
   status    DonorRequestStatus @default(PENDING)
   message   String?
-  createdAt DateTime            @default(now())
-  updatedAt DateTime            @updatedAt
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
 
   @@unique([donorId, requestId])
   @@map("donor_requests")

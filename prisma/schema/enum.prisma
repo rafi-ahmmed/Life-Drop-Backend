@@ -51,3 +51,13 @@ enum Gender {
   FEMALE
   OTHER
 }
+
+enum FundCampaignStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+  EXPIRED
+}

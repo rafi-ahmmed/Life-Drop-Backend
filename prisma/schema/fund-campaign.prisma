@@ -1,0 +1,25 @@
+model FundCampaign {
+  id String @id @default(uuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  patientName      String
+  hospitalName     String?
+  contactNumber    String
+  title            String
+  description      String
+  status           FundCampaignStatus @default(PENDING)
+  targetAmount     Decimal            @db.Decimal(10, 2)
+  collectedAmount  Decimal?           @default(0) @db.Decimal(10, 2)
+  deadline         DateTime
+  medicalDocuments Json
+  reviewedBy       String?
+  reviewedAt       DateTime?
+  rejectedReason   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("fund_campaigns")
+}
