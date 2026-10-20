@@ -17,6 +17,7 @@ import helmet from "helmet";
 import passport from "passport";
 import { UserRole } from "../prisma/generated/prisma/enums.js";
 import { prisma } from "./lib/prisma.js";
+import { globalRateLimiter } from "./middlewares/rate-limiter.js";
 import { adminRoutes } from "./module/admin/admin.route.js";
 import { bloodRequestRoutes } from "./module/blood-request/blood-request.route.js";
 import { donorRoutes } from "./module/donor/donor.route.js";
@@ -49,6 +50,9 @@ app.use(cookieParser());
 
 // Initialize Passport
 app.use(passport.initialize());
+
+// Global rate limiter
+app.use(globalRateLimiter);
 
 // Routes
 app.use("/api/v1/auth", authRoutes);
