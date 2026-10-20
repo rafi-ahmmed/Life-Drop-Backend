@@ -2,7 +2,7 @@ model Payment {
   id String @id @default(uuid())
 
   amount          Decimal       @db.Decimal(10, 2)
-  bkashPaymentId  String       @unique
+  bkashPaymentId  String        @unique
   trxID           String?       @unique
   paidAt          DateTime      @default(now())
   method          PaymentMethod @default(BKASH)
@@ -14,5 +14,7 @@ model Payment {
   userId     String
   donor      User         @relation(fields: [userId], references: [id])
 
+  @@index([userId, paidAt])
+  @@index([status, paidAt])
   @@map("payments")
 }

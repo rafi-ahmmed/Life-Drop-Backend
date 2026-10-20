@@ -24,5 +24,9 @@ model BloodRequest {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@index([requestorId, createdAt])
+  @@index([status, createdAt])
+  @@index([bloodGroup, status])
+  @@index([urgency, status])
   @@map("blood_requests")
 }

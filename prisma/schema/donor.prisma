@@ -18,5 +18,6 @@ model Donor {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@index([bloodGroup, district, availability])
   @@map("donors")
 }

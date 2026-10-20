@@ -23,5 +23,7 @@ model FundCampaign {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@index([status, createdAt])
+  @@index([status, deadline])
   @@map("fund_campaigns")
 }
