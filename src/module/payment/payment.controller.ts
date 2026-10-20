@@ -29,6 +29,18 @@ const bkashCallback = catchAsync(async (req: Request, res: Response) => {
 	res.redirect(redirectUrl);
 });
 
+const getMyPayments = catchAsync(async (req: Request, res: Response) => {
+	const userId = req.currentUser?.userId as string;
+	const result = await paymentServices.getMyPayments(userId);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Payments retrieved successfully",
+		data: result,
+	});
+});
+
 // const registerPatient = catchAsync(async (req: Request, res: Response) => {
 // 	const payload = req.body;
 
@@ -43,4 +55,5 @@ const bkashCallback = catchAsync(async (req: Request, res: Response) => {
 export const paymentControllers = {
 	createPayment,
 	bkashCallback,
+	getMyPayments,
 };

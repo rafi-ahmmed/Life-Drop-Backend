@@ -11,16 +11,16 @@ const router = Router();
 router.post(
 	"/create-payment",
 	validateRequest(paymentValidations.createPaymentZodSchema),
-	auth(
-		UserRole.PATIENT,
-		UserRole.DONOR,
-		UserRole.ADMIN,
-		UserRole.HOSPITAL,
-		UserRole.SUPER_ADMIN,
-	),
+	auth(UserRole.PATIENT, UserRole.DONOR, UserRole.HOSPITAL),
 	paymentControllers.createPayment,
 );
 
 router.get("/bkash/callback", paymentControllers.bkashCallback);
+
+router.get(
+	"/my-payments",
+	auth(UserRole.PATIENT, UserRole.DONOR, UserRole.HOSPITAL),
+	paymentControllers.getMyPayments,
+);
 
 export const paymentRoutes = router;

@@ -53,8 +53,6 @@ const getBkashIdToken = async () => {
 					value: 60 * 60,
 				},
 			});
-
-			console.log("Return id tkn after getting ner if tkn with refresh tkn");
 			return bkashIdToken;
 		}
 
@@ -83,7 +81,10 @@ const getBkashIdToken = async () => {
 		);
 
 		if (!response.ok) {
-			throw new Error("Bkash Access token failed");
+			throw new AppError(
+				httpStatus.INTERNAL_SERVER_ERROR,
+				"Bkash Access token failed",
+			);
 		}
 		const result = await response.json();
 

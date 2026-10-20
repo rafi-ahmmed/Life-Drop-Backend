@@ -252,9 +252,20 @@ const bkashCallback = async (query: Record<string, any>) => {
 	return transactionResult;
 };
 
+const getMyPayments = async (userId: string) => {
+	const result = await prisma.payment.findMany({
+		where: {
+			userId: userId,
+		},
+	});
+
+	return result;
+};
+
 // const getAllDonorsByCampaign = async (userId: string) => {};
 
 export const paymentServices = {
 	createPayment,
 	bkashCallback,
+	getMyPayments,
 };

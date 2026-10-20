@@ -17,6 +17,7 @@ import helmet from "helmet";
 import passport from "passport";
 import { UserRole } from "../prisma/generated/prisma/enums.js";
 import { prisma } from "./lib/prisma.js";
+import { adminRoutes } from "./module/admin/admin.route.js";
 import { bloodRequestRoutes } from "./module/blood-request/blood-request.route.js";
 import { donorRoutes } from "./module/donor/donor.route.js";
 import { donorRequestRoutes } from "./module/donor-request/donor-request.route.js";
@@ -58,52 +59,53 @@ app.use("/api/v1/blood-requests", bloodRequestRoutes);
 app.use("/api/v1/donor-requests", donorRequestRoutes);
 app.use("/api/v1/fund-campaigns", fundCampaignRoutes);
 app.use("/api/v1/payments", paymentRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 // For testing
-app.post("/test", async (req: Request, res: Response, next: NextFunction) => {
-	try {
-		const payload = req.body;
-		console.log(payload);
+// app.post("/test", async (req: Request, res: Response, next: NextFunction) => {
+// 	try {
+// 		const payload = req.body;
+// 		console.log(payload);
 
-		const newPayload = await Promise.all(
-			payload.map(async ({ user, donor }) => ({
-				user: {
-					...user,
-					password: await getHashPassword(user.password),
-				},
-				donor: {
-					...donor,
-					dateOfBirth: new Date(`${donor.dateOfBirth}T00:00:00.000Z`),
-				},
-			})),
-		);
+// 		const newPayload = await Promise.all(
+// 			payload.map(async ({ user, donor }) => ({
+// 				user: {
+// 					...user,
+// 					password: await getHashPassword(user.password),
+// 				},
+// 				donor: {
+// 					...donor,
+// 					dateOfBirth: new Date(`${donor.dateOfBirth}T00:00:00.000Z`),
+// 				},
+// 			})),
+// 		);
 
-		const result = await Promise.all(
-			newPayload.map(({ user, donor }) =>
-				prisma.user.create({
-					data: {
-						...user,
-						role: UserRole.DONOR,
-						donor: {
-							create: donor,
-						},
-					},
-				}),
-			),
-		);
+// 		const result = await Promise.all(
+// 			newPayload.map(({ user, donor }) =>
+// 				prisma.user.create({
+// 					data: {
+// 						...user,
+// 						role: UserRole.DONOR,
+// 						donor: {
+// 							create: donor,
+// 						},
+// 					},
+// 				}),
+// 			),
+// 		);
 
-		console.log(`${result.length} donors created successfully`);
+// 		console.log(`${result.length} donors created successfully`);
 
-		res.status(200).json({
-			success: true,
-			message: "Welcome to LifeDrop System Backend",
-			data: "",
-		});
-	} catch (error) {
-		console.log(error);
-		next(error);
-	}
-});
+// 		res.status(200).json({
+// 			success: true,
+// 			message: "Welcome to LifeDrop System Backend",
+// 			data: "",
+// 		});
+// 	} catch (error) {
+// 		console.log(error);
+// 		next(error);
+// 	}
+// });
 
 // Basic route
 app.get("/", async (req: Request, res: Response) => {
