@@ -168,13 +168,15 @@ export type PatientScalarFieldEnum = (typeof PatientScalarFieldEnum)[keyof typeo
 
 export const PaymentScalarFieldEnum = {
   id: 'id',
-  campaignId: 'campaignId',
-  donorId: 'donorId',
   amount: 'amount',
-  paymentID: 'paymentID',
+  bkashPaymentId: 'bkashPaymentId',
   trxID: 'trxID',
   paidAt: 'paidAt',
-  method: 'method'
+  method: 'method',
+  status: 'status',
+  gatewayResponse: 'gatewayResponse',
+  campaignId: 'campaignId',
+  userId: 'userId'
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
@@ -212,6 +214,14 @@ export const JsonNullValueInput = {
 } as const
 
 export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {

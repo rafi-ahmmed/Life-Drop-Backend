@@ -6,7 +6,10 @@ import {
 	type VerifyCallback,
 } from "passport-google-oauth20";
 import { Strategy as LocalStrategy } from "passport-local";
-import { AuthProvider } from "../../prisma/generated/prisma/client.js";
+import {
+	AuthProvider,
+	UserRole,
+} from "../../prisma/generated/prisma/client.js";
 import { prisma } from "../lib/prisma.js";
 import config from "./index.js";
 
@@ -79,6 +82,13 @@ passport.use(
 				});
 
 				if (user) {
+					if (user.role !== UserRole.PATIENT) {
+						return done(
+							new Error(
+								"Google authentication is only available for patients.",
+							),
+						);
+					}
 					if (
 						!user.googleId &&
 						user.authProvider === AuthProvider.CREDENTIALS

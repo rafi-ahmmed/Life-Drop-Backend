@@ -22,6 +22,7 @@ import { donorRoutes } from "./module/donor/donor.route.js";
 import { donorRequestRoutes } from "./module/donor-request/donor-request.route.js";
 import { fundCampaignRoutes } from "./module/fund-campaign/fund-campaign.route.js";
 import { patientRoutes } from "./module/patient/patient.route.js";
+import { paymentRoutes } from "./module/payment/payment.route.js";
 import { userRoutes } from "./module/user/user.route.js";
 import { getHashPassword } from "./utils/password.js";
 
@@ -55,7 +56,8 @@ app.use("/api/v1/patients", patientRoutes);
 app.use("/api/v1/donors", donorRoutes);
 app.use("/api/v1/blood-requests", bloodRequestRoutes);
 app.use("/api/v1/donor-requests", donorRequestRoutes);
-app.use("/api/v1/fund-campaign", fundCampaignRoutes);
+app.use("/api/v1/fund-campaigns", fundCampaignRoutes);
+app.use("/api/v1/payments", paymentRoutes);
 
 // For testing
 app.post("/test", async (req: Request, res: Response, next: NextFunction) => {

@@ -1,15 +1,18 @@
 model Payment {
-  id         String        @id @default(uuid())
-  campaignId String
-  donorId    String
-  amount     Decimal       @db.Decimal(10, 2)
-  paymentID  String        @unique
-  trxID      String        @unique
-  paidAt     DateTime      @default(now())
-  method     PaymentMethod @default(BKASH)
+  id String @id @default(uuid())
 
-  campaign FundCampaign @relation(fields: [campaignId], references: [id])
-  donor    User         @relation(fields: [donorId], references: [id])
+  amount          Decimal       @db.Decimal(10, 2)
+  bkashPaymentId  String       @unique
+  trxID           String?       @unique
+  paidAt          DateTime      @default(now())
+  method          PaymentMethod @default(BKASH)
+  status          PaymentStatus @default(UNPAID)
+  gatewayResponse Json?
+
+  campaignId String
+  campaign   FundCampaign @relation(fields: [campaignId], references: [id])
+  userId     String
+  donor      User         @relation(fields: [userId], references: [id])
 
   @@map("payments")
 }
