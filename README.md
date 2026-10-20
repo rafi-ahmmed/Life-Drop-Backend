@@ -48,7 +48,7 @@ The goal is to make blood-request workflows easier to manage and provide a robus
 ## 🗂️ Database ER Diagram
 The diagram below represents the database structure and relationships between the main entities.
 
-![Life-Drop Database ER Diagram](https://drawsql.app/teams/rafi-ahmmed/diagrams/lifedrop-blood-donation-system)
+![https://drawsql.app/teams/rafi-ahmmed/diagrams/lifedrop-blood-donation-system](https://drawsql.app/teams/rafi-ahmmed/diagrams/lifedrop-blood-donation-system)
 
 ---
 
