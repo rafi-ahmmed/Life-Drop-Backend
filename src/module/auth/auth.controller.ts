@@ -143,7 +143,7 @@ const googleLogin = catchAsync(
 const getMe = catchAsync(async (req: Request, res: Response) => {
 	const payload = req.currentUser!;
 
-	console.log(payload);
+	// console.log(payload);
 
 	const result = await authServices.getMe(payload);
 

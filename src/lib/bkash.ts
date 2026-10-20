@@ -58,7 +58,7 @@ const getBkashIdToken = async () => {
 
 		// ? If idToken TTl is greater than 600 seconds, return id token from redis
 		if (bkashIdTokenTTL > 600) {
-			console.log("Return from redis");
+			// console.log("Return from redis");
 			return bkashIdToken;
 		}
 

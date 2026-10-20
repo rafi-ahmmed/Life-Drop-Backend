@@ -11,9 +11,11 @@ export const globalErrorHandler = (
 	res: Response,
 	_next: NextFunction,
 ) => {
-	if (config.node_env === "development") {
-		console.log(chalk.red("Error from Global Error Handler:"), err);
-	}
+	// if (config.node_env === "development") {
+	// 	console.log(chalk.red("Error from Global Error Handler:"), err);
+	// }
+
+	console.log(chalk.red("Error from Global Error Handler:"), err);
 
 	let statusCode: number = httpStatus.INTERNAL_SERVER_ERROR;
 	let errorMessage = "Internal Server Error";

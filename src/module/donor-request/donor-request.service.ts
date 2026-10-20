@@ -16,7 +16,7 @@ const sendRequest = async (
 	requestId: string,
 	payload: SendDonorRequestsPayload,
 ) => {
-	console.log(requestId, payload);
+	// console.log(requestId, payload);
 
 	const donorIds = payload.donorIds;
 

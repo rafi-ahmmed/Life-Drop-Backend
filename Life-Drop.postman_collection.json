@@ -1,0 +1,1137 @@
+{
+  "info": {
+    "_postman_id": "74822292-5dd9-4cdb-b437-43fdffd77aea",
+    "name": "Life-Drop",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48724885",
+    "_collection_link": "https://go.postman.co/collection/48724885-74822292-5dd9-4cdb-b437-43fdffd77aea?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Create Patient",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\":\"rafi\",\n    \"email\":\"rafi.dev920@gmail.com\",\n    \"password\":\"@123Aa\",\n    \"phone\":\"01845485858\",\n    \"address\":\"Mirpur,Dhaka\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/auth/register/patient",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register",
+                "patient"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Donor",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rafi dev\",\n  \"email\":\"rafi.dev920@gmail.com\",\n  \"password\":\"@123Aa\",\n  \"bloodGroup\": \"B_POSITIVE\",\n  \"gender\":\"MALE\",\n  \"phone\": \"01712345678\",\n  \"address\": \"Mirpur, Kajipara, Dhaka\",\n  \"district\": \"Dhaka\",\n  \"dateOfBirth\": \"2000-05-15\"\n\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/auth/register/donor",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register",
+                "donor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "verify email",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\":\"rafi.dev920@gmail.com\",\n    \"otp\":\"962565\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/auth/verify-email",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "verify-email"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    // \"email\":\"admin@gmail.com\",\n    \"email\":\"rafi.dev920@gmail.com\",\n    // \"email\":\"riad.donor@example.com\",\n    // \"email\":\"rafi220330@gmail.com\",\n    \"password\":\"@123Aa\"\n    // \"password\":\"@admin12345\"\n\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/auth/login",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get-me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\":\"rafi220330@gmail.com\",\n    \"password\":\"@123Aa\"\n\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/auth/getMe",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "getMe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh-token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\":\"rafi220330@gmail.com\",\n    \"password\":\"@123Aa\"\n\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/auth/refresh-token",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "refresh-token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\":\"rafi220330@gmail.com\",\n    \"password\":\"@123Aa\"\n\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/auth/logOut",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "logOut"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Upload-pro-img",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "profileImage",
+                  "type": "file",
+                  "src": [
+                    "/home/siyam/Downloads/drizzle-orm-dark-128px.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/users/upload-profile-image",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "upload-profile-image"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Patient",
+      "item": [
+        {
+          "name": "update-Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    // \"phone\": \"018454541545\",\n\t\"address\": \"Mirpur Kajipara,Dhaka\"\n\t// \"district\": \"Mirpur\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/patients/me",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "patients",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Donor",
+      "item": [
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n    {\n    // \"phone\": \"018454541545\",\n\t\"address\": \"Mirpur sawra,Dhaka\"\n\t// \"district\": \"Mirpur\"\n\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/donors/me",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "donors",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upd. Availablity",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"availability\":false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/donors/availability",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "donors",
+                "availability"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Blood-Request",
+      "item": [
+        {
+          "name": "Create Blood.req",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientName\": \"Kalam Hosen\",\n  \"bloodGroup\": \"A_POSITIVE\",\n  \"phone\": \"01712345678\",\n  \"units\": 1,\n  \"gender\":\"MALE\",\n  \"address\": \"kajipara , Dhaka\",\n  \"district\": \"Dhaka\",\n  \"neededAt\": \"2026-10-28T10:00:00.000Z\",\n  \"urgency\": false,\n  \"reason\": \"Thalasamia\",\n  \"description\": \"Patient needs 1 units of B+ blood for Thalasamia.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/blood-requests/create",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "blood-requests",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get bloodReq by Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/blood-requests/33cfbf4e-81b3-4164-9d6f-19ec9cf6d829",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "blood-requests",
+                "33cfbf4e-81b3-4164-9d6f-19ec9cf6d829"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "My Blood requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/blood-requests/my-requests",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "blood-requests",
+                "my-requests"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Matching Donors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/blood-requests/match-donors/76a23472-f9d9-42a9-8c42-6f46b500d466",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "blood-requests",
+                "match-donors",
+                "76a23472-f9d9-42a9-8c42-6f46b500d466"
+              ],
+              "query": [
+                {
+                  "key": "exactLocation",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "exactDistrict",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get donor req for a blood-req",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/blood-requests/donor-requests/33cfbf4e-81b3-4164-9d6f-19ec9cf6d829",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "blood-requests",
+                "donor-requests",
+                "33cfbf4e-81b3-4164-9d6f-19ec9cf6d829"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Donor Requests",
+      "item": [
+        {
+          "name": "Create Donor req",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n\n   { \n    \"donorIds\": [\n            \"856c4f70-6185-4ead-b3e3-5c59a25750aa\",\n            \"14e3d6f3-162d-4a6b-b082-d2d4b31eaac4\",\n            \"57df5620-612f-443e-aaa1-4f66c3ff8272\",\n            \"93868665-f29f-4222-aa27-7a8cc0736013\"\n        ]\n    }\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/donor-requests/send-requests/76a23472-f9d9-42a9-8c42-6f46b500d466",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "donor-requests",
+                "send-requests",
+                "76a23472-f9d9-42a9-8c42-6f46b500d466"
+              ],
+              "query": [
+                {
+                  "key": "exactLocation",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "exactDistrict",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DONOR-Get my blood Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n\n   { \n    \"donorIds\":[\n            \"fcef7245-87d8-4dc5-a6f3-711fec0b7403\",\n            \"8fb51acf-eb5e-4c41-a9de-9a254a122c48\",\n            \"ad45e5ff-1797-4bcd-aa45-5d93f0146f7d\",\n            \"eb9b8a01-a54d-41a9-ab4b-f91134632215\"\n            ]\n    }\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/donor-requests/my-requests",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "donor-requests",
+                "my-requests"
+              ],
+              "query": [
+                {
+                  "key": "exactLocation",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "exactDistrict",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DONOR-Get my blood Req by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n\n   { \n    \"donorIds\":[\n            \"fcef7245-87d8-4dc5-a6f3-711fec0b7403\",\n            \"8fb51acf-eb5e-4c41-a9de-9a254a122c48\",\n            \"ad45e5ff-1797-4bcd-aa45-5d93f0146f7d\",\n            \"eb9b8a01-a54d-41a9-ab4b-f91134632215\"\n            ]\n    }\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/donor-requests/my-requests/9f2b0235-eeb0-4e91-b8cd-2431e129d1b7",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "donor-requests",
+                "my-requests",
+                "9f2b0235-eeb0-4e91-b8cd-2431e129d1b7"
+              ],
+              "query": [
+                {
+                  "key": "exactLocation",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "exactDistrict",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DONOR-Respond to request",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\":\"INTERESTED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/donor-requests/respond/9f2b0235-eeb0-4e91-b8cd-2431e129d1b7",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "donor-requests",
+                "respond",
+                "9f2b0235-eeb0-4e91-b8cd-2431e129d1b7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATIENT-Respond to donor req",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\":\"COMPLETED\"\n    // \"status\":\"CANCELLED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/donor-requests/status/21d239a6-7db9-4b1d-8e92-b251e14961b7",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "donor-requests",
+                "status",
+                "21d239a6-7db9-4b1d-8e92-b251e14961b7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Fund Campaign",
+      "item": [
+        {
+          "name": "Create Campaign",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "patientName",
+                  "value": "Rahim Ahmed",
+                  "type": "text"
+                },
+                {
+                  "key": "hospitalName",
+                  "value": "Dhaka Medical College Hospital",
+                  "type": "text",
+                  "description": "optional"
+                },
+                {
+                  "key": "contactNumber",
+                  "value": "01712345678",
+                  "type": "text"
+                },
+                {
+                  "key": "title",
+                  "value": "Emergency Treatment Fund",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Financial assistance needed for emergency medical treatment.",
+                  "type": "text"
+                },
+                {
+                  "key": "targetAmount",
+                  "value": "20000",
+                  "type": "text"
+                },
+                {
+                  "key": "deadline",
+                  "value": "2026-12-30",
+                  "type": "text"
+                },
+                {
+                  "key": "prescription",
+                  "type": "file",
+                  "src": [
+                    "/home/siyam/Downloads/Zustand · 10 Clever Tricks · Coding Mortal.pdf"
+                  ]
+                },
+                {
+                  "key": "medicalReport",
+                  "type": "file",
+                  "src": [
+                    "/home/siyam/Downloads/Squid Game-7 Portfolio Requirements.pdf"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/fund-campaigns/create-campaign",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "fund-campaigns",
+                "create-campaign"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get my campaings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/fund-campaigns/my-campaigns",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "fund-campaigns",
+                "my-campaigns"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get campaign my id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/fund-campaigns/97c79f37-9da4-4e32-b615-7a78bcfe64a2",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "fund-campaigns",
+                "97c79f37-9da4-4e32-b615-7a78bcfe64a2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Create payment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"campaignId\":\"97c79f37-9da4-4e32-b615-7a78bcfe64a2\",\n    \"amount\" : 2000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/payments/create-payment",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "payments",
+                "create-payment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get my payments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"campaignId\":\"97c79f37-9da4-4e32-b615-7a78bcfe64a2\",\n    \"amount\" : 1000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/payments/my-payments",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "payments",
+                "my-payments"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get all users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/admin/users",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update user",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\":\"ACTIVE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/admin/users/role/a7161b3a-d012-4255-a647-eaa792f26899",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users",
+                "role",
+                "a7161b3a-d012-4255-a647-eaa792f26899"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Dashboard stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/admin/dashboard-stats",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "dashboard-stats"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ADMIN-Get all campaigns",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/fund-campaigns/admin/all",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "fund-campaigns",
+                "admin",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin- get campaign by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/fund-campaigns/admin/97c79f37-9da4-4e32-b615-7a78bcfe64a2",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "fund-campaigns",
+                "admin",
+                "97c79f37-9da4-4e32-b615-7a78bcfe64a2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin-Review Campaign",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\":\"APPROVED\"\n    //  \"status\":\"REJECTED\",\n    // \"rejectedReason\":\"Contact number not active not active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/fund-campaigns/admin/review/97c79f37-9da4-4e32-b615-7a78bcfe64a2",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "fund-campaigns",
+                "admin",
+                "review",
+                "97c79f37-9da4-4e32-b615-7a78bcfe64a2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin-Update BloodReq ststus",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\":\"APPROVED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{localURL}}/api/v1/blood-requests/status/15586d50-63e0-438f-99e9-71cfcdc13313",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "blood-requests",
+                "status",
+                "15586d50-63e0-438f-99e9-71cfcdc13313"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin-Get all request",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{localURL}}/api/v1/blood-requests/all?status=MATCHING",
+              "host": [
+                "{{localURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "blood-requests",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "location",
+                  "value": "mir",
+                  "disabled": true
+                },
+                {
+                  "key": "urgency",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "MATCHING"
+                },
+                {
+                  "key": "bloodGroup",
+                  "value": "B_POSITIVE",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Test",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"user\": {\n      \"name\": \"Karim Ahmed\",\n      \"email\": \"karim.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"A_POSITIVE\",\n      \"phone\": \"01710000001\",\n      \"address\": \"Mirpur 10, Dhaka\",\n      \"district\": \"Dhaka\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1998-05-15\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Nusrat Jahan\",\n      \"email\": \"nusrat.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"B_POSITIVE\",\n      \"phone\": \"01710000002\",\n      \"address\": \"Uttara, Dhaka\",\n      \"district\": \"Dhaka\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2000-08-21\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Sakib Hasan\",\n      \"email\": \"sakib.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"O_POSITIVE\",\n      \"phone\": \"01710000003\",\n      \"address\": \"Agrabad, Chattogram\",\n      \"district\": \"Chattogram\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1997-03-12\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Ayesha Akter\",\n      \"email\": \"ayesha.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"AB_POSITIVE\",\n      \"phone\": \"01710000004\",\n      \"address\": \"Sadar, Cumilla\",\n      \"district\": \"Cumilla\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2001-11-09\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Rakib Hossain\",\n      \"email\": \"rakib.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"A_NEGATIVE\",\n      \"phone\": \"01710000005\",\n      \"address\": \"Sadar, Rajshahi\",\n      \"district\": \"Rajshahi\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1996-07-18\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Farhana Yasmin\",\n      \"email\": \"farhana.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"B_NEGATIVE\",\n      \"phone\": \"01710000006\",\n      \"address\": \"Sadar, Sylhet\",\n      \"district\": \"Sylhet\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"1999-02-14\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Tanvir Islam\",\n      \"email\": \"tanvir.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"O_NEGATIVE\",\n      \"phone\": \"01710000007\",\n      \"address\": \"Sadar, Khulna\",\n      \"district\": \"Khulna\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1995-12-25\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Sumaiya Rahman\",\n      \"email\": \"sumaiya.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"AB_NEGATIVE\",\n      \"phone\": \"01710000008\",\n      \"address\": \"Sadar, Rangpur\",\n      \"district\": \"Rangpur\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2002-04-07\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Imran Hossain\",\n      \"email\": \"imran.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"A_POSITIVE\",\n      \"phone\": \"01710000009\",\n      \"address\": \"Sadar, Bogura\",\n      \"district\": \"Bogura\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1998-09-16\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Mim Akter\",\n      \"email\": \"mim.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"B_POSITIVE\",\n      \"phone\": \"01710000010\",\n      \"address\": \"Sadar, Jashore\",\n      \"district\": \"Jashore\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2000-06-22\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Shakil Ahmed\",\n      \"email\": \"shakil.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"O_POSITIVE\",\n      \"phone\": \"01710000011\",\n      \"address\": \"Sadar, Mymensingh\",\n      \"district\": \"Mymensingh\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1997-01-30\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Tania Sultana\",\n      \"email\": \"tania.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"AB_POSITIVE\",\n      \"phone\": \"01710000012\",\n      \"address\": \"Sadar, Barishal\",\n      \"district\": \"Barishal\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2001-10-11\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Mehedi Hasan\",\n      \"email\": \"mehedi.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"A_POSITIVE\",\n      \"phone\": \"01710000013\",\n      \"address\": \"Sadar, Narayanganj\",\n      \"district\": \"Narayanganj\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1996-05-19\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Jannatul Ferdous\",\n      \"email\": \"jannatul.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"B_POSITIVE\",\n      \"phone\": \"01710000014\",\n      \"address\": \"Sadar, Tangail\",\n      \"district\": \"Tangail\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2002-03-08\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Arif Hossain\",\n      \"email\": \"arif.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"O_POSITIVE\",\n      \"phone\": \"01710000015\",\n      \"address\": \"Sadar, Kushtia\",\n      \"district\": \"Kushtia\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1999-08-03\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Sadika Rahman\",\n      \"email\": \"sadika.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"A_POSITIVE\",\n      \"phone\": \"01710000016\",\n      \"address\": \"Savar, Dhaka\",\n      \"district\": \"Dhaka\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2000-01-29\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Fahim Chowdhury\",\n      \"email\": \"fahim.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"O_POSITIVE\",\n      \"phone\": \"01710000017\",\n      \"address\": \"Sadar, Feni\",\n      \"district\": \"Feni\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1998-04-16\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Laboni Akter\",\n      \"email\": \"laboni.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"AB_NEGATIVE\",\n      \"phone\": \"01710000018\",\n      \"address\": \"Sadar, Pabna\",\n      \"district\": \"Pabna\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2002-12-07\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Riad Karim\",\n      \"email\": \"riad.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"B_POSITIVE\",\n      \"phone\": \"01710000019\",\n      \"address\": \"Sadar, Dinajpur\",\n      \"district\": \"Dinajpur\",\n      \"gender\": \"MALE\",\n      \"dateOfBirth\": \"1997-06-30\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  },\n  {\n    \"user\": {\n      \"name\": \"Mariya Islam\",\n      \"email\": \"mariya.donor@example.com\",\n      \"password\": \"@123Aa\"\n    },\n    \"donor\": {\n      \"bloodGroup\": \"O_POSITIVE\",\n      \"phone\": \"01710000020\",\n      \"address\": \"Sadar, Gazipur\",\n      \"district\": \"Gazipur\",\n      \"gender\": \"FEMALE\",\n      \"dateOfBirth\": \"2001-07-24\",\n      \"lastDonatedAt\": null,\n      \"availability\": true\n    }\n  }\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{localURL}}/test",
+          "host": [
+            "{{localURL}}"
+          ],
+          "path": [
+            "test"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "localURL",
+      "value": ""
+    }
+  ]
+}

@@ -11,7 +11,7 @@ import type {
 } from "./donor.validation.js";
 
 const updateDonor = async (payload: updateDonorPayload, userId: string) => {
-	console.log(payload);
+	// console.log(payload);
 	const isDonorExists = await prisma.user.findUnique({
 		where: {
 			id: userId,

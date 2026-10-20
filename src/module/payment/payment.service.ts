@@ -83,7 +83,7 @@ const createPayment = async (
 		},
 	});
 
-	console.log("Initial UNPAID payment created", createPayment);
+	// console.log("Initial UNPAID payment created", createPayment);
 
 	return { paymentUrl: bkashPaymentResult.bkashURL };
 };
@@ -124,7 +124,7 @@ const bkashCallback = async (query: Record<string, any>) => {
 	);
 	const executePaymentResult = await executePayment.json();
 
-	console.log("Execute payment result", executePaymentResult);
+	// console.log("Execute payment result", executePaymentResult);
 
 	const transactionResult = await prisma.$transaction(async (tx) => {
 		if (status === "success") {

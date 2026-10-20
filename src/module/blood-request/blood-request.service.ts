@@ -50,7 +50,7 @@ const getAllBloodRequestsByAdmin = async (
 		page = 1,
 	} = filterOptions || {};
 
-	console.log(filterOptions);
+	// console.log(filterOptions);
 
 	const andCondition: Prisma.BloodRequestWhereInput[] = [];
 
@@ -141,7 +141,7 @@ const updateBloodRequestStatus = async (
 	userId: string,
 	requestId: string,
 ) => {
-	console.log(payload, requestId, userId);
+	// console.log(payload, requestId, userId);
 
 	const request = await prisma.bloodRequest.findUnique({
 		where: {
@@ -187,7 +187,7 @@ const myRequests = async (userId: string) => {
 		},
 	});
 
-	console.log(requests);
+	// console.log(requests);
 
 	if (!requests || requests.length === 0) {
 		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
@@ -296,13 +296,13 @@ const matchDonors = async (
 		.map((donor) => donor.id);
 	const stringDonorIds = unsentDonorIds.map((id) => id.toString());
 
-	console.log(stringDonorIds);
+	// console.log(stringDonorIds);
 
 	return { total, matchingDonors, stringDonorIds };
 };
 
 const getAllDonorRequests = async (userId: string, requestId: string) => {
-	console.log(userId, requestId);
+	// console.log(userId, requestId);
 
 	if (!requestId) {
 		throw new Error("Request ID is required");

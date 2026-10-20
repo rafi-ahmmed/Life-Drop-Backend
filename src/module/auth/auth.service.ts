@@ -225,7 +225,7 @@ const verifyEmail = async (payload: verifyEmailPayload) => {
 };
 
 const getMe = async (user: IRequestUser) => {
-	console.log("user==", user);
+	// console.log("user==", user);
 	const isUserExists = await prisma.user.findUnique({
 		where: {
 			id: user.userId,

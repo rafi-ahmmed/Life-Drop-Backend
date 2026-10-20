@@ -23,7 +23,7 @@ export const loginAndRegisterRateLimiter = rateLimit({
 });
 
 export const paymentRateLimiter = rateLimit({
-	windowMs: 60 * 1000, 
+	windowMs: 60 * 1000,
 	limit: 5,
 	standardHeaders: "draft-8",
 	legacyHeaders: false,

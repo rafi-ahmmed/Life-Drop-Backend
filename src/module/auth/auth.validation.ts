@@ -67,7 +67,7 @@ const donorRegistrationZodSchema = z.object({
 	bloodGroup: z.nativeEnum(BloodGroup, {
 		message: "Please select a valid blood group.",
 	}),
-	
+
 	gender: z.nativeEnum(Gender, {
 		message: "Please select a valid Gender.",
 	}),

@@ -56,7 +56,7 @@ export const seedSuperAdmin = async () => {
 
 export const seedAdmin = async () => {
 	try {
-		const isAdminExist  = await prisma.user.findFirst({
+		const isAdminExist = await prisma.user.findFirst({
 			where: {
 				role: UserRole.ADMIN,
 			},

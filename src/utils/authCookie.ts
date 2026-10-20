@@ -13,7 +13,7 @@ const cookieOptions = {
 		config.node_env === "production" ? ("none" as const) : ("lax" as const),
 }; // none / strict / lax
 
-export const setAuthCookie =  (res: Response, tokenInfo: AuthTokens) => {
+export const setAuthCookie = (res: Response, tokenInfo: AuthTokens) => {
 	if (tokenInfo.accessToken) {
 		res.cookie("accessToken", tokenInfo.accessToken, {
 			...cookieOptions,

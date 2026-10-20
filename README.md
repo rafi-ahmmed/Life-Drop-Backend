@@ -1,10 +1,11 @@
-<div align="center">
+<div align="left">
 
-🩸 Life-Drop
-Blood Donation & Emergency Assistance Platform
-A backend API designed to help people find blood donors, manage blood requests, and support medical fundraising campaigns.
+# LifeDrop 🩸
 
-Built with TypeScript, Express.js, Prisma ORM, and PostgreSQL
+LifeDrop is a blood donation and emergency assistance platform designed to connect patients and hospitals with eligible blood donors during critical situations.
+
+The platform helps users create blood requests, find matching donors based on blood group and location, notify available donors, manage donation responses, and track completed donations. It also includes hospital verification and a fundraising system to support patients with treatment-related expenses.
+
 </div>
 
 ---
@@ -47,10 +48,7 @@ The goal is to make blood-request workflows easier to manage and provide a robus
 ## 🗂️ Database ER Diagram
 The diagram below represents the database structure and relationships between the main entities.
 
-<!-- Add your ER diagram image to docs/er-diagram.png, then uncomment the next line. -->
-<!-- ![Life-Drop Database ER Diagram](./docs/er-diagram.png) -->
-
-> **Note:** Diagram placeholder — add your image file at `docs/er-diagram.png` and uncomment the markdown image line above.
+![Life-Drop Database ER Diagram](https://drawsql.app/teams/rafi-ahmmed/diagrams/lifedrop-blood-donation-system)
 
 ---
 

@@ -12,8 +12,8 @@ const uploadProfileImage = catchAsync(async (req: Request, res: Response) => {
 	if (!image) {
 		throw new AppError(httpStatus.BAD_REQUEST, "Image is not Provided");
 	}
-	console.log("image==", image.buffer);
-	console.log("userId==", userId);
+	// console.log("image==", image.buffer);
+	// console.log("userId==", userId);
 
 	const result = await userServices.uploadProfileImage(image.buffer, userId!);
 
