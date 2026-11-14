@@ -56,6 +56,19 @@ const getAllCampaignsByAdmin = async () => {
 	return result;
 };
 
+const getAllCampaigns = async () => {
+	const result = await prisma.fundCampaign.findMany({
+		where: {
+			status: FundCampaignStatus.ACTIVE,
+		},
+		orderBy: {
+			createdAt: "desc",
+		},
+	});
+
+	return result;
+};
+
 const getCampaignByIdForAdmin = async (campaignId: string) => {
 	const result = await prisma.fundCampaign.findUnique({
 		where: {
@@ -140,9 +153,9 @@ const getMyCampaigns = async (userId: string) => {
 		},
 	});
 
-	if (!result || result.length === 0) {
-		throw new AppError(httpStatus.NOT_FOUND, "Campaign not found");
-	}
+	// if (!result || result.length === 0) {
+	// 	throw new AppError(httpStatus.NOT_FOUND, "Campaign not found");
+	// }
 
 	return result;
 };
@@ -156,4 +169,5 @@ export const fundCampaignServices = {
 	reviewCampaignByAdmin,
 	getCampaignById,
 	getMyCampaigns,
+	getAllCampaigns,
 };

@@ -5,7 +5,7 @@ const patientRegistrationZodSchema = z.object({
 	name: z
 		.string("Email is not a string or is empty")
 		.min(3, "Name must be at least 3 characters")
-		.max(10, "Name must be at most 10 characters"),
+		.max(15, "Name must be at most 15 characters"),
 	email: z.email("Not a valid email"),
 	password: z
 		.string("password is not a string or is empty")
@@ -45,7 +45,7 @@ const donorRegistrationZodSchema = z.object({
 	name: z
 		.string(" Name is not a string or is empty")
 		.min(3, "Name must be at least 3 characters")
-		.max(10, "Name must be at most 10 characters"),
+		.max(15, "Name must be at most 10 characters"),
 	email: z.email("Not a valid email"),
 	password: z
 		.string("password is not a string or is empty")

@@ -38,6 +38,8 @@ router.get(
 	fundCampaignControllers.getAllCampaignsByAdmin,
 );
 
+router.get("/all", fundCampaignControllers.getAllCampaignsByAdmin);
+
 router.get(
 	"/admin/:id",
 	auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),

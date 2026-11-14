@@ -124,8 +124,8 @@ const googleLogin = catchAsync(
 
 			setAuthCookie(res, { accessToken, refreshToken });
 
-			const { password, ...rest } = user;
-			// console.log("rest==", rest);
+			// const { password, ...rest } = user;
+			// // console.log("rest==", rest);
 			// sendResponse(res, {
 			// 	statusCode: httpStatus.OK,
 			// 	success: true,
@@ -133,9 +133,7 @@ const googleLogin = catchAsync(
 			// 	data: { user: accessToken, refreshToken },
 			// });
 
-			res.redirect(
-				`${config.frontend_url}/login/success?accessToken=${accessToken}&refreshToken=${refreshToken}`,
-			);
+			res.redirect(`${config.frontend_url}`);
 		})(req, res, next);
 	},
 );

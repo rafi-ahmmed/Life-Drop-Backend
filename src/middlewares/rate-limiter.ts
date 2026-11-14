@@ -1,4 +1,5 @@
 import rateLimit from "express-rate-limit";
+import config from "../config/index.js";
 
 export const globalRateLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000,
@@ -18,7 +19,17 @@ export const loginAndRegisterRateLimiter = rateLimit({
 	legacyHeaders: false,
 	message: {
 		success: false,
-		message: "Too many login attempts. Try again later.",
+		message: "Too many login attempts. Please try again later.",
+	},
+});
+
+export const googleLoginRateLimiter = rateLimit({
+	windowMs: 15 * 60 * 1000,
+	limit: 3,
+	standardHeaders: "draft-8",
+	legacyHeaders: false,
+	handler: (req, res) => {
+		res.redirect(`${config.frontend_url}/login?error=too_many_attempts`);
 	},
 });
 

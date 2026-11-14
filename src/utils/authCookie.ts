@@ -1,4 +1,4 @@
-import type { Response } from "express";
+import type { CookieOptions, Response } from "express";
 import config from "../config/index.js";
 
 export interface AuthTokens {
@@ -6,12 +6,11 @@ export interface AuthTokens {
 	refreshToken?: string;
 }
 
-const cookieOptions = {
-	httpOnly: true, // true/false
-	secure: config.node_env === "production", // http / https
-	sameSite:
-		config.node_env === "production" ? ("none" as const) : ("lax" as const),
-}; // none / strict / lax
+const cookieOptions: CookieOptions = {
+	httpOnly: true,
+	secure: config.node_env !== "development",
+	sameSite: config.node_env === "development" ? "lax" : "none",
+};
 
 export const setAuthCookie = (res: Response, tokenInfo: AuthTokens) => {
 	if (tokenInfo.accessToken) {

@@ -2,7 +2,7 @@ model DonorRequest {
   id String @id @default(uuid())
 
   donorId String
-  donor   Donor  @relation(fields: [donorId], references: [id])
+  donor   Donor  @relation(fields: [donorId], references: [id], onDelete: Cascade)
 
   requestId    String
   bloodRequest BloodRequest @relation(fields: [requestId], references: [id])

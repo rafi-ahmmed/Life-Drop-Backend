@@ -14,6 +14,7 @@ import { authRoutes } from "./module/auth/auth.route.js";
 import "./config/passport.js";
 import bcrypt from "bcryptjs";
 import helmet from "helmet";
+import morgan from "morgan";
 import passport from "passport";
 import { UserRole } from "../prisma/generated/prisma/enums.js";
 import { prisma } from "./lib/prisma.js";
@@ -32,6 +33,9 @@ const app: Application = express();
 
 // Security headers
 app.use(helmet());
+
+// Logging
+app.use(morgan("dev"));
 
 // CORS configuration
 app.use(
@@ -66,50 +70,56 @@ app.use("/api/v1/payments", paymentRoutes);
 app.use("/api/v1/admin", adminRoutes);
 
 // For testing
-// app.post("/test", async (req: Request, res: Response, next: NextFunction) => {
-// 	try {
-// 		const payload = req.body;
-// 		console.log(payload);
+app.delete("/test", async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const payload = req.body;
+		console.log(payload);
 
-// 		const newPayload = await Promise.all(
-// 			payload.map(async ({ user, donor }) => ({
-// 				user: {
-// 					...user,
-// 					password: await getHashPassword(user.password),
-// 				},
-// 				donor: {
-// 					...donor,
-// 					dateOfBirth: new Date(`${donor.dateOfBirth}T00:00:00.000Z`),
-// 				},
-// 			})),
-// 		);
+		// const newPayload = await Promise.all(
+		// 	payload.map(async ({ user, donor }) => ({
+		// 		user: {
+		// 			...user,
+		// 			password: await getHashPassword(user.password),
+		// 		},
+		// 		donor: {
+		// 			...donor,
+		// 			dateOfBirth: new Date(`${donor.dateOfBirth}T00:00:00.000Z`),
+		// 		},
+		// 	})),
+		// );
 
-// 		const result = await Promise.all(
-// 			newPayload.map(({ user, donor }) =>
-// 				prisma.user.create({
-// 					data: {
-// 						...user,
-// 						role: UserRole.DONOR,
-// 						donor: {
-// 							create: donor,
-// 						},
-// 					},
-// 				}),
-// 			),
-// 		);
+		// const result = await Promise.all(
+		// 	newPayload.map(({ user, donor }) =>
+		// 		prisma.user.create({
+		// 			data: {
+		// 				...user,
+		// 				role: UserRole.DONOR,
+		// 				donor: {
+		// 					create: donor,
+		// 				},
+		// 			},
+		// 		}),
+		// 	),
+		// );
 
-// 		console.log(`${result.length} donors created successfully`);
+		// console.log(`${result.length} donors created successfully`);
 
-// 		res.status(200).json({
-// 			success: true,
-// 			message: "Welcome to LifeDrop System Backend",
-// 			data: "",
-// 		});
-// 	} catch (error) {
-// 		console.log(error);
-// 		next(error);
-// 	}
-// });
+		const user = await prisma.user.delete({
+			where: {
+				id: req.body.id,
+			},
+		});
+
+		res.status(200).json({
+			success: true,
+			message: "Welcome to LifeDrop System Backend",
+			data: user,
+		});
+	} catch (error) {
+		console.log(error);
+		next(error);
+	}
+});
 
 // Basic route
 app.get("/", async (req: Request, res: Response) => {

@@ -2,7 +2,10 @@ import { Router } from "express";
 import passport from "passport";
 import { UserRole } from "../../../prisma/generated/prisma/enums.js";
 import { auth } from "../../middlewares/checkAuth.js";
-import { loginAndRegisterRateLimiter } from "../../middlewares/rate-limiter.js";
+import {
+	googleLoginRateLimiter,
+	loginAndRegisterRateLimiter,
+} from "../../middlewares/rate-limiter.js";
 import { validateRequest } from "../../middlewares/validateRequest.js";
 import { authControllers } from "./auth.controller.js";
 import { authValidation } from "./auth.validation.js";
@@ -37,8 +40,10 @@ router.post(
 
 router.get(
 	"/google",
-	loginAndRegisterRateLimiter,
-	passport.authenticate("google", { scope: ["profile", "email"] }),
+	passport.authenticate("google", {
+		scope: ["profile", "email"],
+		prompt: "select_account",
+	}),
 );
 router.get("/google/callback", authControllers.googleLogin);
 router.get(

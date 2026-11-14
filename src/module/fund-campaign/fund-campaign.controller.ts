@@ -23,26 +23,24 @@ const createCampaign = catchAsync(async (req: Request, res: Response) => {
 		);
 	}
 
-	const prescription = medicalFiles["prescription"]
-		? medicalFiles["prescription"]
-		: null;
-	const medicalReport = medicalFiles["medicalReport"]
-		? medicalFiles["medicalReport"]
-		: null;
+	const prescription = medicalFiles["prescription"] ?? [];
+	const medicalReport = medicalFiles["medicalReport"] ?? [];
 
-	if (!prescription) {
+	if (prescription.length === 0) {
 		throw new AppError(
 			httpStatus.BAD_REQUEST,
 			"Prescription document is required",
 		);
 	}
 
-	// Medical report is required
-	if (!medicalReport) {
-		throw new AppError(httpStatus.BAD_REQUEST, "Medical report is required");
+	if (medicalReport.length > 2) {
+		throw new AppError(
+			httpStatus.BAD_REQUEST,
+			"Maximum 2 medical reports are allowed",
+		);
 	}
 
-	const medicalDocuments = [...(prescription ?? []), ...(medicalReport ?? [])];
+	const medicalDocuments = [...prescription, ...medicalReport];
 
 	const result = await fundCampaignServices.createCampaign(
 		userId as string,
@@ -71,6 +69,17 @@ const getAllCampaignsByAdmin = catchAsync(
 		});
 	},
 );
+
+const getAllCampaigns = catchAsync(async (req: Request, res: Response) => {
+	const result = await fundCampaignServices.getAllCampaigns();
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "All campaigns retrieved successfully.",
+		data: result,
+	});
+});
 
 const getCampaignByIdForAdmin = catchAsync(
 	async (req: Request, res: Response) => {
@@ -135,7 +144,10 @@ const getMyCampaigns = catchAsync(async (req: Request, res: Response) => {
 	sendResponse(res, {
 		statusCode: httpStatus.OK,
 		success: true,
-		message: "Your campaigns retrieved successfully.",
+		message:
+			result.length === 0
+				? "You have no campaigns."
+				: "Your campaigns retrieved successfully.",
 		data: result,
 	});
 });
@@ -158,4 +170,5 @@ export const fundCampaignControllers = {
 	reviewCampaignByAdmin,
 	getCampaignById,
 	getMyCampaigns,
+	getAllCampaigns,
 };
