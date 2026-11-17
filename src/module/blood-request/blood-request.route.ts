@@ -34,6 +34,19 @@ router.get(
 	bloodRequestControllers.myRequests,
 );
 
+router.delete(
+	"/:id",
+	auth(UserRole.PATIENT),
+	bloodRequestControllers.deleteBloodRequest,
+);
+
+// Get all donor requests
+router.get(
+	"/donor-requests",
+	auth(UserRole.PATIENT),
+	bloodRequestControllers.getAllDonorRequests,
+);
+
 router.get(
 	"/:id",
 	auth(UserRole.PATIENT, UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.DONOR),
@@ -44,13 +57,6 @@ router.get(
 	"/match-donors/:id",
 	auth(UserRole.PATIENT, UserRole.ADMIN, UserRole.SUPER_ADMIN),
 	bloodRequestControllers.matchDonors,
-);
-
-// Get donor requests for a blood request
-router.get(
-	"/donor-requests/:id",
-	auth(UserRole.PATIENT),
-	bloodRequestControllers.getAllDonorRequests,
 );
 
 export const bloodRequestRoutes = router;

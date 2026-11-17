@@ -87,6 +87,22 @@ const myRequests = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
+const getAllDonorRequests = catchAsync(async (req: Request, res: Response) => {
+	const userId = req.currentUser?.userId;
+	console.log("click", userId);
+
+	const result = await bloodRequestServices.getAllDonorRequests(
+		userId as string,
+	);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Get all donor requests for a blood request",
+		data: result,
+	});
+});
+
 const matchDonors = catchAsync(async (req: Request, res: Response) => {
 	const requestId = req.params.id;
 	const userId = req.currentUser?.userId;
@@ -112,23 +128,33 @@ const matchDonors = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
-const getAllDonorRequests = catchAsync(async (req: Request, res: Response) => {
+const deleteBloodRequest = catchAsync(async (req: Request, res: Response) => {
 	const userId = req.currentUser?.userId;
-	const requestId = req.params.id;
-	const payload = req.body;
+	const reqId = req.params.id;
 
-	const result = await bloodRequestServices.getAllDonorRequests(
+	const result = await bloodRequestServices.deleteBloodRequest(
 		userId as string,
-		requestId as string,
+		reqId as string,
 	);
 
 	sendResponse(res, {
 		statusCode: httpStatus.OK,
 		success: true,
-		message: "Get all donor requests for a blood request",
+		message: "Request deleted successfully!",
 		data: result,
 	});
 });
+
+// const registerPatient = catchAsync(async (req: Request, res: Response) => {
+// 	const payload = req.body;
+
+// 	sendResponse(res, {
+// 		statusCode: httpStatus.OK,
+// 		success: true,
+// 		message: "Verification otp send on ur email.",
+// 		data: null,
+// 	});
+// });
 
 export const bloodRequestControllers = {
 	createBloodRequest,
@@ -138,4 +164,5 @@ export const bloodRequestControllers = {
 	myRequests,
 	matchDonors,
 	getAllDonorRequests,
+	deleteBloodRequest,
 };

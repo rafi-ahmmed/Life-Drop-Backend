@@ -59,6 +59,9 @@ const getAdminStats = async () => {
 		totalFundCampaigns,
 		pendingFundCampaigns,
 		approvedFundCampaigns,
+		monthlyFundingData,
+		dailyBloodRequestsData,
+		totalFunding,
 	] = await Promise.all([
 		// Patients
 		prisma.user.count({
@@ -88,7 +91,11 @@ const getAdminStats = async () => {
 		}),
 
 		prisma.bloodRequest.count({
-			where: { status: "APPROVED" },
+			where: {
+				status: {
+					in: ["MATCHING", "APPROVED"],
+				},
+			},
 		}),
 
 		prisma.bloodRequest.count({
@@ -103,9 +110,49 @@ const getAdminStats = async () => {
 		}),
 
 		prisma.fundCampaign.count({
-			where: { status: "APPROVED" },
+			where: {
+				status: {
+					in: ["APPROVED", "ACTIVE"],
+				},
+			},
+		}),
+
+		prisma.fundCampaign.findMany({
+			where: {
+				createdAt: {
+					gte: new Date(new Date().getFullYear(), 0, 1),
+					lt: new Date(new Date().getFullYear() + 1, 0, 1),
+				},
+			},
+			select: {
+				createdAt: true,
+				targetAmount: true,
+				collectedAmount: true,
+			},
+		}),
+
+		prisma.bloodRequest.findMany({
+			where: {
+				createdAt: {
+					gte: new Date(new Date().setDate(new Date().getDate() - 30)),
+				},
+			},
+			select: {
+				createdAt: true,
+			},
+			orderBy: {
+				createdAt: "asc",
+			},
+		}),
+
+		await prisma.fundCampaign.aggregate({
+			_sum: {
+				collectedAmount: true,
+			},
 		}),
 	]);
+
+	const totalFundingRevenue = totalFunding._sum.collectedAmount ?? 0;
 
 	return {
 		users: {
@@ -125,6 +172,9 @@ const getAdminStats = async () => {
 			pending: pendingFundCampaigns,
 			approved: approvedFundCampaigns,
 		},
+		totalFundingRevenue,
+		monthlyFundingData,
+		dailyBloodRequestsData,
 	};
 };
 

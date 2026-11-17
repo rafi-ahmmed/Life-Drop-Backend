@@ -34,6 +34,22 @@ const updateAvailability = catchAsync(async (req: Request, res: Response) => {
 		data: result,
 	});
 });
+
+const getDonorDashboardStats = catchAsync(
+	async (req: Request, res: Response) => {
+		const userId = req.currentUser?.userId;
+
+		const result = await donorServices.getDonorDashboardStats(userId as string);
+
+		sendResponse(res, {
+			statusCode: httpStatus.OK,
+			success: true,
+			message: "Donor stats retrieved successfully",
+			data: result,
+		});
+	},
+);
+
 // const registerPatient = catchAsync(async (req: Request, res: Response) => {
 // 	const payload = req.body;
 
@@ -48,4 +64,5 @@ const updateAvailability = catchAsync(async (req: Request, res: Response) => {
 export const donorControllers = {
 	updateDonor,
 	updateAvailability,
+	getDonorDashboardStats,
 };

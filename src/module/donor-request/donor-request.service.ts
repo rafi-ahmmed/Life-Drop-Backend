@@ -16,9 +16,8 @@ const sendRequest = async (
 	requestId: string,
 	payload: SendDonorRequestsPayload,
 ) => {
-	// console.log(requestId, payload);
-
 	const donorIds = payload.donorIds;
+	const message = payload.message;
 
 	const request = await prisma.bloodRequest.findUnique({
 		where: {
@@ -41,6 +40,7 @@ const sendRequest = async (
 		data: donorIds.map((donorId: string) => ({
 			requestId: requestId,
 			donorId: donorId,
+			message: message,
 		})),
 		skipDuplicates: true,
 	});
@@ -174,11 +174,25 @@ const getMyRequests = async (userId: string) => {
 		where: {
 			donorId: user?.donor?.id,
 		},
+		orderBy: {
+			createdAt: "desc",
+		},
+		include: {
+			bloodRequest: {
+				select: {
+					id: true,
+					patientName: true,
+					bloodGroup: true,
+					gender: true,
+					phone: true,
+					address: true,
+					district: true,
+					neededAt: true,
+					reason: true,
+				},
+			},
+		},
 	});
-
-	if (!result || result.length === 0) {
-		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
-	}
 
 	return result;
 };

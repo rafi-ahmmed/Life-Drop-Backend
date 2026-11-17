@@ -42,13 +42,7 @@ const createBloodRequest = async (
 const getAllBloodRequestsByAdmin = async (
 	filterOptions: IBloodRequestFilterOptions,
 ) => {
-	const {
-		bloodGroup,
-		location,
-		urgency,
-		status,
-		page = 1,
-	} = filterOptions || {};
+	const { bloodGroup, location, urgency, status, page } = filterOptions || {};
 
 	// console.log(filterOptions);
 
@@ -91,7 +85,7 @@ const getAllBloodRequestsByAdmin = async (
 		});
 	}
 
-	const limit = 8;
+	const limit = 3;
 	const skip = (Number(page) - 1) * limit;
 
 	const whereCondition: Prisma.BloodRequestWhereInput = {
@@ -136,6 +130,7 @@ const getBloodRequestById = async (requestId: string) => {
 	return result;
 };
 
+// *Admin
 const updateBloodRequestStatus = async (
 	payload: UpdateBloodRequestStatusPayload,
 	userId: string,
@@ -189,11 +184,61 @@ const myRequests = async (userId: string) => {
 
 	// console.log(requests);
 
-	if (!requests || requests.length === 0) {
-		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
-	}
+	// if (!requests || requests.length === 0) {
+	// 	throw new AppError(httpStatus.NOT_FOUND, "Request not found");
+	// }
 
 	return requests;
+};
+
+const getAllDonorRequests = async (userId: string) => {
+	console.log(userId);
+
+	const requests = await prisma.bloodRequest.findMany({
+		where: {
+			requestorId: userId,
+		},
+		select: {
+			id: true,
+			bloodGroup: true,
+			district: true,
+			address: true,
+			units: true,
+			status: true,
+			donorRequests: {
+				select: {
+					id: true,
+					status: true,
+					donor: {
+						select: {
+							id: true,
+							address: true,
+							district: true,
+							availability: true,
+							bloodGroup: true,
+							phone: true,
+							gender: true,
+						},
+					},
+				},
+			},
+		},
+	});
+
+	return requests.map((request) => ({
+		...request,
+		donorRequests: request.donorRequests.map((donorRequest) => {
+			const { phone, gender, ...donor } = donorRequest.donor;
+
+			return {
+				...donorRequest,
+				donor:
+					donorRequest.status === DonorRequestStatus.ACCEPTED
+						? { ...donor, phone, gender }
+						: donor,
+			};
+		}),
+	}));
 };
 
 const matchDonors = async (
@@ -301,62 +346,25 @@ const matchDonors = async (
 	return { total, matchingDonors, stringDonorIds };
 };
 
-const getAllDonorRequests = async (userId: string, requestId: string) => {
-	// console.log(userId, requestId);
-
-	if (!requestId) {
-		throw new Error("Request ID is required");
-	}
-	const requests = await prisma.bloodRequest.findUnique({
+const deleteBloodRequest = async (userId: string, reqId: string) => {
+	const request = await prisma.bloodRequest.findUnique({
 		where: {
-			id: requestId,
+			id: reqId,
 			requestorId: userId,
-		},
-		select: {
-			id: true,
-			bloodGroup: true,
-			district: true,
-			address: true,
-			units: true,
-			status: true,
-			donorRequests: {
-				select: {
-					id: true,
-					status: true,
-					donor: {
-						select: {
-							id: true,
-							address: true,
-							district: true,
-							availability: true,
-							bloodGroup: true,
-							phone: true,
-							gender: true,
-						},
-					},
-				},
-			},
 		},
 	});
 
-	if (!requests) {
+	if (!request) {
 		throw new AppError(httpStatus.NOT_FOUND, "Request not found");
 	}
 
-	return {
-		...requests,
-		donorRequests: requests.donorRequests.map((donorRequest) => {
-			const { phone, gender, ...donor } = donorRequest.donor;
+	const result = await prisma.bloodRequest.delete({
+		where: {
+			id: reqId,
+		},
+	});
 
-			return {
-				...donorRequest,
-				donor:
-					donorRequest.status === DonorRequestStatus.ACCEPTED
-						? { ...donor, phone, gender }
-						: donor,
-			};
-		}),
-	};
+	return result;
 };
 
 // const getAllBloodRequests = async (userId: string) => {}
@@ -369,4 +377,5 @@ export const bloodRequestServices = {
 	myRequests,
 	matchDonors,
 	getAllDonorRequests,
+	deleteBloodRequest,
 };

@@ -25,6 +25,7 @@ const bkashCallback = catchAsync(async (req: Request, res: Response) => {
 		throw new Error("bKash callback did not return a result");
 	}
 	const { redirectUrl } = callbackResult;
+	console.log("Ststus url", callbackResult);
 
 	res.redirect(redirectUrl);
 });
@@ -38,6 +39,7 @@ const getMyPayments = catchAsync(async (req: Request, res: Response) => {
 		success: true,
 		message: "Payments retrieved successfully",
 		data: result,
+		meta: {},
 	});
 });
 

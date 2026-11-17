@@ -7,6 +7,12 @@ import { donorValidation } from "./donor.validation.js";
 
 const router = Router();
 
+router.get(
+	"/donor-stats",
+	auth(UserRole.DONOR),
+	donorControllers.getDonorDashboardStats,
+);
+
 router.patch(
 	"/me",
 	auth(UserRole.DONOR),

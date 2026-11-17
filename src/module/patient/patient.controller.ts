@@ -18,6 +18,19 @@ const updatePatient = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
+const getPatientDashboardStats = async (req: Request, res: Response) => {
+	const userId = req?.currentUser?.userId;
+
+	const result = await patientServices.getPatientDashboardStats(userId!);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Patient dashboard stats retrieved successfully",
+		data: result,
+	});
+};
+
 // const registerPatient = catchAsync(async (req: Request, res: Response) => {
 // 	const payload = req.body;
 
@@ -29,4 +42,4 @@ const updatePatient = catchAsync(async (req: Request, res: Response) => {
 // 	});
 // });
 
-export const patientControllers = { updatePatient };
+export const patientControllers = { updatePatient, getPatientDashboardStats };

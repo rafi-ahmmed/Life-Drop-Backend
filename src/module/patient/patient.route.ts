@@ -7,4 +7,10 @@ const router = Router();
 
 router.patch("/me", auth(UserRole.PATIENT), patientControllers.updatePatient);
 
+router.get(
+	"/patient-stats",
+	auth(UserRole.PATIENT),
+	patientControllers.getPatientDashboardStats,
+);
+
 export const patientRoutes = router;

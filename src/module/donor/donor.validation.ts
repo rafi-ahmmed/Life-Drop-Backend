@@ -1,5 +1,4 @@
 import z from "zod";
-import { BloodGroup } from "../../../prisma/generated/prisma/enums.js";
 
 const updateDonorZodSchema = z.object({
 	phone: z.string().trim().min(11).max(15).optional(),

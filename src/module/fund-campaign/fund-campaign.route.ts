@@ -24,6 +24,8 @@ router.get(
 	fundCampaignControllers.getMyCampaigns,
 );
 
+router.get("/all", fundCampaignControllers.getAllCampaigns);
+
 router.get(
 	"/:id",
 	auth(UserRole.PATIENT, UserRole.HOSPITAL),
@@ -31,14 +33,11 @@ router.get(
 );
 
 // * Admin routes
-
 router.get(
 	"/admin/all",
 	auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
 	fundCampaignControllers.getAllCampaignsByAdmin,
 );
-
-router.get("/all", fundCampaignControllers.getAllCampaignsByAdmin);
 
 router.get(
 	"/admin/:id",

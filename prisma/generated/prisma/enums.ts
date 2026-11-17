@@ -99,6 +99,7 @@ export type FundCampaignStatus = (typeof FundCampaignStatus)[keyof typeof FundCa
 
 export const PaymentMethod = {
   BKASH: 'BKASH',
+  SSLCOMMERZ: 'SSLCOMMERZ',
   STRIPE: 'STRIPE'
 } as const
 

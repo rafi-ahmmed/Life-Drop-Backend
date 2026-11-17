@@ -1,8 +1,9 @@
 import crypto from "crypto";
-import e from "express";
 import httpStatus from "http-status";
-import { el } from "zod/locales";
-import { PaymentStatus } from "../../../prisma/generated/prisma/enums.js";
+import {
+	FundCampaignStatus,
+	PaymentStatus,
+} from "../../../prisma/generated/prisma/enums.js";
 import config from "../../config/index.js";
 import AppError from "../../errors/appError.js";
 import getBkashIdToken from "../../lib/bkash.js";
@@ -29,6 +30,7 @@ const createPayment = async (
 	if (campaign.status !== "ACTIVE") {
 		throw new AppError(httpStatus.BAD_REQUEST, "Campaign is not active");
 	}
+
 
 	const remainingAmount =
 		Number(campaign.targetAmount) - Number(campaign.collectedAmount ?? 0);
@@ -141,7 +143,7 @@ const bkashCallback = async (query: Record<string, any>) => {
 			if (paymentResult.status === PaymentStatus.PAID) {
 				return {
 					paymentResult: paymentResult,
-					redirectUrl: `${config.frontend_url}/dashboard/fund-campaigns?status=success`,
+					redirectUrl: `${config.frontend_url}/payment/success?status=success&paymentId=${paymentResult.id}`,
 				};
 			}
 
@@ -180,7 +182,7 @@ const bkashCallback = async (query: Record<string, any>) => {
 
 			return {
 				paymentResult: updatedPayment,
-				redirectUrl: `${config.frontend_url}/dashboard/fund-campaigns?status=success`,
+				redirectUrl: `${config.frontend_url}/payment/success?status=success&paymentId=${paymentResult.id}`,
 			};
 		} else if (status === "failure") {
 			const paymentResult = await tx.payment.findUnique({
@@ -196,7 +198,7 @@ const bkashCallback = async (query: Record<string, any>) => {
 			if (paymentResult.status === PaymentStatus.FAILED) {
 				return {
 					paymentResult: paymentResult,
-					redirectUrl: `${config.frontend_url}/dashboard/my-appointments?status=failure`,
+					redirectUrl: `${config.frontend_url}/payment/failed?status=failure`,
 				};
 			}
 
@@ -212,7 +214,7 @@ const bkashCallback = async (query: Record<string, any>) => {
 
 			return {
 				paymentResult: updatedPayment,
-				redirectUrl: `${config.frontend_url}/dashboard/my-appointments?status=failure`,
+				redirectUrl: `${config.frontend_url}/payment/failed?status=failure`,
 			};
 		} else if (status === "cancel") {
 			const paymentResult = await tx.payment.findUnique({
@@ -228,7 +230,7 @@ const bkashCallback = async (query: Record<string, any>) => {
 			if (paymentResult.status === PaymentStatus.CANCELLED) {
 				return {
 					paymentResult: paymentResult,
-					redirectUrl: `${config.frontend_url}/dashboard/my-appointments?status=cancel`,
+					redirectUrl: `${config.frontend_url}/payment/failed?status=cancel`,
 				};
 			}
 
@@ -244,7 +246,7 @@ const bkashCallback = async (query: Record<string, any>) => {
 
 			return {
 				paymentResult: updatedPayment,
-				redirectUrl: `${config.frontend_url}/dashboard/my-appointments?status=cancel`,
+				redirectUrl: `${config.frontend_url}/payment/failed?status=cancel`,
 			};
 		}
 	});
@@ -256,6 +258,17 @@ const getMyPayments = async (userId: string) => {
 	const result = await prisma.payment.findMany({
 		where: {
 			userId: userId,
+		},
+		orderBy: {
+			paidAt: "desc",
+		},
+		include: {
+			campaign: {
+				select: {
+					title: true,
+					patientName: true,
+				},
+			},
 		},
 	});
 

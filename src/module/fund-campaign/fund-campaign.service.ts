@@ -48,9 +48,6 @@ const getAllCampaignsByAdmin = async () => {
 		orderBy: {
 			createdAt: "desc",
 		},
-		include: {
-			Payments: true,
-		},
 	});
 
 	return result;

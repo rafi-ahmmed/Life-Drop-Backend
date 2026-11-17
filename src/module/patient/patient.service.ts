@@ -1,5 +1,8 @@
 import httpStatus from "http-status";
-import { UserRole } from "../../../prisma/generated/prisma/enums.js";
+import {
+	BloodRequestStatus,
+	UserRole,
+} from "../../../prisma/generated/prisma/enums.js";
 import AppError from "../../errors/appError.js";
 import { prisma } from "../../lib/prisma.js";
 import type { UpdatePatientPayload } from "./patient.validation.js";
@@ -52,6 +55,53 @@ const updatePatient = async (payload: UpdatePatientPayload, userId: string) => {
 	return updatedPatient;
 };
 
+const getPatientDashboardStats = async (userId: string) => {
+	const [
+		totalBloodRequests,
+		activeBloodRequests,
+		fulfilledBloodRequests,
+		totalFundCampaigns,
+	] = await Promise.all([
+		// Total blood requests
+		prisma.bloodRequest.count({
+			where: {
+				requestorId: userId,
+			},
+		}),
+
+		// Active blood requests
+		prisma.bloodRequest.count({
+			where: {
+				requestorId: userId,
+				status: {
+					in: [BloodRequestStatus.APPROVED, BloodRequestStatus.MATCHING],
+				},
+			},
+		}),
+
+		// Fulfilled blood requests
+		prisma.bloodRequest.count({
+			where: {
+				requestorId: userId,
+				status: BloodRequestStatus.FULFILLED,
+			},
+		}),
+
+		// Total fund campaigns
+		prisma.fundCampaign.count({
+			where: {
+				userId,
+			},
+		}),
+	]);
+
+	return {
+		totalBloodRequests,
+		activeBloodRequests,
+		fulfilledBloodRequests,
+		totalFundCampaigns,
+	};
+};
 // const registerPatient = async (payload: any) => {};
 
-export const patientServices = { updatePatient };
+export const patientServices = { updatePatient, getPatientDashboardStats };

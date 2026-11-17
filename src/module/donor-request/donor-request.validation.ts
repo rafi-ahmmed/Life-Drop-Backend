@@ -4,6 +4,7 @@ export const sendDonorRequestZodSchema = z.object({
 	donorIds: z
 		.array(z.uuid("Invalid donor ID"))
 		.min(1, "At least one donor must be selected"),
+	message: z.string().optional(),
 });
 
 export type SendDonorRequestsPayload = z.infer<

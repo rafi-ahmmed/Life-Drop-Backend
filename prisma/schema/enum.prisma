@@ -64,6 +64,7 @@ enum FundCampaignStatus {
 
 enum PaymentMethod {
   BKASH
+  SSLCOMMERZ
   STRIPE
 }
 
