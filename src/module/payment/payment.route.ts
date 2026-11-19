@@ -9,14 +9,27 @@ import { paymentValidations } from "./payment.validation.js";
 const router = Router();
 
 router.post(
-	"/create-payment",
+	"/create-bkash-payment",
 	paymentRateLimiter,
 	validateRequest(paymentValidations.createPaymentZodSchema),
 	auth(UserRole.PATIENT, UserRole.DONOR, UserRole.HOSPITAL),
-	paymentControllers.createPayment,
+	paymentControllers.createBkashPayment,
+);
+
+router.post(
+	"/create-ssl-payment",
+	paymentRateLimiter,
+	validateRequest(paymentValidations.createPaymentZodSchema),
+	auth(UserRole.PATIENT, UserRole.DONOR, UserRole.HOSPITAL),
+	paymentControllers.createSSLPayment,
 );
 
 router.get("/bkash/callback", paymentControllers.bkashCallback);
+
+router.post("/sslcommerz/ipn", paymentControllers.sslIpnCallback);
+router.post("/sslcommerz/success", paymentControllers.sslSuccessCallback);
+router.post("/sslcommerz/cancel", paymentControllers.sslCancelCallback);
+router.post("/sslcommerz/fail", paymentControllers.sslFailCallback);
 
 router.get(
 	"/my-payments",

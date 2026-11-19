@@ -1,9 +1,12 @@
 model Payment {
   id String @id @default(uuid())
 
-  amount          Decimal       @db.Decimal(10, 2)
-  bkashPaymentId  String        @unique
-  trxID           String?       @unique
+  trxID      String? @unique //sslcommerz and bkash
+  amount     Decimal @db.Decimal(10, 2)
+  paymentId  String?  @unique //* bkashPayment id and SSLcomarz val_id
+  cardType   String? //sslcommerz
+  bankTranId String? //sslcommerz
+
   paidAt          DateTime      @default(now())
   method          PaymentMethod @default(BKASH)
   status          PaymentStatus @default(UNPAID)

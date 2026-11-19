@@ -56,4 +56,12 @@ export default {
 	stripe_secret_key: process.env.STRIPE_SECRET_KEY!,
 	stripe_publishable_key: process.env.STRIPE_PUBLISHABLE_KEY!,
 	stripe_webhook_secret: process.env.STRIPE_WEBHOOK_SECRET!,
+
+	// sslcommerz payments
+	ssl_store_id: process.env.SSL_STORE_ID!,
+	ssl_store_password: process.env.SSL_STORE_PASSWORD!,
+	ssl_success_url: process.env.SSL_SUCCESS_URL!,
+	ssl_fail_url: process.env.SSL_FAIL_URL!,
+	ssl_cancel_url: process.env.SSL_CANCEL_URL!,
+	ssl_ipn_url: process.env.SSL_IPN_URL!,
 };

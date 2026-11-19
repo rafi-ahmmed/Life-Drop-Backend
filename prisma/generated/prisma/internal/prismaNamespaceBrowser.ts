@@ -168,9 +168,11 @@ export type PatientScalarFieldEnum = (typeof PatientScalarFieldEnum)[keyof typeo
 
 export const PaymentScalarFieldEnum = {
   id: 'id',
-  amount: 'amount',
-  bkashPaymentId: 'bkashPaymentId',
   trxID: 'trxID',
+  amount: 'amount',
+  paymentId: 'paymentId',
+  cardType: 'cardType',
+  bankTranId: 'bankTranId',
   paidAt: 'paidAt',
   method: 'method',
   status: 'status',
