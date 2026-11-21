@@ -180,6 +180,9 @@ const myRequests = async (userId: string) => {
 		where: {
 			requestorId: userId,
 		},
+		orderBy: {
+			createdAt: "desc",
+		},
 	});
 
 	// console.log(requests);

@@ -12,11 +12,9 @@ import { globalErrorHandler } from "./middlewares/globalErrorHandler.js";
 import { notFound } from "./middlewares/notFound.js";
 import { authRoutes } from "./module/auth/auth.route.js";
 import "./config/passport.js";
-import bcrypt from "bcryptjs";
 import helmet from "helmet";
 import morgan from "morgan";
 import passport from "passport";
-import { UserRole } from "../prisma/generated/prisma/enums.js";
 import { prisma } from "./lib/prisma.js";
 import { globalRateLimiter } from "./middlewares/rate-limiter.js";
 import { adminRoutes } from "./module/admin/admin.route.js";
@@ -27,7 +25,6 @@ import { fundCampaignRoutes } from "./module/fund-campaign/fund-campaign.route.j
 import { patientRoutes } from "./module/patient/patient.route.js";
 import { paymentRoutes } from "./module/payment/payment.route.js";
 import { userRoutes } from "./module/user/user.route.js";
-import { getHashPassword } from "./utils/password.js";
 
 const app: Application = express();
 
